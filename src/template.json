@@ -1,10 +1,25 @@
 {
   "Actor": {
-    "types": [],
+    "types": ["player", "npc"],
     "templates": {}
   },
   "Item": {
-    "types": [],
-    "templates": {}
+    "types": ["skill", "gear"],
+    "templates": {
+      "skill": {
+        "hasOwner": true
+      },
+      "gear": {
+        "pack": 1,
+        "held": 1,
+        "belt": 1,
+        "torso": 1,
+        "head": 1,
+        "hand": 1,
+        "feet": 1,
+        "neck": 1,
+        "arm": 1
+      }
+    }
   }
 }
