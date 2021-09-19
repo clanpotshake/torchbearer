@@ -1,0 +1,66 @@
+{
+  "private": true,
+  "name": "torchbearer2e",
+  "version": "0.0.0",
+  "description": "",
+  "license": "",
+  "homepage": "",
+  "repository": {
+    "type": "git",
+    "url": ""
+  },
+  "bugs": {
+    "url": ""
+  },
+  "contributors": [
+    {
+      "name": "",
+      "email": ""
+    }
+  ],
+  "scripts": {
+    "build": "gulp build",
+    "build:watch": "gulp watch",
+    "link-project": "gulp link",
+    "clean": "gulp clean",
+    "clean:link": "gulp link --clean",
+    "bump-version": "gulp bumpVersion",
+    "lint": "eslint --ext .ts,.js .",
+    "lint:fix": "eslint --ext .ts,.js --fix .",
+    "format": "prettier --write \"./**/*.(ts|js|json|css)\"",
+    "test": "jest",
+    "test:watch": "jest --watch",
+    "test:ci": "jest --ci --reporters=default --reporters=jest-junit",
+    "postinstall": "husky install"
+  },
+  "devDependencies": {
+    "@league-of-foundry-developers/foundry-vtt-types": "^0.8.9-2",
+    "@rollup/plugin-node-resolve": "^13.0.4",
+    "@types/jest": "^27.0.1",
+    "@typescript-eslint/eslint-plugin": "^4.31.1",
+    "@typescript-eslint/parser": "^4.31.1",
+    "chalk": "^4.1.2",
+    "eslint": "^7.32.0",
+    "eslint-config-prettier": "^8.3.0",
+    "eslint-plugin-jest": "^24.4.2",
+    "eslint-plugin-prettier": "^4.0.0",
+    "fs-extra": "^10.0.0",
+    "gulp": "^4.0.2",
+    "husky": "^7.0.2",
+    "jest": "^27.2.0",
+    "jest-junit": "^12.2.0",
+    "lint-staged": "^11.1.2",
+    "prettier": "^2.4.1",
+    "rollup": "^2.56.3",
+    "rollup-plugin-typescript2": "^0.30.0",
+    "semver": "^7.3.5",
+    "ts-jest": "^27.0.5",
+    "tslib": "^2.3.1",
+    "typescript": "^4.4.3",
+    "yargs": "^17.1.1"
+  },
+  "lint-staged": {
+    "*.(ts|js)": "eslint --fix",
+    "*.(json|css)": "prettier --write"
+  }
+}
