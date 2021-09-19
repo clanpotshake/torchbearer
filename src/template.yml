@@ -1,0 +1,172 @@
+Actor:
+  types:
+    - setting
+    - character
+    - npc
+  templates:
+    common:
+      will: &ability
+        rank: 1
+      health: *ability
+      circles: *ability
+      resources: *ability
+      nature:
+        current: 0
+        max: 0
+      custom1:
+        <<: *ability
+        name: ''
+      custom2:
+        <<: *ability
+        name: ''
+      property: ''
+      fate: 0
+      persona: 0
+    displayProps:
+      collapseBeliefs: false
+      collapseInstincts: false
+      collapseGoals: false
+      collapseTraits: false
+      collapseAbilities: false
+      collapseRelationships: false
+      collapseGear: false
+      collapseSkills: false
+      collapseLearning: false
+      collapseMisc: false
+      collapseSpells: false
+      collapseInvocations: false
+  setting:
+    description: ''
+  character:
+    templates:
+      - common
+      - displayProps
+    stock: ''
+    age: 18
+    class: ''
+    alias: ''
+    hometown: ''
+    rainment: ''
+    miscNotes1: ''
+    miscNotes2: ''
+    miscNotes3: ''
+  npc:
+    templates:
+      - common
+      - displayProps
+    editMode: false
+    bio: ''
+Item:
+  types:
+    - belief
+    - instinct
+    - goal
+    - creed
+    - trait
+    - skill
+    - relationship
+    - gear
+    - property
+    - spell
+    - class
+  templates:
+    arthaEarner:
+      fate: false
+      persona: false
+  belief:
+    templates:
+      - arthaEarner
+    text: ''
+  instinct:
+    templates:
+      - arthaEarner
+    text: ''
+  goal:
+    templates:
+      - arthaEarner
+    text: ''
+  creed:
+    templates:
+      - arthaEarner
+    text: ''
+  trait:
+    name: ''
+    traittype: character
+    text: ''
+    collapsed: true
+    level: 0
+    checks: 2
+    uses: 0
+    additionalDie: 0
+    additionalSuccess: 0
+
+
+    hasDieModifier: false
+    dieModifier: 0
+    dieModifierTarget: ''
+    hasObModifier: false
+    callonTarget: ''
+    restrictions: ''
+  skill:
+    name: ''
+    rank: 1
+    passes: 0
+    fails: 0
+    learning: false
+    attempts: 0
+    root1: ''
+    root2: ''
+    description: ''
+    collapsed: false
+    tools: false
+    restrictions: ''
+  relationship:
+    name: ''
+    description: ''
+    location: ''
+    skill: '' # TODO not string here?
+    friend: false
+    parent: false
+    enemy: false
+  gear:
+    description: ''
+    pack: 0,
+    held: 0,
+    belt: 0,
+    torso: 0,
+    head: 0,
+    hand: 0,
+    feet: 0,
+    neck: 0,
+    arm: 0
+    pocket: false
+  property:
+    isWorkshop: false
+    description: ''
+  spell:
+    name: ''
+    description: ''
+    circle: 0
+    scribe: 0
+    learn: 0
+    castOb: 0
+    materials: ''
+    castTime: ''
+    casting: ''
+    duration: ''
+    factors: ''
+  class:
+    name: ''
+    level1: ''
+    level2: &levelBenefit
+      optionA: ''
+      optionB: ''
+    level3: *levelBenefit
+    level4: *levelBenefit
+    level5: *levelBenefit
+    level6: *levelBenefit
+    level7: *levelBenefit
+    level8: *levelBenefit
+    level9: *levelBenefit
+    level10: *levelBenefit
+
