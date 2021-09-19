@@ -24,7 +24,7 @@ const staticFiles = [
   'packs',
   'templates',
   'system.json',
-  'template.json',
+  'template.yml',
 ];
 const getDownloadURL = (version) => `https://host/path/to/${version}.zip`;
 

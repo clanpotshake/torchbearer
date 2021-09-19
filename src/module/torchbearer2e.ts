@@ -13,12 +13,15 @@
 // Import TypeScript modules
 import { registerSettings } from './settings';
 import { preloadTemplates } from './preloadTemplates';
+import { BIGItem } from './actors/TBItem';
 
 // Initialize system
 Hooks.once('init', async () => {
   console.log('torchbearer2e | Initializing torchbearer2e');
 
   // Assign custom classes and constants here
+  // CONFIG.Actor.documentClass = ???;
+  CONFIG.Item.documentClass = BIGItem;
 
   // Register custom system settings
   registerSettings();
