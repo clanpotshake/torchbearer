@@ -4,8 +4,13 @@ Actor:
     - character
     - npc
   templates:
+    advances:
+      passes: 0
+      fails: 0
     common:
       will: &ability
+        templates:
+          - advances
         rank: 1
       health: *ability
       circles: *ability
@@ -43,7 +48,7 @@ Actor:
       - displayProps
     stock: ''
     age: 18
-    class: ''
+    career: ''
     alias: ''
     hometown: ''
     rainment: ''
@@ -108,10 +113,10 @@ Item:
     callonTarget: ''
     restrictions: ''
   skill:
+    templates:
+      - advances
     name: ''
     rank: 1
-    passes: 0
-    fails: 0
     learning: false
     attempts: 0
     root1: ''

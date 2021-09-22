@@ -2,6 +2,9 @@ interface ArthaEarnerDataSource {
   fate: boolean;
   persona: boolean;
 }
+export interface DisplayClass {
+  cssClass?: string;
+}
 
 export interface BeliefDataSourceData extends ArthaEarnerDataSource {
   fate: true;
@@ -56,7 +59,7 @@ interface GoalDataProperties {
   data: GoalDataPropertiesData;
 }
 export class BIGItem extends Item {
-  prepareData() {
+  prepareData(): void {
     super.prepareData();
   }
 }
