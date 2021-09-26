@@ -1,4 +1,4 @@
-import { DisplayClass } from './TBItem';
+import { DisplayClass } from '../items/TBItem';
 
 export interface TracksTests {
   passes: number;
@@ -46,7 +46,7 @@ export interface CharacterDataSourceData
   career: string; // TODO real type
   alias: string;
   hometown: string; // TODO item?
-  rainment: string;
+  raiment: string;
   miscNotes1: string;
   miscNotes2: string;
   miscNotes3: string;
@@ -54,18 +54,25 @@ export interface CharacterDataSourceData
 
 export interface CharacterDataSource {
   type: 'character';
-  data: CharacterDataSource;
+  data: CharacterDataSourceData;
 }
-export interface NpcDataSource {
-  type: 'npc';
-  data: NpcDataSource;
-}
-
 export interface NpcDataSourceData extends CommonDataSourceData, HasDisplayPropsDataSourceData {
   exitMode: boolean;
   bio: string;
 }
 export interface NpcDataSource {
   type: 'npc';
-  data: NpcDataSource;
+  data: NpcDataSourceData;
+}
+type AllCharacterDataSource = CharacterDataSource | NpcDataSource;
+
+declare global {
+  interface SourceConfig {
+    Actor: AllCharacterDataSource;
+  }
+}
+export class TBActor extends Actor {
+  prepareData(): void {
+    super.prepareData();
+  }
 }
