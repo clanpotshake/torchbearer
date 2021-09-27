@@ -13,16 +13,26 @@
 // Import TypeScript modules
 import { registerSettings } from './settings';
 import { preloadTemplates } from './preloadTemplates';
-import { BIGItem } from './actors/TBItem';
+import { TBItem } from './item/TBItem';
+import { TBActor } from './actor/TBActor';
+import { TBCharacterSheet } from './actor/sheets/TBCharacterSheet';
+import { getGame } from './helpers';
+import { TB } from './config';
 
 // Initialize system
 Hooks.once('init', async () => {
   console.log('torchbearer2e | Initializing torchbearer2e');
 
+  getGame().tb = {
+    TBActor,
+    TBItem,
+    TB,
+  };
+  CONFIG.TB = TB;
   // Assign custom classes and constants here
   // CONFIG.Actor.documentClass = ???;
-  CONFIG.Item.documentClass = BIGItem;
-
+  CONFIG.Item.documentClass = TBItem;
+  CONFIG.Actor.documentClass = TBActor;
   // Register custom system settings
   registerSettings();
 
@@ -30,6 +40,7 @@ Hooks.once('init', async () => {
   await preloadTemplates();
 
   // Register custom sheets (if any)
+  Actors.registerSheet('tb', TBCharacterSheet, { types: ['character'], makeDefault: true });
 });
 
 // Setup system
@@ -44,3 +55,19 @@ Hooks.once('ready', async () => {
 });
 
 // Add any additional hooks if necessary
+
+declare global {
+  interface Game {
+    tb: {
+      TBActor: typeof TBActor;
+      TBItem: typeof TBItem;
+      TB: typeof TB;
+      // migration: typeof migration;
+      // macros: typeof macros;
+    };
+  }
+
+  interface CONFIG {
+    TB: typeof TB;
+  }
+}

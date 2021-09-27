@@ -1,14 +1,12 @@
 {
-  "name": "torchbearer2e",
-  "title": "torchbearer2e",
+  "name": "Torchbearer 2nd Edition",
+  "title": "torchbearer",
   "description": "",
-  "version": "0.0.0",
-  "author": "<your name>",
+  "version": "0.0.1",
+  "author": "clanpotshake",
   "authors": [
     {
-      "name": "<your name>",
-      "email": "<optionally your e-mail address>",
-      "discord": "<optionally your discord username>"
+      "name": "clanpotshake"
     }
   ],
   "minimumCoreVersion": "0.8.8",

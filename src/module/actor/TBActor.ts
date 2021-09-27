@@ -1,4 +1,4 @@
-import { DisplayClass } from '../items/TBItem';
+import { DisplayClass } from '../item/TBItem';
 
 export interface TracksTests {
   passes: number;
@@ -6,6 +6,9 @@ export interface TracksTests {
 }
 export interface Ability extends TracksTests, DisplayClass {
   foo: number;
+}
+export interface DisplayClass {
+  cssClass?: string;
 }
 
 export interface CommonDataSourceData {

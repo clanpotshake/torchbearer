@@ -96,22 +96,10 @@ Item:
     text: ''
   trait:
     name: ''
-    traittype: character
-    text: ''
+    description: ''
     collapsed: true
     level: 0
     checks: 2
-    uses: 0
-    additionalDie: 0
-    additionalSuccess: 0
-
-
-    hasDieModifier: false
-    dieModifier: 0
-    dieModifierTarget: ''
-    hasObModifier: false
-    callonTarget: ''
-    restrictions: ''
   skill:
     templates:
       - advances
@@ -124,16 +112,16 @@ Item:
     description: ''
     collapsed: false
     tools: false
-    restrictions: ''
   relationship:
     name: ''
     description: ''
     location: ''
     skill: '' # TODO not string here?
-    friend: false
-    parent: false
-    enemy: false
+    isFriend: false
+    isParent: false
+    isEnemy: false
   gear:
+    name: ''
     description: ''
     pack: 0,
     held: 0,
@@ -148,12 +136,13 @@ Item:
   property:
     isWorkshop: false
     description: ''
+    location: ''
   spell:
     name: ''
     description: ''
     circle: 0
-    scribe: 0
-    learn: 0
+    scribeOb: 0
+    learnOb: 0
     castOb: 0
     materials: ''
     castTime: ''
