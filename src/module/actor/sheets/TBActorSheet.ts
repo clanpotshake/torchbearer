@@ -1,10 +1,11 @@
 import { TBCharacterActorSheetData } from './TBCharacterSheetData';
 import { TB } from '../../config';
 import { getTBSettings, TBSettings } from '../../settings';
-import { TBActiveEffect } from '../../TBActiveEffect';
+import { TBActiveEffect } from '../../ActiveEffect';
 import { enforce, getGame } from '../../helpers';
+import notifications from '../../ui/notifications';
 
-export class TBActorSheet extends ActorSheet<ActorSheet.Options, TBCharacterActorSheetData> {
+export class TBActorSheet extends ActorSheet<ActorSheet.Options, TBActorSheetData> {
   /** @override */
   static get defaultOptions(): ActorSheet.Options {
     return foundry.utils.mergeObject(super.defaultOptions, {});
@@ -33,7 +34,7 @@ export class TBActorSheet extends ActorSheet<ActorSheet.Options, TBCharacterActo
         icon: effect.data.icon ?? TBActiveEffect.FALLBACK_ICON,
         sourceName: await effect.getCurrentSourceName(),
         factor: effect.factor,
-        isEffectivelyEnabled: !effect.data.disabled && !effect.isSurpressed,
+        isEffectivelyEnabled: !effect.data.disabled && !effect.isSuppressed,
       };
     });
     const enrichedEffects = await Promise.all(enrichedEffectPromises);
@@ -125,6 +126,85 @@ export class TBActorSheet extends ActorSheet<ActorSheet.Options, TBCharacterActo
     );
     enforce(item.sheet);
     item.sheet.render(true);
+  }
+
+  /**
+   * Applies a change to a property of an embedded item depending on the `data-property` attribute of the
+   * {@link HTMLInputElement} that has been changed and its new value.
+   *
+   * @param event - The originating change event
+   */
+  protected onChangeItem(event: JQuery.ChangeEvent): void {
+    return this.onChangeEmbeddedDocument(event, 'Item');
+  }
+  /**
+   * Handles a click on an element of this sheet to control an embedded effect of the actor corresponding to this
+   * sheet.
+   *
+   * @param event - The originating click event
+   */
+  protected onControlEffect(event: JQuery.ClickEvent): void {
+    event.preventDefault();
+    const a = event.currentTarget;
+    switch (a.dataset['action']) {
+      case 'create':
+        return this.onCreateEffect();
+      case 'edit':
+        return this.onEditEffect(event);
+      case 'delete':
+        return this.onDeleteEffect(event);
+    }
+  }
+
+  /**
+   * Creates a new embedded effect.
+   */
+  protected onCreateEffect(): void {
+    TBActiveEffect.createDefault(this.actor);
+  }
+
+  /**
+   * Opens the sheet of the embedded effect corresponding to the clicked element.
+   *
+   * @param event - The originating click event
+   */
+  protected onEditEffect(event: JQuery.ClickEvent): void {
+    const id = $(event.currentTarget)
+      .parents(embeddedDocumentListEntryProperties.ActiveEffect.selector)
+      .data(embeddedDocumentListEntryProperties.ActiveEffect.idDataAttribute);
+    const effect = this.actor.effects.get(id);
+    enforce(
+      effect,
+      getGame().i18n.format('DS4.ErrorActorDoesNotHaveEffect', { id, actor: this.actor.name }),
+    );
+    effect.sheet.render(true);
+  }
+
+  /**
+   * Handle clickable check rolls.
+   * @param event - The originating click event
+   */
+  protected onRollCheck(event: JQuery.ClickEvent): void {
+    event.preventDefault();
+    const check = event.currentTarget.dataset['check'];
+    this.actor.rollCheck(check).catch((e) => notifications.error(e, { log: true }));
+  }
+
+  /**
+   * Handle clickable item rolls.
+   * @param event - The originating click event
+   */
+  protected onRollItem(event: JQuery.ClickEvent): void {
+    event.preventDefault();
+    const id = $(event.currentTarget)
+      .parents(embeddedDocumentListEntryProperties.Item.selector)
+      .data(embeddedDocumentListEntryProperties.Item.idDataAttribute);
+    const item = this.actor.items.get(id);
+    enforce(
+      item,
+      getGame().i18n.format('DS4.ErrorActorDoesNotHaveItem', { id, actor: this.actor.name }),
+    );
+    // item.roll().catch((e) => notifications.error(e, { log: true }));
   }
 
   /**

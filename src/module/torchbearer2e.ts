@@ -27,6 +27,7 @@ Hooks.once('init', async () => {
     TBActor,
     TBItem,
     TB,
+    // migration,
   };
   CONFIG.TB = TB;
   // Assign custom classes and constants here

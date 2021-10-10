@@ -1,5 +1,5 @@
 declare global {
-  interface ItemDocumentClassConfig {
+  interface DocumentClassConfig {
     Item: typeof TBItem;
   }
 }
