@@ -15,7 +15,7 @@ import { registerSettings } from './settings';
 import { preloadTemplates } from './preloadTemplates';
 import { TBItem } from './item/TBItem';
 import { TBActor } from './actor/TBActor';
-import { TBCharacterSheet } from './actor/sheets/TBCharacterSheet';
+import { TBActorSheet } from './actor/sheets/TBActorSheet';
 import { getGame } from './helpers';
 import { TB } from './config';
 
@@ -40,7 +40,7 @@ Hooks.once('init', async () => {
   await preloadTemplates();
 
   // Register custom sheets (if any)
-  Actors.registerSheet('tb', TBCharacterSheet, { types: ['character'], makeDefault: true });
+  Actors.registerSheet('tb', TBActorSheet, { types: ['character'], makeDefault: true });
 });
 
 // Setup system
