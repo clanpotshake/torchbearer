@@ -1,0 +1,28 @@
+{{!--
+SPDX-FileCopyrightText: 2021 Johannes Loher
+SPDX-FileCopyrightText: 2021 Gesina Schwalbe
+
+SPDX-License-Identifier: MIT
+--}}
+
+{{!-- The item tab for details. --}}
+<div class="tab details" data-group="primary" data-tab="details">
+    {{!-- As you add new fields, add them in here! --}}
+    <div class="side-properties">
+        <div class="side-property">
+            <label for="data.price">{{localize "TB2.PriceGold"}}</label>
+            <input type="number" min="0" max="99999" step="0.01" data-dtype="Number" name="data.price"
+                value="{{data.data.price}}" />
+        </div>
+        <div class="side-property">
+            <label for="data.availability">{{localize "TB2.ItemAvailability"}}</label>
+            <select name="data.availability" data-type="String">
+                {{#select data.data.availability}}
+                {{#each config.i18n.itemAvailabilities as |value key|}}
+                <option value="{{key}}">{{value}}</option>
+                {{/each}}
+                {{/select}}
+            </select>
+        </div>
+    </div>
+</div>

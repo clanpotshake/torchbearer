@@ -1,0 +1,35 @@
+{{!--
+SPDX-FileCopyrightText: 2021 Johannes Loher
+SPDX-FileCopyrightText: 2021 Gesina Schwalbe
+
+SPDX-License-Identifier: MIT
+--}}
+
+{{!-- Template for the common body (navigation & body sections) of all items. --}}
+
+{{!-- Sheet Tab Navigation --}}
+<nav class="tb2-sheet-tab-nav sheet-tabs tabs" data-group="primary">
+    <a class="tb2-sheet-tab-nav__item item" data-tab="description">{{localize "DS4.HeadingDescription"}}</a>
+    <a class="tb2-sheet-tab-nav__item item" data-tab="effects">{{localize "DS4.HeadingEffects"}}</a>
+    {{#if isPhysical}}
+    <a class="tb2-sheet-tab-nav__item item" data-tab="details">{{localize "DS4.HeadingDetails"}}</a>
+    {{/if}}
+</nav>
+
+{{!-- Sheet Body --}}
+<section class="sheet-body">
+
+    {{!-- Description Tab --}}
+    {{#> systems/tb2/templates/sheets/item/tabs/description.hbs}}
+    {{> @partial-block}}
+    {{/systems/tb2/templates/sheets/item/tabs/description.hbs}}
+
+    {{!-- Effects Tab --}}
+    {{> systems/tb2/templates/sheets/item/tabs/effects.hbs}}
+
+    {{#if isPhysical}}
+    {{!-- Details Tab --}}
+    {{> systems/tb2/templates/sheets/item/tabs/details.hbs}}
+    {{/if}}
+
+</section>

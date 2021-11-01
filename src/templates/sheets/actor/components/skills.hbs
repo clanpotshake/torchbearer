@@ -1,0 +1,7 @@
+<div class="tb2-skills">
+  {{#each config.i18n.skills as |skills-label skills-key|}}
+    {{> systems/ds4/templates/sheets/actor/components/skill.hbs skills-key=skills-key skills-rating=(lookup
+      ../data.data.skills skills-key) skills-label=skills-label}}
+  {{/each}}
+
+</div>

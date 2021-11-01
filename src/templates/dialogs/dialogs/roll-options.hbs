@@ -20,9 +20,39 @@ SPDX-License-Identifier: MIT
             value="{{checkTargetNumber}}" />
     </div>
     <div class="form-group">
-        <label for="gm-modifier">{{localize "TB2.DialogRollOptionsGMModifierLabel"}}</label>
-        <input id="gm-modifier" data-type="Number" type="number" name="gm-modifier" value="0" />
+        <label for="support-gear">{{localize "TB2.DialogRollOptionsSupportGearLabel"}}</label>
+        <input id="support-gear" data-type="Number" type="number" name="support-gear" value="0" />
     </div>
+    <div class="form-group">
+      <label for="none-trait">{{localize "TB2.DialogRollOptionsTraitNoneLabel"}}</label>
+      <input id="none-trait" data-type="Boolean" type="radio" name="use-trait" value="0" checked="true" />
+      <label for="help-trait">{{localize "TB2.DialogRollOptionsTraitHelpLabel"}}</label>
+      <input id="help-trait" data-type="Boolean" type="radio" name="use-trait" value="0" />
+      <label for="check-trait">{{localize "TB2.DialogRollOptionsTraitCheckLabel"}}</label>
+      <input id="check-trait" data-type="Boolean" type="radio" name="use-trait" value="0" />
+    </div>
+  <div class="form-group">
+    <label for="persona-buy">{{localize "TB2.DialogRollOptionsBoughtDiceLabel"}}</label>
+    <input id="persona-buy" data-type="Number" type="number" name="persona-buy" value="0" />
+  </div>
+  <div class="form-group">
+    <label for="success-mod">{{localize "TB2.DialogRollOptionsSuccessModifierLabel"}}</label>
+    <input id="success-mod" data-type="Number" type="number" name="success-mod" value="0" />
+  </div>
+<!--  TODO hide some lesser-used options behind a spoiler tag or something -->
+  <div class="form-group">
+<!--    TODO get weary/bulky from actor data  -->
+    <label for="apply-bulky">{{localize "TB2.DialogRollOptionsApplyBulkyLabel"}}</label>
+    <input id="apply-bulky" data-type="Boolean" type="checkbox" name="apply-bulky" />
+  </div>
+  <div class="form-group">
+    <label for="apply-weary">{{localize "TB2.DialogRollOptionsApplyWearyLabel"}}</label>
+    <input id="apply-weary" data-type="Boolean" type="checkbox" name="apply-weary" />
+  </div>
+  <div class="form-group">
+    <label for="apply-hometown">{{localize "TB2.DialogRollOptionsApplyHomeTownLabel"}}</label>
+    <input id="apply-hometown" data-type="Boolean" type="checkbox" name="apply-hometown" />
+  </div>
 <!--    <div class="form-group">-->
 <!--        <label for="maximum-coup-result">{{localize "TB2.DialogRollOptionsMaximumCoupResultLabel"}}</label>-->
 <!--        <input id="maximum-coup-result" data-type="Number" type="number" name="maximum-coup-result"-->

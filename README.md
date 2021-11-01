@@ -76,3 +76,5 @@ You can run the tests with the following command:
 ```
 npm test
 ```
+# TODO
+- Link items as supplies or focus to modify rolls and use up supplies (remove from sheet)
