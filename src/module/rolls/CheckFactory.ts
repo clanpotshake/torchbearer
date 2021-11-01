@@ -9,9 +9,16 @@ import { getGame } from '../helpers';
  * Provides default values for all arguments the `CheckFactory` expects.
  */
 class DefaultCheckOptions implements TBCheckFactoryOptions {
-  readonly maximumCoupResult = 1;
-  readonly minimumFumbleResult = 20;
-  readonly useSlayingDice = false;
+  readonly takeCheck: boolean = false;
+  readonly useTrait: boolean = false;
+  readonly channelNature: boolean = false;
+  readonly successMod: number = 0;
+  readonly purchasedDice: number = 0;
+  readonly helpAndGear: number = 0;
+  readonly applyBulky: boolean = false;
+  readonly applyWeary: boolean = false;
+  readonly applyHometown: boolean = false;
+
   readonly rollMode: foundry.CONST.DiceRollMode = 'roll';
   readonly flavor: undefined;
 
@@ -40,13 +47,8 @@ class CheckFactory {
   private options: TBCheckFactoryOptions;
 
   async execute(): Promise<ChatMessage | undefined> {
-    const innerFormula = [
-      'ds',
-      this.createCheckTargetNumberModifier(),
-      this.createCoupFumbleModifier(),
-    ].filterJoin('');
-    const formula = this.options.useSlayingDice ? `{${innerFormula}}x` : innerFormula;
-    const roll = Roll.create(formula);
+    const innerFormula = ['tb', this.createCheckTargetNumberModifier()].filterJoin('');
+    const roll = Roll.create(innerFormula);
     const speaker = this.options.speaker ?? ChatMessage.getSpeaker();
 
     return roll.toMessage(
@@ -65,19 +67,6 @@ class CheckFactory {
     const totalCheckTargetNumber = Math.max(this.checkTargetNumber + this.gmModifier, 0);
     return `v${totalCheckTargetNumber}`;
   }
-
-  createCoupFumbleModifier(): string | null {
-    const isMinimumFumbleResultRequired =
-      this.options.minimumFumbleResult !== defaultCheckOptions.minimumFumbleResult;
-    const isMaximumCoupResultRequired =
-      this.options.maximumCoupResult !== defaultCheckOptions.maximumCoupResult;
-
-    if (isMinimumFumbleResultRequired || isMaximumCoupResultRequired) {
-      return `c${this.options.maximumCoupResult ?? ''}:${this.options.minimumFumbleResult ?? ''}`;
-    } else {
-      return null;
-    }
-  }
 }
 
 /**
@@ -92,11 +81,18 @@ export async function createTestRoll(
   // Ask for additional required data;
   const gmModifierData = await askGmModifier(checkTargetNumber, options);
 
-  const newTargetValue = gmModifierData.checkTargetNumber ?? checkTargetNumber;
+  const newTargetValue = checkTargetNumber;
   const gmModifier = gmModifierData.gmModifier ?? 0;
   const newOptions: Partial<TBCheckFactoryOptions> = {
-    maximumCoupResult: gmModifierData.maximumCoupResult ?? options.maximumCoupResult,
-    minimumFumbleResult: gmModifierData.minimumFumbleResult ?? options.minimumFumbleResult,
+    applyBulky: options.applyBulky,
+    applyHometown: options.applyHometown,
+    applyWeary: options.applyWeary,
+    channelNature: options.channelNature,
+    helpAndGear: options.helpAndGear,
+    purchasedDice: options.purchasedDice,
+    successMod: options.successMod,
+    takeCheck: options.takeCheck,
+    useTrait: options.useTrait,
     rollMode: gmModifierData.rollMode ?? options.rollMode,
     flavor: options.flavor,
     flavorData: options.flavorData,
@@ -115,23 +111,18 @@ export async function createTestRoll(
 /**
  * Responsible for rendering the modal interface asking for the modifier specified by GM and (currently) additional data.
  *
- * @notes
- * At the moment, this asks for more data than it will do after some iterations.
- *
  * @returns The data given by the user.
  */
 async function askGmModifier(
   checkTargetNumber: number,
   options: Partial<TBCheckFactoryOptions> = {},
   { template, title }: { template?: string; title?: string } = {},
-): Promise<Partial<IntermediateGmModifierData>> {
+): Promise<Partial<GmModifierData>> {
   const usedTemplate = template ?? 'systems/tb2/templates/dialogs/roll-options.hbs';
   const usedTitle = title ?? getGame().i18n.localize('TB2.DialogRollOptionsDefaultTitle');
   const templateData = {
     title: usedTitle,
     checkTargetNumber: checkTargetNumber,
-    maximumCoupResult: options.maximumCoupResult ?? defaultCheckOptions.maximumCoupResult,
-    minimumFumbleResult: options.minimumFumbleResult ?? defaultCheckOptions.minimumFumbleResult,
     rollMode: options.rollMode ?? getGame().settings.get('core', 'rollMode'),
     rollModes: CONFIG.Dice.rollModes,
   };
@@ -180,26 +171,16 @@ async function askGmModifier(
 
 /**
  * Extracts Dialog data from the returned DOM element.
- * @param formData - The filed dialog
+ * @param formData - The filled dialog
  */
-function parseDialogFormData(formData: HTMLFormElement): Partial<IntermediateGmModifierData> {
-  const chosenCheckTargetNumber = parseInt(formData['check-target-number']?.value);
-  const chosenGMModifier = parseInt(formData['gm-modifier']?.value);
-  const chosenMaximumCoupResult = parseInt(formData['maximum-coup-result']?.value);
-  const chosenMinimumFumbleResult = parseInt(formData['minimum-fumble-result']?.value);
+function parseDialogFormData(formData: HTMLFormElement): Partial<GmModifierData> {
+  // const chosenCheckTargetNumber = parseInt(formData['check-target-number']?.value);
+  // const chosenGMModifier = parseInt(formData['gm-modifier']?.value);
   const chosenRollMode = formData['roll-mode']?.value;
 
   return {
-    checkTargetNumber: Number.isSafeInteger(chosenCheckTargetNumber)
-      ? chosenCheckTargetNumber
-      : undefined,
-    gmModifier: Number.isSafeInteger(chosenGMModifier) ? chosenGMModifier : undefined,
-    maximumCoupResult: Number.isSafeInteger(chosenMaximumCoupResult)
-      ? chosenMaximumCoupResult
-      : undefined,
-    minimumFumbleResult: Number.isSafeInteger(chosenMinimumFumbleResult)
-      ? chosenMinimumFumbleResult
-      : undefined,
+    gmModifier: undefined,
+
     rollMode: Object.values(CONST.DICE_ROLL_MODES).includes(chosenRollMode)
       ? chosenRollMode
       : undefined,
@@ -215,33 +196,18 @@ interface GmModifierData {
 }
 
 /**
- * Contains *CURRENTLY* necessary Data for drafting a roll.
- *
- * @deprecated
- * Quite a lot of this information is requested due to a lack of automation:
- *  - maximumCoupResult
- *  - minimumFumbleResult
- *  - useSlayingDice
- *  - checkTargetNumber
- *
- * They will and should be removed once effects and data retrieval is in place.
- * If a "raw" roll dialog is necessary, create another pre-processing Dialog
- * class asking for the required information.
- * This interface should then be replaced with the `GmModifierData`.
- */
-interface IntermediateGmModifierData extends GmModifierData {
-  checkTargetNumber: number;
-  maximumCoupResult: number;
-  minimumFumbleResult: number;
-}
-
-/**
  * The minimum behavioral options that need to be passed to the factory.
  */
 export interface TBCheckFactoryOptions {
-  maximumCoupResult: number;
-  minimumFumbleResult: number;
-  useSlayingDice: boolean;
+  takeCheck: boolean;
+  useTrait: boolean;
+  channelNature: boolean;
+  purchasedDice: number; // dice purchased with persona
+  successMod: number;
+  helpAndGear: number;
+  applyBulky: boolean;
+  applyWeary: boolean;
+  applyHometown: boolean;
   rollMode: foundry.CONST.DiceRollMode;
   flavor?: string;
   flavorData?: Record<string, string | number | null>;

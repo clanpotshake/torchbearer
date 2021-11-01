@@ -1,0 +1,48 @@
+{{!--
+SPDX-FileCopyrightText: 2021 Johannes Loher
+SPDX-FileCopyrightText: 2021 Oliver Rümpelein
+
+SPDX-License-Identifier: MIT
+--}}
+
+{{!--
+!-- Render a roll options dialog. It uses the default form classes of Foundry VTT.
+!-- @param checkTargetNumber: The preselected check target number.
+!-- @param maximumCoupResult: The preselected maximum coup result.
+!-- @param minimumFumbleResult: The preselected minimum fumble result.
+!-- @param rollMode: The preselected roll mode (= chat roll-mode).
+!-- @param rollModes: A map of all roll modes and their i18n keys.
+--}}
+<form class="ds4-roll-options">
+    <div class="form-group">
+        <label for="check-target-number">{{localize "TB2.DialogRollOptionsCheckTargetNumberLabel"}}</label>
+        <input id="check-target-number" data-type="Number" type="number" name="check-target-number"
+            value="{{checkTargetNumber}}" />
+    </div>
+    <div class="form-group">
+        <label for="gm-modifier">{{localize "TB2.DialogRollOptionsGMModifierLabel"}}</label>
+        <input id="gm-modifier" data-type="Number" type="number" name="gm-modifier" value="0" />
+    </div>
+<!--    <div class="form-group">-->
+<!--        <label for="maximum-coup-result">{{localize "TB2.DialogRollOptionsMaximumCoupResultLabel"}}</label>-->
+<!--        <input id="maximum-coup-result" data-type="Number" type="number" name="maximum-coup-result"-->
+<!--            value="{{maximumCoupResult}}" />-->
+<!--    </div>-->
+<!--    <div class="form-group">-->
+<!--        <label for="minimum-fumble-result">{{localize "TB2.DialogRollOptionsMinimumFumbleResultLabel"}}</label>-->
+<!--        <input id="minimum-fumble-result" data-type="Number" type="number" name="minimum-fumble-result"-->
+<!--            value="{{minimumFumbleResult}}" />-->
+<!--    </div>-->
+    <div class="form-group">
+        <label for="roll-mode">{{localize "TB2.DialogRollOptionsRollModeLabel"}}</label>
+        <div class="form-fields">
+            <select id="roll-mode" name="roll-mode" data-type="String">
+                {{#select rollMode}}
+                {{#each rollModes as |rollModeValue rollModeKey|}}
+                <option value="{{rollModeKey}}">{{localize rollModeValue}}</option>
+                {{/each}}
+                {{/select}}
+            </select>
+        </div>
+    </div>
+</form>

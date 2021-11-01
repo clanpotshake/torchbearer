@@ -1,0 +1,28 @@
+{{!--
+SPDX-FileCopyrightText: 2021 Johannes Loher
+
+SPDX-License-Identifier: MIT
+--}}
+
+{{!--
+!-- Render a simple form with select elements. It uses the default form classes of Foundry VTT.
+!-- @param selects: An array of objects that each contain the following:
+!---- identifier: The identifier to use as id for the select element. Can be used to query the value later on.
+!---- label: Text to display as the label for the select element.
+!---- options: Key-value pairs that describe the options. The keys are used for the value attribute of the
+options, the values are used as content.
+--}}
+<form class="ds4-simple-form">
+    {{#each selects}}
+    <div class="form-group">
+        <label for="{{identifier}}">{{label}}</label>
+        <div class="form-fields">
+            <select name="{{identifier}}" id="{{identifier}}">
+                {{#each options as | value key |}}
+                <option value="{{key}}">{{value}}</option>
+                {{/each}}
+            </select>
+        </div>
+    </div>
+    {{/each}}
+</form>
