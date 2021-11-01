@@ -18,31 +18,10 @@ import { TBActor } from './actor/TBActor';
 import { TBActorSheet } from './actor/sheets/TBActorSheet';
 import { getGame } from './helpers';
 import { TB } from './config';
+import registerForHooks from './hooks/hooks';
 
 // Initialize system
-Hooks.once('init', async () => {
-  console.log('torchbearer2e | Initializing torchbearer2e');
-
-  getGame().tb = {
-    TBActor,
-    TBItem,
-    TB,
-    // migration,
-  };
-  CONFIG.TB = TB;
-  // Assign custom classes and constants here
-  // CONFIG.Actor.documentClass = ???;
-  CONFIG.Item.documentClass = TBItem;
-  CONFIG.Actor.documentClass = TBActor;
-  // Register custom system settings
-  registerSettings();
-
-  // Preload Handlebars templates
-  await preloadTemplates();
-
-  // Register custom sheets (if any)
-  Actors.registerSheet('tb', TBActorSheet, { types: ['character'], makeDefault: true });
-});
+registerForHooks();
 
 // Setup system
 Hooks.once('setup', async () => {

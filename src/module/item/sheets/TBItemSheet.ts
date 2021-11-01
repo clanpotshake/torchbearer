@@ -1,5 +1,6 @@
 import { TB } from '../../config';
 import { getGame } from '../../helpers';
+import { TBActiveEffect } from '../../ActiveEffect';
 
 export class TBItemSheet extends ItemSheet<ItemSheet.Options, TBItemSheetData> {
   /** @override */
@@ -52,41 +53,44 @@ export class TBItemSheet extends ItemSheet<ItemSheet.Options, TBItemSheetData> {
 
     if (!this.options.editable) return;
 
-    // html.find('.effect-control').on('click', this._onManageActiveEffect.bind(this));
+    html.find('.effect-control').on('click', this._onManageActiveEffect.bind(this));
   }
 
   /**
    * Handle management of ActiveEffects.
    * @param event - he originating click event
    */
-  // protected async _onManageActiveEffect(event: JQuery.ClickEvent): Promise<unknown> {
-  //   event.preventDefault();
-  //
-  //   if (this.item.isOwned) {
-  //     return notifications.warn(
-  //       getGame().i18n.localize('DS4.WarningManageActiveEffectOnOwnedItem'),
-  //     );
-  //   }
-  //   const a = event.currentTarget;
-  //   const li = $(a).parents('.effect');
-  //
-  //   switch (a.dataset['action']) {
-  //     case 'create':
-  //       return this.createActiveEffect();
-  //     case 'edit':
-  //       const id = li.data('effectId');
-  //       const effect = this.item.effects.get(id);
-  //       if (!effect) {
-  //         throw new Error(
-  //           getGame().i18n.format('DS4.ErrorItemDoesNotHaveEffect', { id, item: this.item.name }),
-  //         );
-  //       }
-  //       return effect.sheet.render(true);
-  //     case 'delete': {
-  //       return this.item.deleteEmbeddedDocuments('ActiveEffect', [li.data('effectId')]);
-  //     }
-  //   }
-  // }
+  protected async _onManageActiveEffect(event: JQuery.ClickEvent): Promise<unknown> {
+    event.preventDefault();
+
+    if (this.item.isOwned) {
+      // return notifications.warn(
+      //   getGame().i18n.localize('DS4.WarningManageActiveEffectOnOwnedItem'),
+      // );
+    }
+    const a = event.currentTarget;
+    const li = $(a).parents('.effect');
+
+    switch (a.dataset['action']) {
+      case 'create':
+        return this.createActiveEffect();
+      case 'edit':
+        const id = li.data('effectId');
+        const effect = this.item.effects.get(id);
+        if (!effect) {
+          throw new Error(
+            getGame().i18n.format('DS4.ErrorItemDoesNotHaveEffect', { id, item: this.item.name }),
+          );
+        }
+        return effect.sheet.render(true);
+      case 'delete': {
+        return this.item.deleteEmbeddedDocuments('ActiveEffect', [li.data('effectId')]);
+      }
+    }
+  }
+  protected createActiveEffect(): void {
+    TBActiveEffect.createDefault(this.item);
+  }
 }
 
 interface TBItemSheetData extends ItemSheet.Data<ItemSheet.Options> {

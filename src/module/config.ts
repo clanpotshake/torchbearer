@@ -1,6 +1,20 @@
 const i18nKeys = {
   //  TODO localization keys go here
 
+  actorTypes: {
+    character: 'TB2.ActorTypeCharacter',
+  },
+  itemTypes: {
+    gear: 'TB2.ItemTypeGear',
+    trait: 'TB2.ItemTypeTrait',
+    skill: 'TB2.ItemTypeSkill',
+    wise: 'TB2.ItemTypeWise',
+    ability: 'TB2.ItemTypeAbility',
+    contact: 'TB2.ItemTypeContact',
+    spell: 'TB2.ItemTypeSpell',
+    prayer: 'TB2.ItemTypePrayer',
+    level: 'TB2.ItemTypeLevelBenefit',
+  },
   tests: {
     alchemist: 'TB2.TestAlchemist',
     arcanist: 'TB2.TestArcanist',
