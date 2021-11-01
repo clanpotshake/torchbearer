@@ -14,7 +14,40 @@
   "scripts": [],
   "esmodules": ["module/torchbearer2e.js"],
   "styles": ["styles/torchbearer2e.css"],
-  "packs": [],
+  "packs": [
+    {
+      "name": "skills",
+      "label": "Skill List",
+      "system": "tb2",
+      "module": "tb2",
+      "path": "./packs/skills.db",
+      "entity": "Item"
+    },
+    {
+      "name": "spells",
+      "label": "Spell List",
+      "system": "tb2",
+      "module": "tb2",
+      "path": "./packs/spells.db",
+      "entity": "Item"
+    },
+    {
+      "name": "items",
+      "label": "Item List",
+      "system": "tb2",
+      "module": "tb2",
+      "path": "./packs/item.db",
+      "entity": "Item"
+    },
+    {
+      "name": "traits",
+      "label": "Trait List",
+      "system": "tb2",
+      "module": "tb2",
+      "path": "./packs/traits.db",
+      "entity": "Item"
+    }
+  ],
   "dependencies": [],
   "languages": [
     {

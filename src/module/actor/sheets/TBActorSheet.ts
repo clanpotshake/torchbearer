@@ -1,4 +1,3 @@
-import { TBCharacterActorSheetData } from './TBCharacterSheetData';
 import { TB } from '../../config';
 import { getTBSettings, TBSettings } from '../../settings';
 import { TBActiveEffect } from '../../ActiveEffect';

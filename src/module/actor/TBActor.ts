@@ -1,6 +1,6 @@
 import { getGame } from '../helpers';
-import { Check } from './TBActorDataProperties';
-import { createCheckRoll } from '../rolls/CheckFactory';
+import { SkillTest } from './TBActorDataProperties';
+import { createTestRoll } from '../rolls/CheckFactory';
 import { TB } from '../config';
 
 declare global {
@@ -10,30 +10,78 @@ declare global {
 }
 export class TBActor extends Actor {
   prepareData(): void {
-    super.prepareData();
+    this.data.reset();
     this.prepareBaseData();
     this.prepareEmbeddedEntities();
     this.applyActiveEffectsToBaseData();
     this.prepareDerivedData();
     this.applyActiveEffectsToDerivedData();
   }
+  /** @override */
+  prepareBaseData(): void {
+    this.prepareTests();
+  }
 
   /**
    * Apply transformations to the Actor data after effects have been applied to the base data.
    * @override
    */
-  prepareDerivedData(): void {
-    // this.prepareCombatValues();
-    this.prepareChecks();
-  }
+  // prepareDerivedData(): void {}
   /**
-   * Prepares the check target numbers of checks for the actor.
+   * Prepares the skills rollable by the actor
    */
-  protected prepareChecks(): void {
+  protected prepareTests(): void {
     const data = this.data.data;
-    data.checks = {
-      // alchemist: data.attributes.alchemist;
-      alchemist: 0,
+    data.tests = {
+      alchemist: data.tests.alchemist,
+      arcanist: data.tests.arcanist,
+      armorer: data.tests.armorer,
+      beggar: data.tests.beggar,
+      butcher: data.tests.butcher,
+      carpenter: data.tests.carpenter,
+      cartographer: data.tests.cartographer,
+      commander: data.tests.commander,
+      cook: data.tests.cook,
+      criminal: data.tests.criminal,
+      dungeoneer: data.tests.dungeoneer,
+      enchanter: data.tests.enchanter,
+      fighter: data.tests.fighter,
+      fisher: data.tests.fisher,
+      gambler: data.tests.gambler,
+      haggler: data.tests.haggler,
+      healer: data.tests.healer,
+      hunter: data.tests.hunter,
+      jeweler: data.tests.jeweler,
+      laborer: data.tests.laborer,
+      loremaster: data.tests.loremaster,
+      manipulator: data.tests.manipulator,
+      mentor: data.tests.mentor,
+      orator: data.tests.orator,
+      pathfinder: data.tests.pathfinder,
+      peasant: data.tests.peasant,
+      persuader: data.tests.persuader,
+      rider: data.tests.rider,
+      ritualist: data.tests.ritualist,
+      sailor: data.tests.sailor,
+      sapper: data.tests.sapper,
+      scavenger: data.tests.scavenger,
+      scholar: data.tests.scholar,
+      scout: data.tests.scout,
+      smith: data.tests.smith,
+      steward: data.tests.steward,
+      stonemason: data.tests.stonemason,
+      strategist: data.tests.strategist,
+      survivalist: data.tests.survivalist,
+      tanner: data.tests.tanner,
+      theologian: data.tests.theologian,
+      weaver: data.tests.weaver,
+    };
+    data.attributes = {
+      circles: data.attributes.circles,
+      health: data.attributes.health,
+      nature: data.attributes.nature,
+      will: data.attributes.will,
+      resources: data.attributes.resources,
     };
   }
 
@@ -43,16 +91,14 @@ export class TBActor extends Actor {
    * @param options - Additional options to customize the roll
    */
   async rollCheck(
-    check: Check,
+    check: SkillTest,
     options: { speaker?: { token?: TokenDocument; alias?: string } } = {},
   ): Promise<void> {
     const speaker = ChatMessage.getSpeaker({ actor: this, ...options.speaker });
-    await createCheckRoll(this.data.data.checks[check], {
+    await createTestRoll(this.data.data.tests[check], {
       rollMode: getGame().settings.get('core', 'rollMode'),
-      maximumCoupResult: this.data.data.rolling.maximumCoupResult,
-      minimumFumbleResult: this.data.data.rolling.minimumFumbleResult,
-      flavor: 'TB2.ActorCheckFlavor',
-      flavorData: { actor: speaker.alias ?? this.name, check: TB.i18nKeys.checks[check] },
+      flavor: 'TB2.ActorTestFlavor',
+      flavorData: { actor: speaker.alias ?? this.name, test: TB.i18nKeys.tests[check] },
       speaker,
     });
   }

@@ -85,7 +85,7 @@ class CheckFactory {
  * @param checkTargetNumber - The Check Target Number ("CTN")
  * @param options           - Options changing the behavior of the roll and message.
  */
-export async function createCheckRoll(
+export async function createTestRoll(
   checkTargetNumber: number,
   options: Partial<TBCheckFactoryOptions> = {},
 ): Promise<ChatMessage | unknown> {

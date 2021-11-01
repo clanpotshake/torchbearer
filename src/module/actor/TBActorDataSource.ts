@@ -50,6 +50,7 @@ export interface CharacterDataSourceData
   stock: string;
   age: number;
   career: string; // TODO real type
+  level: number;
   alias: string;
   hometown: string; // TODO item?
   raiment: string;

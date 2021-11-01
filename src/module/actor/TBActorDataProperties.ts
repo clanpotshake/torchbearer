@@ -3,6 +3,7 @@
 // SPDX-License-Identifier: MIT
 
 import { TB } from '../config';
+import { ModifiableDataBaseTotal } from '../common/CommonData';
 
 declare global {
   interface DataConfig {
@@ -27,9 +28,7 @@ interface TBCreatureDataProperties {
 interface TBActorDataPropertiesDataBase {
   attributes: TBActorDataPropertiesDataAttributes;
   traits: TBActorDataPropertiesDataTraits;
-  combatValues: TBActorDataPropertiesDataCombatValues;
-  rolling: TBActorDataPropertiesDataRolling;
-  checks: TBActorDataPropertiesDataChecks;
+  tests: TBActorDataPropertiesDataChecks;
 }
 
 type TBActorDataPropertiesDataAttributes = {
@@ -40,35 +39,18 @@ type TBActorDataPropertiesDataTraits = {
   [Key in keyof typeof TB.i18n.traits]: ModifiableDataBaseTotal<number>;
 };
 
-type TBActorDataPropertiesDataCombatValues = {
-  [Key in keyof typeof TB.i18n.combatValues]: Key extends 'hitPoints'
-    ? ResourceDataBaseTotalMax<number>
-    : ModifiableDataBaseTotal<number>;
-};
-
-interface TBActorDataPropertiesDataRolling {
-  maximumCoupResult: number;
-  minimumFumbleResult: number;
-}
-
 type TBActorDataPropertiesDataChecks = {
-  [key in Check]: number;
+  [key in SkillTest]: number;
 };
 
-export type Check = keyof typeof TB.i18n.checks;
+export type SkillTest = keyof typeof TB.i18n.tests;
 
-export function isCheck(value: string): value is Check {
-  return Object.keys(TB.i18n.checks).includes(value);
+export function isTest(value: string): value is SkillTest {
+  return Object.keys(TB.i18n.tests).includes(value);
 }
 
 // types
 
-interface TBCreatureDataPropertiesData extends TBActorDataPropertiesDataBase {
-  baseInfo: TBCreatureDataSourceDataBaseInfo;
-}
+type TBCreatureDataPropertiesData = TBActorDataPropertiesDataBase;
 
-interface TBCharacterDataPropertiesData extends TBActorDataPropertiesDataBase {
-  baseInfo: TBCharacterDataSourceDataBaseInfo;
-  progression: TBCharacterDataSourceDataProgression;
-  profile: TBCharacterDataSourceDataProfile;
-}
+type TBCharacterDataPropertiesData = TBActorDataPropertiesDataBase;
