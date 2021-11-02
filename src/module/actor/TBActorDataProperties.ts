@@ -11,7 +11,8 @@ declare global {
   }
 }
 
-export type TBActorDataProperties = TBCharacterDataProperties | TBCreatureDataProperties;
+export type TBActorDataProperties = TBCharacterDataProperties;
+// | TBCreatureDataProperties;
 
 interface TBCharacterDataProperties {
   type: 'character';

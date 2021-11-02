@@ -1,8 +1,8 @@
 Actor:
   types:
-    - setting
+#    - setting
     - character
-    - npc
+#    - npc
   templates:
     advances:
       passes: 0

@@ -52,7 +52,7 @@ export class TBItem extends Item {
     const speaker = ChatMessage.getSpeaker({ actor: this.actor, ...options.speaker });
     await createTestRoll(ob, {
       rollMode: getGame().settings.get('core', 'rollMode'),
-      flavor: 'DS4.ItemWeaponCheckFlavor',
+      flavor: 'TB2.ItemWeaponCheckFlavor',
       flavorData: { actor: speaker.alias ?? this.actor.name, weapon: this.name },
       speaker,
     });

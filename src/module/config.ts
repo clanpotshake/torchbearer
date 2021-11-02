@@ -1,6 +1,5 @@
 const i18nKeys = {
-  //  TODO localization keys go here
-
+  // localization keys go here
   actorTypes: {
     character: 'TB2.ActorTypeCharacter',
   },
@@ -78,7 +77,7 @@ const i18nKeys = {
     defiant: 'TB2.TraitDefiant',
     desperate: 'TB2.TraitDesperate',
     determined: 'TB2.TraitDetermined',
-    devilMayCare: 'TB2.TraitDevil May Care',
+    devilMayCare: 'TB2.TraitDevilMayCare',
     driven: 'TB2.TraitDriven',
     emaciated: 'TB2.TraitEmaciated',
     fearful: 'TB2.TraitFearful',
@@ -89,11 +88,11 @@ const i18nKeys = {
     innocent: 'TB2.TraitInnocent',
     jovial: 'TB2.TraitJovial',
     juvenile: 'TB2.TraitJuvenile',
-    keenEar: 'TB2.TraitKeen Ear',
+    keenEar: 'TB2.TraitKeenEar',
     leader: 'TB2.TraitLeader',
     loyal: 'TB2.TraitLoyal',
-    naturalBearings: 'TB2.TraitNatural Bearings',
-    nightOwl: 'TB2.TraitNight Owl',
+    naturalBearings: 'TB2.TraitNaturalBearings',
+    nightOwl: 'TB2.TraitNightOwl',
     nimble: 'TB2.TraitNimble',
     opportunistic: 'TB2.TraitOpportunistic',
     pragmatic: 'TB2.TraitPragmatic',
@@ -106,27 +105,27 @@ const i18nKeys = {
     stubborn: 'TB2.TraitStubborn',
     suspicious: 'TB2.TraitSuspicious',
     tough: 'TB2.TraitTough',
-    voiceOfThunder: 'TB2.TraitVoice of Thunder',
-    weatherSense: 'TB2.TraitWeather Sense',
+    voiceOfThunder: 'TB2.TraitVoiceOfThunder',
+    weatherSense: 'TB2.TraitWeatherSense',
     wise: 'TB2.TraitWise',
     adventurous: 'TB2.TraitAdventurous',
     bitter: 'TB2.TraitBitter',
     bold: 'TB2.TraitBold',
-    bornOfEarthAndStone: 'TB2.TraitBorn of Earth and Stone',
+    bornOfEarthAndStone: 'TB2.TraitBornOfEarthAndStone',
     brave: 'TB2.TraitBrave',
     calm: 'TB2.TraitCalm',
     cunning: 'TB2.TraitCunning',
     curious: 'TB2.TraitCurious',
     defender: 'TB2.TraitDefender',
-    earlyRiser: 'TB2.TraitEarly Riser',
+    earlyRiser: 'TB2.TraitEarlyRiser',
     extravagant: 'TB2.TraitExtravagant',
     extrovert: 'TB2.TraitExtrovert',
     fearless: 'TB2.TraitFearless',
     fiery: 'TB2.TraitFiery',
-    firstBorn: 'TB2.TraitFirst Born',
+    firstborn: 'TB2.TraitFirstborn',
     foolhardy: 'TB2.TraitFoolhardy',
     generous: 'TB2.TraitGenerous',
-    heartofBattle: 'TB2.TraitHeart of Battle',
+    heartOfBattle: 'TB2.TraitHeartOfBattle',
     hiddenDepths: 'TB2.TraitHidden Depths',
     honorable: 'TB2.TraitHonorable',
     jaded: 'TB2.TraitJaded',
@@ -134,20 +133,29 @@ const i18nKeys = {
     lost: 'TB2.TraitLost',
     quickWitted: 'TB2.TraitQuick-Witted',
     quiet: 'TB2.TraitQuiet',
-    roughHands: 'TB2.TraitRough Hands',
+    roughHands: 'TB2.TraitRoughHands',
     scarred: 'TB2.TraitScarred',
-    sharpEyed: 'TB2.TraitSharp-Eyed',
+    sharpEyed: 'TB2.TraitSharpEyed',
     skeptical: 'TB2.TraitSkeptical',
     skinny: 'TB2.TraitSkinny',
-    steadyHands: 'TB2.TraitSteady Hands',
+    steadyHands: 'TB2.TraitSteadyHands',
     stoic: 'TB2.TraitStoic',
     tall: 'TB2.TraitTall',
     thoughtful: 'TB2.TraitThoughtful',
-    touchedByTheGods: 'TB2.TraitTouched by the Gods',
+    touchedByTheGods: 'TB2.TraitTouchedByTheGods',
     wizardsSight: 'TB2.TraitWizardsSight',
   },
 };
 export const TB = {
+  ASCII: String.raw`
+---------------------------------------------------------------------------------------
+   _____ ___________  _____  _   _ ______ _____  ___  ______ ___________   _____  _____
+|_   _|  _  | ___ \/  __ \| | | || ___ \  ___|/ _ \ | ___ \  ___| ___ \ / __  \|  ___|
+  | | | | | | |_/ /| /  \/| |_| || |_/ / |__ / /_\ \| |_/ / |__ | |_/ / \' / /'| |__
+  | | | | | |    / | |    |  _  || ___ \  __||  _  ||    /|  __||    /    / /  |  __|
+  | | \ \_/ / |\ \ | \__/\| | | || |_/ / |___| | | || |\ \| |___| |\ \  ./ /___| |___
+  \_/  \___/\_| \_| \____/\_| |_/\____/\____/\_| |_/\_| \_\____/\_| \_| \_____/\____/
+=======================================================================================`,
   i18n: i18nKeys,
   i18nKeys,
   icons: {},

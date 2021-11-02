@@ -18,5 +18,8 @@
   "TB2.GenericOkButton": "OK",
   "TB2.ErrorInvalidInputType": "Input was not of the expected type",
   "TB2.ErrorRollingForItemTypeNotPossible": "It is not possible to roll this item type",
+  "TB2.TabbedCharacterSheet": "PLACEHOLDER",
+  "TB2.TabbedItemSheet": "PLACEHOLDER",
+  "TB2.TEMP": "PLACEHOLDER",
   "TB2.": ""
 }

@@ -11,12 +11,8 @@
  */
 
 // Import TypeScript modules
-import { registerSettings } from './settings';
-import { preloadTemplates } from './preloadTemplates';
 import { TBItem } from './item/TBItem';
 import { TBActor } from './actor/TBActor';
-import { TBActorSheet } from './actor/sheets/TBActorSheet';
-import { getGame } from './helpers';
 import { TB } from './config';
 import registerForHooks from './hooks/hooks';
 

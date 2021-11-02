@@ -95,7 +95,7 @@ export class TBActiveEffect extends ActiveEffect {
   /**
    * Create a new {@link TBActiveEffect} using default data.
    *
-   * @param parent The parent {@link DS4Actor} or {@link DS4Item} of the effect.
+   * @param parent The parent {@link TBActor} or {@link TBItem} of the effect.
    * @returns A promise that resolved to the created effect or udifined of the creation was prevented.
    */
   static async createDefault(parent: TBActor | TBItem): Promise<TBActiveEffect | undefined> {

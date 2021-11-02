@@ -19,7 +19,7 @@ export class TBActor extends Actor {
   }
   /** @override */
   prepareBaseData(): void {
-    this.prepareTests();
+    // this.prepareTests();
   }
 
   /**

@@ -1,19 +1,20 @@
 import { getGame } from '../helpers';
 import { TB } from '../config';
-import { createTestRoll } from '../rolls/CheckFactory';
 import { TBActor } from '../actor/TBActor';
 import { TBItem } from '../item/TBItem';
 import { TBActiveEffect } from '../ActiveEffect';
 import { TBActorSheet } from '../actor/sheets/TBActorSheet';
 import { TBItemSheet } from '../item/sheets/TBItemSheet';
 import { TBChatMessage } from '../ChatMessage';
+import registerHandlebarsPartials from '../handlebars/handlebars-partials';
+import registerHandlebarsHelpers from '../handlebars/helpers';
 
 export default function registerForInitHooks(): void {
   Hooks.once('init', init);
 }
 
 async function init() {
-  logger.info('Initializing Torchbearer 2E...');
+  logger.info(`Initializing Torchbearer 2E\n${TB.ASCII}`);
   getGame().tb = {
     TBActor,
     TBItem,
@@ -33,8 +34,16 @@ async function init() {
 
   Actors.unregisterSheet('core', ActorSheet);
   Items.unregisterSheet('core', ItemSheet);
-  Actors.registerSheet('tb2', TBActorSheet);
-  Items.registerSheet('tb2', TBItemSheet);
+  Actors.registerSheet('tb', TBActorSheet, {
+    label: 'TB2.TabbedCharacterSheet',
+    makeDefault: false,
+  });
+  Items.registerSheet('tb', TBItemSheet, {
+    makeDefault: true,
+  });
+
+  await registerHandlebarsPartials();
+  registerHandlebarsHelpers();
 }
 
 declare global {

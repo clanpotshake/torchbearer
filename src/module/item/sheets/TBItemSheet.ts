@@ -34,20 +34,6 @@ export class TBItemSheet extends ItemSheet<ItemSheet.Options, TBItemSheetData> {
   }
 
   /** @override */
-  // setPosition(
-  //   options: Partial<Application.Position> = {},
-  // ): (Application.Position & { height: number }) | void {
-  //   const position = super.setPosition(options);
-  //   if (position) {
-  //     const sheetBody = this.element.find('.sheet-body');
-  //     const bodyHeight = position.height - 192;
-  //     sheetBody.css('height', bodyHeight);
-  //   }
-  //
-  //   return position;
-  // }
-
-  /** @override */
   activateListeners(html: JQuery): void {
     super.activateListeners(html);
 
@@ -79,7 +65,7 @@ export class TBItemSheet extends ItemSheet<ItemSheet.Options, TBItemSheetData> {
         const effect = this.item.effects.get(id);
         if (!effect) {
           throw new Error(
-            getGame().i18n.format('DS4.ErrorItemDoesNotHaveEffect', { id, item: this.item.name }),
+            getGame().i18n.format('TB2.ErrorItemDoesNotHaveEffect', { id, item: this.item.name }),
           );
         }
         return effect.sheet.render(true);

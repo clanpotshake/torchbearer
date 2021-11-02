@@ -7,7 +7,19 @@ import notifications from '../../ui/notifications';
 export class TBActorSheet extends ActorSheet<ActorSheet.Options, TBActorSheetData> {
   /** @override */
   static get defaultOptions(): ActorSheet.Options {
-    return foundry.utils.mergeObject(super.defaultOptions, {});
+    return foundry.utils.mergeObject(super.defaultOptions, {
+      // TODO position and stuff
+      classes: ['tb2', 'sheet', 'actor'],
+      height: 620,
+      width: 650,
+      scrollY: ['values'],
+      tabs: [{ navSelector: '.sheet-tabs', contentSelector: '.sheet-body', initial: 'values' }],
+      dragDrop: [
+        { dragSelector: '.item-list', dropSelector: null },
+        { dragSelector: '.effect-list', dropSelector: null },
+        { dragSelector: '.tb-test', dropSelector: null },
+      ],
+    });
   }
 
   /** @override */
@@ -101,7 +113,7 @@ export class TBActorSheet extends ActorSheet<ActorSheet.Options, TBActorSheetDat
    */
   protected onCreateItem(event: JQuery.ClickEvent): void {
     const { type, ...data } = foundry.utils.deepClone(event.currentTarget.dataset);
-    const name = getGame().i18n.localize(`DS4.New${type.capitalize()}Name`);
+    const name = getGame().i18n.localize(`TB2.New${type.capitalize()}Name`);
     const itemData = {
       name: name,
       type: type,
@@ -121,7 +133,7 @@ export class TBActorSheet extends ActorSheet<ActorSheet.Options, TBActorSheetDat
     const item = this.actor.items.get(id);
     enforce(
       item,
-      getGame().i18n.format('DS4.ErrorActorDoesNotHaveItem', { id, actor: this.actor.name }),
+      getGame().i18n.format('TB2.ErrorActorDoesNotHaveItem', { id, actor: this.actor.name }),
     );
     enforce(item.sheet);
     item.sheet.render(true);
@@ -174,7 +186,7 @@ export class TBActorSheet extends ActorSheet<ActorSheet.Options, TBActorSheetDat
     const effect = this.actor.effects.get(id);
     enforce(
       effect,
-      getGame().i18n.format('DS4.ErrorActorDoesNotHaveEffect', { id, actor: this.actor.name }),
+      getGame().i18n.format('TB2.ErrorActorDoesNotHaveEffect', { id, actor: this.actor.name }),
     );
     effect.sheet.render(true);
   }
@@ -201,7 +213,7 @@ export class TBActorSheet extends ActorSheet<ActorSheet.Options, TBActorSheetDat
     const item = this.actor.items.get(id);
     enforce(
       item,
-      getGame().i18n.format('DS4.ErrorActorDoesNotHaveItem', { id, actor: this.actor.name }),
+      getGame().i18n.format('TB2.ErrorActorDoesNotHaveItem', { id, actor: this.actor.name }),
     );
     // item.roll().catch((e) => notifications.error(e, { log: true }));
   }
@@ -320,7 +332,8 @@ interface EnrichedActiveEffectDataSource extends ActiveEffectDataSource {
 }
 
 /**
- * This object contains information about specific properties embedded document list entries for each different type.
+ * This object contains information about specific properties embedded
+ * document list entries for each different type.
  */
 const embeddedDocumentListEntryProperties = Object.freeze({
   ActiveEffect: {
