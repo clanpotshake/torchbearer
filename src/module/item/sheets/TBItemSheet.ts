@@ -34,18 +34,18 @@ export class TBItemSheet extends ItemSheet<ItemSheet.Options, TBItemSheetData> {
   }
 
   /** @override */
-  setPosition(
-    options: Partial<Application.Position> = {},
-  ): (Application.Position & { height: number }) | void {
-    const position = super.setPosition(options);
-    if (position) {
-      const sheetBody = this.element.find('.sheet-body');
-      const bodyHeight = position.height - 192;
-      sheetBody.css('height', bodyHeight);
-    }
-
-    return position;
-  }
+  // setPosition(
+  //   options: Partial<Application.Position> = {},
+  // ): (Application.Position & { height: number }) | void {
+  //   const position = super.setPosition(options);
+  //   if (position) {
+  //     const sheetBody = this.element.find('.sheet-body');
+  //     const bodyHeight = position.height - 192;
+  //     sheetBody.css('height', bodyHeight);
+  //   }
+  //
+  //   return position;
+  // }
 
   /** @override */
   activateListeners(html: JQuery): void {

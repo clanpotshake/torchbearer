@@ -22,7 +22,7 @@ export class TBChatMessage extends ChatMessage {
           typeof value === 'string' ? game.i18n.localize(value) : value,
         ]),
       );
-      this.data.flavor = game.i18n.localize(this.data.flavor, flavorData);
+      this.data.flavor = game.i18n.format(this.data.flavor, flavorData);
     }
   }
 }

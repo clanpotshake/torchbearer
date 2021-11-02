@@ -11,5 +11,12 @@
   "TB2.DialogRollOptionsApplyHomeTownLabel": "Home Town",
   "TB2.DialogRollOptionsDefaultTitle": "Roll a Test",
   "TB2.SkillTooltip": "",
+  "TB2.ErrorWrongItemType": "Wrong Item Type!",
+  "TB2.ErrorCannotRollUnownedItem": "Must own an Item to Roll it",
+  "TB2.DialogSkillTestObInputTitle": "Input Ob",
+  "TB2.TestOb": "Ob:",
+  "TB2.GenericOkButton": "OK",
+  "TB2.ErrorInvalidInputType": "Input was not of the expected type",
+  "TB2.ErrorRollingForItemTypeNotPossible": "It is not possible to roll this item type",
   "TB2.": ""
 }
