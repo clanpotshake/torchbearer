@@ -6,6 +6,7 @@ const gulp = require('gulp');
 const path = require('path');
 const rollupConfig = require('./rollup.config');
 const semver = require('semver');
+const yaml = require('gulp-yaml');
 
 /********************/
 /*  CONFIGURATION   */
@@ -24,7 +25,7 @@ const staticFiles = [
   'packs',
   'templates',
   'system.json',
-  'template.yml',
+  'template.json',
 ];
 const getDownloadURL = (version) => `https://host/path/to/${version}.zip`;
 
@@ -222,7 +223,14 @@ function bumpVersion(cb) {
   }
 }
 
-const execBuild = gulp.parallel(buildCode, buildStyles, copyFiles);
+function buildYml() {
+  return gulp
+    .src('src/template.yml')
+    .pipe(yaml({ space: 2 }))
+    .pipe(gulp.dest('./dist'));
+}
+
+const execBuild = gulp.parallel(buildCode, buildStyles, buildYml, copyFiles);
 
 exports.build = gulp.series(clean, execBuild);
 exports.watch = buildWatch;
