@@ -118,7 +118,7 @@ async function askGmModifier(
   options: Partial<TBCheckFactoryOptions> = {},
   { template, title }: { template?: string; title?: string } = {},
 ): Promise<Partial<GmModifierData>> {
-  const usedTemplate = template ?? 'systems/tb2/templates/dialogs/roll-options.hbs';
+  const usedTemplate = template ?? 'systems/torchbearer/templates/dialogs/roll-options.hbs';
   const usedTitle = title ?? getGame().i18n.localize('TB2.DialogRollOptionsDefaultTitle');
   const templateData = {
     title: usedTitle,

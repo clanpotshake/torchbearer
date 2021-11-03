@@ -63,15 +63,18 @@ export class TBItem extends Item {
     const identifier = 'test-ob-input';
     return Dialog.prompt({
       title: getGame().i18n.localize('TB2.DialogSkillTestObInputTitle'),
-      content: await renderTemplate('systems/tb2/templates/dialogs/simple-select-form.hbs', {
-        selects: [
-          {
-            label: getGame().i18n.localize('TB2.TestOb'),
-            identifier,
-            options: {},
-          },
-        ],
-      }),
+      content: await renderTemplate(
+        'systems/torchbearer/templates/dialogs/simple-select-form.hbs',
+        {
+          selects: [
+            {
+              label: getGame().i18n.localize('TB2.TestOb'),
+              identifier,
+              options: {},
+            },
+          ],
+        },
+      ),
       label: getGame().i18n.localize('TB2.GenericOkButton'),
       callback: (html) => {
         const inputVal = html.find(`#${identifier}`).val();

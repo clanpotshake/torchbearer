@@ -8,43 +8,38 @@ SPDX-License-Identifier: MIT
 
 <form class="{{cssClass}} tb2-sheet" autocomplete="off">
   {{!-- Header --}}
-  {{#> systems/tb2/templates/sheets/actor/components/actor-header.hbs}}
-    {{> systems/tb2/templates/sheets/actor/components/character-properties.hbs}}
-  {{/systems/tb2/templates/sheets/actor/components/actor-header.hbs}}
+  {{#> systems/torchbearer/templates/sheets/actor/components/actor-header.hbs}}
+  {{!--    {{> systems/torchbearer/templates/sheets/actor/components/character-properties.hbs}} --}}
+    {{/systems/torchbearer/templates/sheets/actor/components/actor-header.hbs}}
 
-  {{!-- Sheet Tab Navigation --}}
-  <nav class="tb2-sheet-tab-nav sheet-tabs tabs" data-group="primary">
-    <a class="tb2-sheet-tab-nav__item item" data-tab="values">{{localize 'TB2.HeadingValues'}}</a>
-    <a class="tb2-sheet-tab-nav__item item" data-tab="inventory">{{localize 'TB2.HeadingInventory'}}</a>
-    <a class="tb2-sheet-tab-nav__item item" data-tab="spells">{{localize 'TB2.HeadingSpells'}}</a>
-    <a class="tb2-sheet-tab-nav__item item" data-tab="abilities">{{localize 'TB2.HeadingAbilities'}}</a>
-    <a class="tb2-sheet-tab-nav__item item" data-tab="effects">{{localize 'TB2.HeadingEffects'}}</a>
-    <a class="tb2-sheet-tab-nav__item item" data-tab="biography">{{localize 'TB2.HeadingBiography'}}</a>
-  </nav>
+    {{!-- Sheet Tab Navigation --}}
+<!--  <nav class="tb2-sheet-tab-nav sheet-tabs tabs" data-group="primary">-->
+<!--    <a class="tb2-sheet-tab-nav__item item" data-tab="values">{{localize 'TB2.HeadingValues'}}</a>-->
+<!--    <a class="tb2-sheet-tab-nav__item item" data-tab="inventory">{{localize 'TB2.HeadingInventory'}}</a>-->
+<!--    <a class="tb2-sheet-tab-nav__item item" data-tab="spells">{{localize 'TB2.HeadingSpells'}}</a>-->
+<!--    <a class="tb2-sheet-tab-nav__item item" data-tab="abilities">{{localize 'TB2.HeadingAbilities'}}</a>-->
+<!--    <a class="tb2-sheet-tab-nav__item item" data-tab="effects">{{localize 'TB2.HeadingEffects'}}</a>-->
+<!--    <a class="tb2-sheet-tab-nav__item item" data-tab="biography">{{localize 'TB2.HeadingBiography'}}</a>-->
+<!--  </nav>-->
 
   <!-- beautify ignore:start -->
   <!-- prettier-ignore-start -->
   {{!-- Sheet Body (remove indentation to avoid annoying Handlebars auto-indent) --}}
   <section class="sheet-body">
     {{!-- Values Tab --}}
-    {{> systems/tb2/templates/sheets/actor/tabs/values.hbs}}
+{{!--   {{> systems/torchbearer/templates/sheets/actor/tabs/values.hbs}} --}}
+
+    {{!-- Skills Tab --}}
+    {{> systems/torchbearer/templates/sheets/actor/components/skills.hbs}}
 
     {{!-- Inventory Tab --}}
-    {{> systems/tb2/templates/sheets/actor/tabs/character-inventory.hbs}}
+    {{!--    {{> systems/torchbearer/templates/sheets/actor/tabs/character-inventory.hbs}}--}}
 
-    {{!-- Spells Tab --}}
-    {{> systems/tb2/templates/sheets/actor/tabs/spells.hbs}}
-
-    {{!-- Abilities Tab --}}
-    {{> systems/tb2/templates/sheets/actor/tabs/character-abilities.hbs}}
-
-    {{!-- Effects Tab --}}
-    {{> systems/tb2/templates/sheets/actor/tabs/effects.hbs}}
-
-    {{!-- Biography Tab --}}
-    {{> systems/tb2/templates/sheets/actor/tabs/biography.hbs}}
+        {{!-- Biography Tab --}}
+{{!--    {{> systems/torchbearer/templates/sheets/actor/components/bio-data.hbs}}--}}
 
   </section>
   <!-- prettier-ignore-end -->
   <!-- beautify ignore:end -->
+  <span>{{log 'everything' this}}</span>
 </form>

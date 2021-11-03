@@ -24,7 +24,7 @@ export class TBActorSheet extends ActorSheet<ActorSheet.Options, TBActorSheetDat
 
   /** @override */
   get template(): string {
-    const basePath = 'systems/tb2/templates/sheets/actor';
+    const basePath = 'systems/torchbearer/templates/sheets/actor';
     return `${basePath}/${this.actor.data.type}-sheet.hbs`;
   }
 

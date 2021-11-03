@@ -98,7 +98,7 @@ export class TBActor extends Actor {
     await createTestRoll(this.data.data.tests[check], {
       rollMode: getGame().settings.get('core', 'rollMode'),
       flavor: 'TB2.ActorTestFlavor',
-      flavorData: { actor: speaker.alias ?? this.name, test: TB.i18nKeys.tests[check] },
+      flavorData: { actor: speaker.alias ?? this.name, test: TB.i18nKeys.skills[check] },
       speaker,
     });
   }

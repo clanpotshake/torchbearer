@@ -44,10 +44,10 @@ type TBActorDataPropertiesDataChecks = {
   [key in SkillTest]: number;
 };
 
-export type SkillTest = keyof typeof TB.i18n.tests;
+export type SkillTest = keyof typeof TB.i18n.skills;
 
 export function isTest(value: string): value is SkillTest {
-  return Object.keys(TB.i18n.tests).includes(value);
+  return Object.keys(TB.i18n.skills).includes(value);
 }
 
 // types

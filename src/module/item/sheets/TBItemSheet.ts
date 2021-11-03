@@ -18,7 +18,7 @@ export class TBItemSheet extends ItemSheet<ItemSheet.Options, TBItemSheetData> {
 
   /** @override */
   get template(): string {
-    const basePath = 'systems/tb2/templates/sheets/item';
+    const basePath = 'systems/torchbearer/templates/sheets/item';
     return `${basePath}/${this.item.data.type}-sheet.hbs`;
   }
 
