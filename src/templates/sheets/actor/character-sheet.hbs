@@ -8,6 +8,7 @@ SPDX-License-Identifier: MIT
 
 <form class="{{cssClass}} tb2-sheet" autocomplete="off">
   {{!-- Header --}}
+  {{log 'character sheet' this}}
   {{#> systems/torchbearer/templates/sheets/actor/components/actor-header.hbs}}
   {{!--    {{> systems/torchbearer/templates/sheets/actor/components/character-properties.hbs}} --}}
     {{/systems/torchbearer/templates/sheets/actor/components/actor-header.hbs}}
@@ -30,6 +31,13 @@ SPDX-License-Identifier: MIT
 {{!--   {{> systems/torchbearer/templates/sheets/actor/tabs/values.hbs}} --}}
 
     {{!-- Skills Tab --}}
+    {{> systems/torchbearer/templates/sheets/actor/components/bio-data.hbs}}
+    {{> systems/torchbearer/templates/sheets/actor/components/bigs.hbs}}
+    {{> systems/torchbearer/templates/sheets/actor/components/rewards.hbs}}
+    {{> systems/torchbearer/templates/sheets/actor/components/traits.hbs}}
+    {{> systems/torchbearer/templates/sheets/actor/components/wises.hbs}}
+
+    {{!-- Skills Tab --}}
     {{> systems/torchbearer/templates/sheets/actor/components/skills.hbs}}
 
     {{!-- Inventory Tab --}}
@@ -41,5 +49,4 @@ SPDX-License-Identifier: MIT
   </section>
   <!-- prettier-ignore-end -->
   <!-- beautify ignore:end -->
-  <span>{{log 'everything' this}}</span>
 </form>

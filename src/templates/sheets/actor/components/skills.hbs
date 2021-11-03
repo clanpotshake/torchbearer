@@ -1,7 +1,9 @@
 <div class="tb2-skills">
-  <h1>Skills</h1>
-  {{#each config.i18n.skills as |skills-label skills-key|}}
-    {{> systems/torchbearer/templates/sheets/actor/components/skill.hbs skills-key=skills-key skills-rating=(lookup
-      ../data.data.skill skills-key) skill-label=skills-label}}
+  {{log 'skills' this}}
+  <h1>{{localize 'TB2.SkillsHeader'}}</h1>
+  {{#each itemsByType.skill as |i|}}
+    {{> systems/torchbearer/templates/sheets/actor/components/skill.hbs
+      skills-key=i.data.name
+      skills-rating=(lookup data.itemsByType i.data.name) }}
   {{/each}}
 </div>

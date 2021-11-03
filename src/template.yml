@@ -8,6 +8,8 @@ Actor:
       passes: 0
       fails: 0
     common:
+      might: 3
+      precedence: 0
       will: &ability
         templates:
           - advances
@@ -26,7 +28,9 @@ Actor:
         name: ''
       property: ''
       fate: 0
+      fateSpent: 0
       persona: 0
+      personaSpent: 0
     displayProps:
       collapseBeliefs: false
       collapseInstincts: false
@@ -41,17 +45,17 @@ Actor:
       collapseSpells: false
       collapseInvocations: false
   setting:
-    description: ''
+    description: 'setting desc'
   character:
     templates:
       - common
       - displayProps
-    stock: ''
+    stock: 'Human'
     age: 18
-    career: ''
+    career: 'Warrior'
     alias: ''
-    hometown: ''
-    rainment: ''
+    hometown: 'Skogenby'
+    raiment: 'Fine Bearskin Cloak'
     miscNotes1: ''
     miscNotes2: ''
     miscNotes3: ''
@@ -60,9 +64,10 @@ Actor:
       - common
       - displayProps
     editMode: false
-    bio: ''
+    bio: 'an NPC bio'
 Item:
   types:
+    - wise
     - belief
     - instinct
     - goal
@@ -78,55 +83,56 @@ Item:
     arthaEarner:
       fate: false
       persona: false
+  wise:
+    pass: false
+    fail: false
+    fate: false
+    persona: false
   belief:
     templates:
       - arthaEarner
-    text: ''
+    text: 'belief'
   instinct:
     templates:
       - arthaEarner
-    text: ''
+    text: 'instinct'
   goal:
     templates:
       - arthaEarner
-    text: ''
+    text: 'goal'
   creed:
     templates:
       - arthaEarner
-    text: ''
+    text: 'creed'
   trait:
-    name: ''
-    description: ''
+    description: 'adventurousness text'
     collapsed: true
-    level: 0
+    level: 1
     checks: 2
   skill:
     templates:
       - advances
-    name: ''
     rank: 1
     learning: false
     attempts: 0
     root1: ''
     root2: ''
-    description: ''
+    description: 'brew potions'
     collapsed: false
     tools: false
   relationship:
-    name: ''
-    description: ''
-    location: ''
-    skill: '' # TODO not string here?
+    description: 'my parents'
+    location: 'Skogenby'
+    skill: 'Smith' # TODO not string here?
     isFriend: false
     isParent: false
     isEnemy: false
   gear:
-    name: ''
-    description: ''
-    pack: 0,
-    held: 0,
+    description: 'it's rope'
+    pack: 2,
+    held: 1,
     belt: 0,
-    torso: 0,
+    torso: 1,
     head: 0,
     hand: 0,
     feet: 0,
@@ -135,26 +141,25 @@ Item:
     pocket: false
   property:
     isWorkshop: false
-    description: ''
-    location: ''
+    description: 'Home'
+    location: 'Skogenby'
   spell:
-    name: ''
-    description: ''
+    description: 'be blind'
     circle: 0
     scribeOb: 0
     learnOb: 0
     castOb: 0
+    focus: 'silk blindfold'
     materials: ''
-    castTime: ''
+    castTime: 'free'
     casting: ''
     duration: ''
     factors: ''
   class:
-    name: ''
-    level1: ''
+    level1: 'warrior level 1 text'
     level2: &levelBenefit
-      optionA: ''
-      optionB: ''
+      optionA: 'warrior option A'
+      optionB: 'warrior option B'
     level3: *levelBenefit
     level4: *levelBenefit
     level5: *levelBenefit

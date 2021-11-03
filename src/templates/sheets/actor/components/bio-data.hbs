@@ -1,3 +1,23 @@
 <div class="tb2-bio-data">
+  <h1>{{localize 'TB2.TitleBiographicalData'}}</h1>
+  <div>
+    <label for="character-name">{{localize "TB2.CharacterNameLabel"}}</label>
+    <input id="character-name" data-type="String" type="text" name="character-name" value="{{actor.data.data.name}}" />
 
+    <label for="character-stock">{{localize "TB2.CharacterStockLabel"}}</label>
+    <input id="character-stock" data-type="String" type="text" name="character-stock" value="{{actor.data.data.stock}}" />
+
+    <label for="character-class">{{localize "TB2.CharacterClassLabel"}}</label>
+    <input id="character-class" data-type="String" type="text" name="character-class" value="{{actor.data.data.class}}" />
+
+    <label for="character-age">{{localize "TB2.CharacterAgeLabel"}}</label>
+    <input id="character-age" data-type="Number" type="text" name="character-age" value="{{actor.data.data.age}}" />
+
+    <label for="character-home">{{localize "TB2.CharacterHomeLabel"}}</label>
+    <input id="character-home" data-type="String" type="text" name="character-home" value="{{actor.data.data.home}}" />
+
+    <label for="character-raiment">{{localize "TB2.CharacterRaimentLabel"}}</label>
+    <input id="character-raiment" data-type="String" type="text" name="character-raiment" value="{{actor.data.data.raiment}}" />
+
+  </div>
 </div>
