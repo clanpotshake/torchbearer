@@ -1,26 +1,45 @@
 <div class="tb-character-sheet-abilities">
   <h1>{{localize 'TB2.TitleAbilities'}}</h1>
   <div class="tb-actor-properties__property">
-    <label for="data.abilities.will-{{data._id}}" class="tb-actor-properties__property-label">{{localize "TB2.AbilityWillLabel"}}</label>
+    <label for="data.abilities.will-{{data._id}}"
+           class="tb-actor-properties__property-label">{{localize "TB2.AbilityWillLabel"}}</label>
     <input id="data.abilities.will-{{data._id}}"
            data-type="Number" type="number"
-           name="actor.data.data.abilities.will.rank"
-           value="{{actor.data.data.abilities.will.rank}}" />
+           name="data.abilities.will.rank"
+           value="{{data.data.abilities.will.rank}}" />
 
-    <label for="data.abilities.health-{{data._id}}" class="tb-actor-properties__property-label">{{localize "TB2.AbilityHealthLabel"}}</label>
-    <input id="data.abilities.health-{{data._id}}" data-type="Number" type="number" name="actor.data.data.abilities.health.rank" value="{{actor.data.data.abilities.health.rank}}" />
+    <label for="data.abilities.health-{{data._id}}"
+           class="tb-actor-properties__property-label">{{localize "TB2.AbilityHealthLabel"}}</label>
+    <input id="data.abilities.health-{{data._id}}"
+           data-type="Number" type="number"
+           name="data.abilities.health.rank"
+           value="{{data.data.abilities.health.rank}}" />
 
-    <label for="data.abilities.nature-current-{{data._id}}" class="tb-actor-properties__property-label">{{localize "TB2.AbilityNatureCurrentLabel"}}</label>
-    <input id="data.abilities.nature-current-{{data._id}}" data-type="Number" type="number" name="actor.data.data.abilities.nature.current" value="{{actor.data.data.abilities.nature.current}}" />
+    <label for="data.abilities.nature-current-{{data._id}}"
+           class="tb-actor-properties__property-label">{{localize "TB2.AbilityNatureCurrentLabel"}}</label>
+    <input id="data.abilities.nature-current-{{data._id}}"
+           data-type="Number" type="number"
+           name="data.abilities.nature.current"
+           value="{{data.data.abilities.nature.current}}" />
     <span class="input-divider"> / </span>
-    <label for="data.abilities.nature-max-{{data._id}}" class="tb-actor-properties__property-label">{{localize "TB2.AbilityNatureMaxLabel"}}</label>
-    <input id="data.abilities.nature-max-{{data._id}}" data-type="Number" type="number" name="actor.data.data.abilities.nature.max" value="{{actor.data.data.abilities.nature.max}}" />
+    <label for="data.abilities.nature-max-{{data._id}}"
+           class="tb-actor-properties__property-label">{{localize "TB2.AbilityNatureMaxLabel"}}</label>
+    <input id="data.abilities.nature-max-{{data._id}}"
+           data-type="Number" type="number"
+           name="data.abilities.nature.max"
+           value="{{data.data.abilities.nature.max}}" />
 
     <label for="data.abilities.resources-{{data._id}}">{{localize "TB2.AbilityResourcesLabel"}}</label>
-    <input id="data.abilities.resources-{{data._id}}" data-type="Number" type="number" name="actor.data.data.abilities.resources.rank" value="{{actor.data.data.abilities.health.rank}}" />
+    <input id="data.abilities.resources-{{data._id}}"
+           data-type="Number" type="number"
+           name="data.abilities.resources.rank"
+           value="{{data.data.abilities.health.rank}}" />
 
     <label for="data.abilities.circles-{{data._id}}">{{localize "TB2.AbilityCirclesLabel"}}</label>
-    <input id="data.abilities.circles-{{data._id}}" data-type="Number" type="number" name="actor.data.data.abilities.circles.rank" value="{{actor.data.data.abilities.circles.rank}}" />
+    <input id="data.abilities.circles-{{data._id}}"
+           data-type="Number" type="number"
+           name="data.abilities.circles.rank"
+           value="{{data.data.abilities.circles.rank}}" />
 
   </div>
 </div>
