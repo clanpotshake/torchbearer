@@ -1,3 +1,6 @@
 - GM mode options screen
 -- disable trait limitations
 -- conflictless play
+
+
+need a character builder page to burn in stock/class selections to be uneditable on the main actor page

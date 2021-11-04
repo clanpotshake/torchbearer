@@ -3,8 +3,8 @@
   <div>
     {{#each itemsByType.trait as |i|}}
       {{> systems/torchbearer/templates/sheets/actor/components/trait.hbs
-        trait-rank=i.data.data.level
-        trait-name=i.data.name }}
+        trait-level=i.data.level
+        trait-name=i.name }}
     {{/each}}
   </div>
 </div>

@@ -1,9 +1,12 @@
 <div class="tb2-skills">
-  {{log 'skills' this}}
   <h1>{{localize 'TB2.SkillsHeader'}}</h1>
   {{#each itemsByType.skill as |i|}}
     {{> systems/torchbearer/templates/sheets/actor/components/skill.hbs
-      skills-key=i.data.name
-      skills-rating=(lookup data.itemsByType i.data.name) }}
+      _id=i.id
+      skill-name=i.name
+      skill-rank=i.data.rank
+      skill-passes=i.data.passes
+      skill-fails=i.data.fails
+      skill-attempts=i.data.attempts }}
   {{/each}}
 </div>

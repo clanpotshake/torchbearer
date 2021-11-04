@@ -35,16 +35,30 @@ SPDX-License-Identifier: MIT
     {{> systems/torchbearer/templates/sheets/actor/components/bigs.hbs}}
     {{> systems/torchbearer/templates/sheets/actor/components/rewards.hbs}}
     {{> systems/torchbearer/templates/sheets/actor/components/traits.hbs}}
+    {{> systems/torchbearer/templates/sheets/actor/components/add-button.hbs
+      title='TB2.UserInteractionAddItemTitle'
+      documentType='item'
+      type='trait'}}
     {{> systems/torchbearer/templates/sheets/actor/components/wises.hbs}}
+    {{> systems/torchbearer/templates/sheets/actor/components/add-button.hbs
+      title='TB2.UserInteractionAddItemTitle'
+      documentType='item'
+      type='wise'}}
 
     {{!-- Skills Tab --}}
     {{> systems/torchbearer/templates/sheets/actor/components/skills.hbs}}
+    {{> systems/torchbearer/templates/sheets/actor/components/add-button.hbs
+      title='TB2.UserInteractionAddItemTitle'
+      documentType='item'
+      type='skill'}}
+    {{> systems/torchbearer/templates/sheets/actor/components/spells.hbs}}
+    {{> systems/torchbearer/templates/sheets/actor/components/add-button.hbs
+      title='TB2.UserInteractionAddItemTitle'
+      documentType='item'
+      type='spell'}}
 
     {{!-- Inventory Tab --}}
     {{!--    {{> systems/torchbearer/templates/sheets/actor/tabs/character-inventory.hbs}}--}}
-
-        {{!-- Biography Tab --}}
-{{!--    {{> systems/torchbearer/templates/sheets/actor/components/bio-data.hbs}}--}}
 
   </section>
   <!-- prettier-ignore-end -->

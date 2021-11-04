@@ -89,12 +89,14 @@ export class TBActorSheet extends ActorSheet<ActorSheet.Options, TBActorSheetDat
     html.find('.rollable-item').on('click', this.onRollItem.bind(this));
     html.find('.rollable-check').on('click', this.onRollCheck.bind(this));
   }
+
   /**
    * Handles a click on an element of this sheet to control an embedded item of the actor corresponding to this sheet.
    *
    * @param event - The originating click event
    */
   protected onControlItem(event: JQuery.ClickEvent): void {
+    logger.info('in onControlItem');
     event.preventDefault();
     const a = event.currentTarget;
     switch (a.dataset['action']) {
@@ -112,6 +114,7 @@ export class TBActorSheet extends ActorSheet<ActorSheet.Options, TBActorSheetDat
    * @param event - The originating click event
    */
   protected onCreateItem(event: JQuery.ClickEvent): void {
+    logger.info('in onCreateItem');
     const { type, ...data } = foundry.utils.deepClone(event.currentTarget.dataset);
     const name = getGame().i18n.localize(`TB2.New${type.capitalize()}Name`);
     const itemData = {
@@ -127,6 +130,7 @@ export class TBActorSheet extends ActorSheet<ActorSheet.Options, TBActorSheetDat
    * @param event - The originating click event
    */
   protected onEditItem(event: JQuery.ClickEvent): void {
+    logger.info('in onEditItem');
     const id = $(event.currentTarget)
       .parents(embeddedDocumentListEntryProperties.Item.selector)
       .data(embeddedDocumentListEntryProperties.Item.idDataAttribute);
@@ -146,6 +150,7 @@ export class TBActorSheet extends ActorSheet<ActorSheet.Options, TBActorSheetDat
    * @param event - The originating change event
    */
   protected onChangeItem(event: JQuery.ChangeEvent): void {
+    logger.info('in onChangeItem');
     return this.onChangeEmbeddedDocument(event, 'Item');
   }
   /**
@@ -155,6 +160,7 @@ export class TBActorSheet extends ActorSheet<ActorSheet.Options, TBActorSheetDat
    * @param event - The originating click event
    */
   protected onControlEffect(event: JQuery.ClickEvent): void {
+    logger.info('in onControlEffect');
     event.preventDefault();
     const a = event.currentTarget;
     switch (a.dataset['action']) {
@@ -171,6 +177,7 @@ export class TBActorSheet extends ActorSheet<ActorSheet.Options, TBActorSheetDat
    * Creates a new embedded effect.
    */
   protected onCreateEffect(): void {
+    logger.info('in onCreateEffect');
     TBActiveEffect.createDefault(this.actor);
   }
 
@@ -180,6 +187,7 @@ export class TBActorSheet extends ActorSheet<ActorSheet.Options, TBActorSheetDat
    * @param event - The originating click event
    */
   protected onEditEffect(event: JQuery.ClickEvent): void {
+    logger.info('in onEditEffect');
     const id = $(event.currentTarget)
       .parents(embeddedDocumentListEntryProperties.ActiveEffect.selector)
       .data(embeddedDocumentListEntryProperties.ActiveEffect.idDataAttribute);
@@ -196,6 +204,7 @@ export class TBActorSheet extends ActorSheet<ActorSheet.Options, TBActorSheetDat
    * @param event - The originating click event
    */
   protected onRollCheck(event: JQuery.ClickEvent): void {
+    logger.info('in onRollCheck');
     event.preventDefault();
     const check = event.currentTarget.dataset['check'];
     this.actor.rollCheck(check).catch((e) => notifications.error(e, { log: true }));
@@ -251,6 +260,7 @@ export class TBActorSheet extends ActorSheet<ActorSheet.Options, TBActorSheetDat
    * @param event - The originating change event
    */
   protected onChangeEffect(event: JQuery.ChangeEvent): void {
+    logger.info('in onChangeEffect');
     return this.onChangeEmbeddedDocument(event, 'ActiveEffect');
   }
 
@@ -265,6 +275,7 @@ export class TBActorSheet extends ActorSheet<ActorSheet.Options, TBActorSheetDat
     event: JQuery.ChangeEvent,
     documentName: 'Item' | 'ActiveEffect',
   ): void {
+    logger.info('in onChangeEmbeddedDocument');
     event.preventDefault();
     const element = $(event.currentTarget).get(0);
     enforce(element instanceof HTMLInputElement);
@@ -283,6 +294,7 @@ export class TBActorSheet extends ActorSheet<ActorSheet.Options, TBActorSheetDat
     );
 
     const newValue = this.parseValue(element);
+    logger.info('updating embedded docs...');
     this.actor.updateEmbeddedDocuments(documentName, [{ _id: id, [property]: newValue }]);
   }
   /**

@@ -47,6 +47,7 @@ export class TBItemSheet extends ItemSheet<ItemSheet.Options, TBItemSheetData> {
    * @param event - he originating click event
    */
   protected async _onManageActiveEffect(event: JQuery.ClickEvent): Promise<unknown> {
+    logger.info('in _onManageActiveEffect');
     event.preventDefault();
 
     if (this.item.isOwned) {

@@ -128,7 +128,7 @@ Item:
     isParent: false
     isEnemy: false
   gear:
-    description: 'it's rope'
+    description: "it's rope"
     pack: 2,
     held: 1,
     belt: 0,

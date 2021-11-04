@@ -1,5 +1,4 @@
-<div class="tb2-trait" >
-  <div>{{trait-name}}</div>
-  <div>{{trait-rank}}</div>
-  <!--  TODO uses, checks -->
+<div class="tb2-trait"  data-check="{{trait-name}}"  title="{{localize 'TB2.TraitTooltip' check=check-label}}">
+  <label for="trait-level-{{_id}}">{{trait-name}}</label>
+  <input id="trait-level-{{_id}}" data-type="Number" type="number" name="trait-level-{{_id}}" value="{{trait-level}}" />
 </div>

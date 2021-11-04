@@ -1,0 +1,20 @@
+{{!--
+SPDX-FileCopyrightText: 2021 Johannes Loher
+SPDX-FileCopyrightText: 2021 Gesina Schwalbe
+
+SPDX-License-Identifier: MIT
+--}}
+
+{{!
+!-- Render an "add" button.
+!-- @param documentType: The type of document this button controls, item or effect
+!-- @param title: The title to use for the link element (will be localized)
+!-- @param type: An optional property to use as data-type attribute
+}}
+<div>
+    <a class="control-{{documentType}}" title="{{localize title}}" data-action="create" {{#if type}}data-type="{{type}}"
+        {{/if}}>
+        <i class="fas fa-plus"></i>
+        {{localize "TB2.UserInteractionAdd"}}
+    </a>
+</div>

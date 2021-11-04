@@ -1,5 +1,7 @@
-<div class="tb2-skill rollable-skill"  data-check="{{skills-key}}"  title="{{localize 'TB2.SkillTooltip' check=check-label}}">
-  <div>{{skill-label}}</div>
-  <div>{{skill-rating}}</div>
-<!--  TODO advances-->
+<div class="tb2-skill rollable-skill"  data-check="{{skill-name}}"  title="{{localize 'TB2.SkillTooltip' check=check-label}}">
+  <label for="skill-rank-{{_id}}">{{skill-name}}</label>
+  <input id="skill-rank-{{_id}}" data-type="Number" type="number" name="skill-rank-{{_id}}" value="{{skill-rank}}" />
+  <label for="skill-passes-{{_id}}">{{localize 'TB2.SkillPassesLabel'}}</label><input id="skill-passes-{{_id}}" data-type="Number" type="number" name="skill-passes-{{_id}}" value="{{skill-passes}}" />
+  <label for="skill-fails-{{_id}}">{{localize 'TB2.SkillFailsLabel'}}</label><input id="skill-fails-{{_id}}" data-type="Number" type="number" name="skill-fails-{{_id}}" value="{{skill-fails}}" />
+  <label for="skill-attempts-{{_id}}">{{localize 'TB2.SkillAttemptsLabel'}}</label><input id="skill-attempts-{{_id}}" data-type="Number" type="number" name="skill-attempts-{{_id}}" value="{{skill-attempts}}" />
 </div>
