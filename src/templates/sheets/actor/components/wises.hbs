@@ -2,10 +2,26 @@
   <h1>{{localize 'TB2.WisesHeader'}}</h1>
   {{#each itemsByType.wise as |i|}}
     <div>{{i.name}}
-      <label for="wise-pass-{{i.data._id}}">{{localize 'TB2.WisePass'}}</label><input id="wise-pass-{{i.data._id}}" type="checkbox" value="{{i.data.pass}}">
-      <label for="wise-fail-{{i.data._id}}">{{localize 'TB2.WiseFail'}}</label><input id="wise-fail-{{i.data._id}}" type="checkbox" value="{{i.data.fail}}">
-      <label for="wise-fate-{{i.data._id}}">{{localize 'TB2.WiseFate'}}</label><input id="wise-fate-{{i.data._id}}" type="checkbox" value="{{i.data.fate}}">
-      <label for="wise-pers-{{i.data._id}}">{{localize 'TB2.WisePersona'}}</label><input id="wise-pers-{{i.data._id}}" type="checkbox" value="{{i.data.persona}}">
+      <label for="wise-pass-{{i.data._id}}">{{localize 'TB2.WisePass'}}</label>
+      <input id="wise-pass-{{i.data._id}}"
+             type="checkbox"
+             class="change-item"
+             value="{{i.data.pass}}">
+      <label for="wise-fail-{{i.data._id}}">{{localize 'TB2.WiseFail'}}</label>
+      <input id="wise-fail-{{i.data._id}}"
+             type="checkbox"
+             class="change-item"
+             value="{{i.data.fail}}">
+      <label for="wise-fate-{{i.data._id}}">{{localize 'TB2.WiseFate'}}</label>
+      <input id="wise-fate-{{i.data._id}}"
+             type="checkbox"
+             class="change-item"
+             value="{{i.data.fate}}">
+      <label for="wise-pers-{{i.data._id}}">{{localize 'TB2.WisePersona'}}</label>
+      <input id="wise-pers-{{i.data._id}}"
+             type="checkbox"
+             class="change-item"
+             value="{{i.data.persona}}">
     </div>
   {{/each}}
 </div>
