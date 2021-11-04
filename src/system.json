@@ -13,7 +13,7 @@
   "compatibleCoreVersion": "0.8.8",
   "scripts": [],
   "esmodules": ["module/torchbearer2e.js"],
-  "styles": ["styles/torchbearer2e.css"],
+  "styles": ["styles/torchbearer.css"],
   "packs": [
     {
       "name": "skills",

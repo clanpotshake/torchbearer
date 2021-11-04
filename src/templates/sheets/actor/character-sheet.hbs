@@ -14,14 +14,16 @@ SPDX-License-Identifier: MIT
     {{/systems/torchbearer/templates/sheets/actor/components/actor-header.hbs}}
 
     {{!-- Sheet Tab Navigation --}}
-<!--  <nav class="tb2-sheet-tab-nav sheet-tabs tabs" data-group="primary">-->
-<!--    <a class="tb2-sheet-tab-nav__item item" data-tab="values">{{localize 'TB2.HeadingValues'}}</a>-->
-<!--    <a class="tb2-sheet-tab-nav__item item" data-tab="inventory">{{localize 'TB2.HeadingInventory'}}</a>-->
-<!--    <a class="tb2-sheet-tab-nav__item item" data-tab="spells">{{localize 'TB2.HeadingSpells'}}</a>-->
-<!--    <a class="tb2-sheet-tab-nav__item item" data-tab="abilities">{{localize 'TB2.HeadingAbilities'}}</a>-->
-<!--    <a class="tb2-sheet-tab-nav__item item" data-tab="effects">{{localize 'TB2.HeadingEffects'}}</a>-->
-<!--    <a class="tb2-sheet-tab-nav__item item" data-tab="biography">{{localize 'TB2.HeadingBiography'}}</a>-->
-<!--  </nav>-->
+  <nav class="tb2-sheet-tab-nav sheet-tabs tabs" data-group="primary">
+    <a class="tb2-sheet-tab-nav__item item" data-tab="skills">{{localize 'TB2.HeadingSkills'}}</a>
+    <a class="tb2-sheet-tab-nav__item item" data-tab="inventory">{{localize 'TB2.HeadingInventory'}}</a>
+    <a class="tb2-sheet-tab-nav__item item" data-tab="spells">{{localize 'TB2.HeadingSpells'}}</a>
+    <a class="tb2-sheet-tab-nav__item item" data-tab="rituals">{{localize 'TB2.HeadingRituals'}}</a>
+    <a class="tb2-sheet-tab-nav__item item" data-tab="abilities">{{localize 'TB2.HeadingAbilities'}}</a>
+    <a class="tb2-sheet-tab-nav__item item" data-tab="levels">{{localize 'TB2.HeadingLevels'}}</a>
+    <a class="tb2-sheet-tab-nav__item item" data-tab="effects">{{localize 'TB2.HeadingEffects'}}</a>
+    <a class="tb2-sheet-tab-nav__item item" data-tab="biography">{{localize 'TB2.HeadingBiography'}}</a>
+  </nav>
 
   <!-- beautify ignore:start -->
   <!-- prettier-ignore-start -->
@@ -30,9 +32,9 @@ SPDX-License-Identifier: MIT
     {{!-- Values Tab --}}
 {{!--   {{> systems/torchbearer/templates/sheets/actor/tabs/values.hbs}} --}}
 
-    {{!-- Skills Tab --}}
     {{> systems/torchbearer/templates/sheets/actor/components/bio-data.hbs}}
     {{> systems/torchbearer/templates/sheets/actor/components/bigs.hbs}}
+    {{> systems/torchbearer/templates/sheets/actor/components/abilities.hbs}}
     {{> systems/torchbearer/templates/sheets/actor/components/rewards.hbs}}
     {{> systems/torchbearer/templates/sheets/actor/components/traits.hbs}}
     {{> systems/torchbearer/templates/sheets/actor/components/add-button.hbs

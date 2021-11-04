@@ -1,0 +1,20 @@
+/*
+ * SPDX-FileCopyrightText: 2021 Johannes Loher
+ *
+ * SPDX-License-Identifier: MIT
+ */
+
+@use "./colors";
+
+$padding-sm: 5px;
+$padding-md: 10px;
+$padding-lg: 20px;
+$margin-sm: $padding-sm;
+$margin-md: $padding-md;
+$margin-lg: $padding-lg;
+
+$default-input-height: 26px;
+
+$official-icons-path: "../assets/icons/official";
+
+$border-groove: 2px groove colors.$c-border-groove;

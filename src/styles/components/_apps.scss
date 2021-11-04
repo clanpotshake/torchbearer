@@ -1,0 +1,25 @@
+/*
+ * SPDX-FileCopyrightText: 2021 Johannes Loher
+ * SPDX-FileCopyrightText: 2021 Gesina Schwalbe
+ *
+ * SPDX-License-Identifier: MIT
+ */
+
+.window-content {
+  overflow-y: hidden;
+  padding: 5px;
+
+  form {
+    height: 100%;
+    overflow: hidden;
+  }
+
+  .sheet-body {
+    overflow-y: hidden;
+  }
+  .tab {
+    height: 100%;
+    overflow-y: auto;
+    align-content: flex-start;
+  }
+}

@@ -57,6 +57,7 @@ export class TBActorSheet extends ActorSheet<ActorSheet.Options, TBActorSheetDat
       enrichedEffects,
       settings: getTBSettings(),
     };
+    logger.info('data with tooltips is: ', data);
     return data;
   }
 
@@ -79,6 +80,7 @@ export class TBActorSheet extends ActorSheet<ActorSheet.Options, TBActorSheetDat
     super.activateListeners(html);
 
     if (!this.options.editable) return;
+    // logger.info('actor is editable, registering listeners...');
 
     html.find('.control-item').on('click', this.onControlItem.bind(this));
     html.find('.change-item').on('change', this.onChangeItem.bind(this));

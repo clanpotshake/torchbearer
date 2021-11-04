@@ -1,0 +1,84 @@
+/*
+ * SPDX-FileCopyrightText: 2021 Johannes Loher
+ * SPDX-FileCopyrightText: 2021 Oliver Rümpelein
+ * SPDX-FileCopyrightText: 2021 Gesina Schwalbe
+ *
+ * SPDX-License-Identifier: MIT
+ */
+
+@use "../utils/mixins";
+@use "../utils/variables";
+
+.side-properties {
+  flex: 0;
+  min-width: fit-content;
+  max-width: 50%;
+  margin: 5px 5px 5px 0;
+  padding-right: 5px;
+  border-right: variables.$border-groove;
+
+  .side-property {
+    margin: 2px 0;
+    display: grid;
+    grid-template-columns: minmax(40%, max-content) 1fr;
+    justify-content: left;
+
+    label {
+      line-height: variables.$default-input-height;
+      font-weight: bold;
+      padding-right: 3pt;
+    }
+
+    input,
+    select,
+    a {
+      text-align: left;
+      width: calc(100% - 2px);
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    span {
+      line-height: variables.$default-input-height;
+      padding: 0 4px;
+    }
+
+    @include mixins.mark-invalid-or-disabled-input;
+
+    input[type="checkbox"] {
+      width: auto;
+      height: 100%;
+      margin: 0px;
+    }
+
+    .unit-data-pair {
+      display: flex;
+      flex-direction: row;
+      select {
+        width: 4em;
+      }
+      input {
+        max-width: 7em;
+      }
+    }
+  }
+}
+
+.description {
+  height: 100%;
+}
+
+.sheet-body .tab .editor {
+  height: 100%;
+}
+
+.tox {
+  .tox-edit-area {
+    padding: 0 8px;
+  }
+  .tox-toolbar-overlord {
+    background-color: transparent;
+    .tox-toolbar__primary {
+      background: transparent;
+    }
+  }
+}

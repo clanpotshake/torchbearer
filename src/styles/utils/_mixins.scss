@@ -1,0 +1,43 @@
+/*
+ * SPDX-FileCopyrightText: 2021 Johannes Loher
+ * SPDX-FileCopyrightText: 2021 Gesina Schwalbe
+ *
+ * SPDX-License-Identifier: MIT
+ */
+
+@use "./colors";
+
+@mixin element-invisible {
+  position: absolute;
+
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  border: 0;
+  padding: 0;
+
+  clip: rect(0 0 0 0);
+  overflow: hidden;
+}
+
+@mixin hide {
+  display: none;
+}
+
+@mixin centered-content {
+  display: grid;
+  place-items: center;
+}
+
+@mixin mark-invalid-or-disabled-input {
+  input:invalid {
+    background-color: colors.$c-invalid-input;
+  }
+  input:disabled {
+    background-color: transparent;
+  }
+}
+
+@mixin foundry-highlight-text-shadow {
+  text-shadow: 0 0 10px red;
+}

@@ -3,6 +3,11 @@ export default async function registerHandlebarsPartials(): Promise<void> {
   const templatePaths = [
     'systems/torchbearer/templates/sheets/actor/components/bio-data.hbs',
     'systems/torchbearer/templates/sheets/actor/components/bigs.hbs',
+    'systems/torchbearer/templates/sheets/actor/components/control-button-group.hbs',
+    'systems/torchbearer/templates/sheets/actor/components/effect-list-entry.hbs',
+    'systems/torchbearer/templates/sheets/actor/components/effect-list-header.hbs',
+    'systems/torchbearer/templates/sheets/actor/components/item-list-entry.hbs',
+    'systems/torchbearer/templates/sheets/actor/components/item-list-header.hbs',
     'systems/torchbearer/templates/sheets/actor/components/rewards.hbs',
     'systems/torchbearer/templates/sheets/actor/components/traits.hbs',
     'systems/torchbearer/templates/sheets/actor/components/trait.hbs',

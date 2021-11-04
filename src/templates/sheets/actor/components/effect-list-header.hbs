@@ -1,0 +1,32 @@
+{{!--
+SPDX-FileCopyrightText: 2021 Johannes Loher
+SPDX-FileCopyrightText: 2021 Gesina Schwalbe
+
+SPDX-License-Identifier: MIT
+--}}
+
+{{!--
+!-- Render an effect list header row.
+--}}
+<li class="ds4-embedded-document-list__row ds4-embedded-document-list__row--header">
+    {{!-- enabled --}}
+    <div title="{{localize 'DS4.EffectEnabled'}}">{{localize 'DS4.EffectEnabledAbbr'}}</div>
+
+    {{!-- effectively enabled --}}
+    <div title="{{localize 'DS4.EffectEffectivelyEnabled'}}">{{localize 'DS4.EffectEffectivelyEnabledAbbr'}}</div>
+
+    {{!-- icon --}}
+    <div></div>
+
+    {{!-- label --}}
+    <div>{{localize 'DS4.EffectLabel'}}</div>
+
+    {{!-- source name --}}
+    <div>{{localize 'DS4.EffectSourceName'}}</div>
+
+    {{!-- factor --}}
+    <div title="{{localize 'DS4.EffectFactor'}}">{{localize 'DS4.EffectFactorAbbr'}}</div>
+
+    {{!-- control buttons placeholder --}}
+    <div></div>
+</li>

@@ -18,8 +18,8 @@ Actor:
       circles: *ability
       resources: *ability
       nature:
-        current: 0
-        max: 0
+        current: 3
+        max: 3
       custom1:
         <<: *ability
         name: ''
@@ -120,6 +120,7 @@ Item:
     description: 'brew potions'
     collapsed: false
     tools: false
+    luck: 'Will'
   relationship:
     description: 'my parents'
     location: 'Skogenby'

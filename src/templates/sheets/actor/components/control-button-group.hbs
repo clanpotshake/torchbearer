@@ -1,0 +1,20 @@
+{{!--
+SPDX-FileCopyrightText: 2021 Johannes Loher
+SPDX-FileCopyrightText: 2021 Gesina Schwalbe
+
+SPDX-License-Identifier: MIT
+--}}
+
+{{!--
+!-- Render a group of an "edit" and a "delete" button.
+!-- The current item is defined by the a corresponding id attribute of the parent li element.
+!-- @param documentType: The type of document that is controlled by this button group, item or effect
+!-- @param editTitle: The title to use for the edit link element (will be localized)
+!-- @param deleteTitle: The title to use for the delete link element (will be localized)
+--}}
+<div class="tb-control-button-group">
+    <a class="tb-control-button-group__button control-{{documentType}}" data-action="edit"
+        title="{{localize editTitle}}"><i class="fas fa-edit"></i></a>
+    <a class="tb-control-button-group__button control-{{documentType}}" data-action="delete"
+        title="{{localize deleteTitle}}"><i class="fas fa-trash"></i></a>
+</div>
