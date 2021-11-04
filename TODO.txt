@@ -4,3 +4,4 @@
 
 
 need a character builder page to burn in stock/class selections to be uneditable on the main actor page
+represent places as an item, map to contacts/hometown

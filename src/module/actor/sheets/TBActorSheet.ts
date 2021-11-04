@@ -57,7 +57,6 @@ export class TBActorSheet extends ActorSheet<ActorSheet.Options, TBActorSheetDat
       enrichedEffects,
       settings: getTBSettings(),
     };
-    logger.info('data with tooltips is: ', data);
     return data;
   }
 

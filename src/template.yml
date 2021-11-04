@@ -2,7 +2,7 @@ Actor:
   types:
 #    - setting
     - character
-#    - npc
+    - npc
   templates:
     advances:
       passes: 0
@@ -10,27 +10,30 @@ Actor:
     common:
       might: 3
       precedence: 0
-      will: &ability
-        templates:
-          - advances
-        rank: 1
-      health: *ability
-      circles: *ability
-      resources: *ability
-      nature:
-        current: 3
-        max: 3
-      custom1:
-        <<: *ability
-        name: ''
-      custom2:
-        <<: *ability
-        name: ''
-      property: ''
-      fate: 0
-      fateSpent: 0
-      persona: 0
-      personaSpent: 0
+      abilities:
+        will: &ability
+          templates:
+            - advances
+          rank: 1
+        health: *ability
+        circles: *ability
+        resources: *ability
+        nature:
+          current: 3
+          max: 3
+        custom1:
+          <<: *ability
+          name: ''
+        custom2:
+          <<: *ability
+          name: ''
+      rewards:
+        fate:
+          current: 0
+          spent: 0
+        persona:
+          current: 0
+          spent: 0
     displayProps:
       collapseBeliefs: false
       collapseInstincts: false
@@ -117,23 +120,23 @@ Item:
     attempts: 0
     root1: ''
     root2: ''
-    description: 'brew potions'
+    description: 'skill description'
     collapsed: false
     tools: false
     luck: 'Will'
   relationship:
     description: 'my parents'
     location: 'Skogenby'
-    skill: 'Smith' # TODO not string here?
+    skill: 'Smith'
     isFriend: false
     isParent: false
     isEnemy: false
   gear:
-    description: "it's rope"
-    pack: 2,
-    held: 1,
+    description: 'item description'
+    pack: 0,
+    held: 0,
     belt: 0,
-    torso: 1,
+    torso: 0,
     head: 0,
     hand: 0,
     feet: 0,
@@ -145,16 +148,16 @@ Item:
     description: 'Home'
     location: 'Skogenby'
   spell:
-    description: 'be blind'
+    description: 'spell description'
     circle: 0
     scribeOb: 0
     learnOb: 0
     castOb: 0
-    focus: 'silk blindfold'
-    materials: ''
+    focus: 'spell focus'
+    materials: 'spell materials'
     castTime: 'free'
-    casting: ''
-    duration: ''
+    casting: 'factors'
+    duration: 'One Phase'
     factors: ''
   class:
     level1: 'warrior level 1 text'
