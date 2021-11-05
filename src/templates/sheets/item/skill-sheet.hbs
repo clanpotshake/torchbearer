@@ -4,17 +4,18 @@
   {{/systems/torchbearer/templates/sheets/item/components/sheet-header.hbs}}
 
   {{!-- Common Item body --}}
+  <div class="side-property">
+    <label for="data.luck">{{localize "TB2.SkillBeginnersLuckLabel"}}</label>
+    <select name="data.luck" data-type="String">
+      {{#select data.data.luck}}
+        {{#each (beginnersLuckAttributes) as |value key|}}
+          <!--            TODO probably need to fix the types here, key is just an index -->
+        
+          <option value="{{value}}">{{value}}</option>
+        {{/each}}
+      {{/select}}
+    </select>
+  </div>
   {{#> systems/torchbearer/templates/sheets/item/components/body.hbs}}
-    <div class="side-property">
-      <label for="data.luck">{{localize "TB2.SkillBeginnersLuckLabel"}}</label>
-      <select name="data.luck" data-type="String">
-        {{#select data.data.luck}}
-          {{#each (beginnersLuckAttributes) as |value key|}}
-<!--            TODO probably need to fix the types here, key is just an index -->
-            <option value="{{value}}">{{value}}</option>
-          {{/each}}
-        {{/select}}
-      </select>
-    </div>
   {{/systems/torchbearer/templates/sheets/item/components/body.hbs}}
 </form>

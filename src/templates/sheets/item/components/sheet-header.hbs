@@ -9,7 +9,7 @@ SPDX-License-Identifier: MIT
     <img class="profile-img" src="{{data.img}}" data-edit="img" title="{{data.name}}" />
     <div class="header-fields flexrow">
         <h1 class="charname"><input name="name" type="text" value="{{data.name}}" placeholder="Name" /></h1>
-        <h2 class="item-type">{{lookup config.i18n.itemTypes item.type}}</h2>
+        <h2 class="item-type">{{localize (lookup config.i18n.itemTypes item.type)}}</h2>
         {{> @partial-block}}
     </div>
 </header>

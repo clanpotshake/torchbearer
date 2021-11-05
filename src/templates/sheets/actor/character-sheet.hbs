@@ -25,7 +25,7 @@ SPDX-License-Identifier: MIT
     {{#if hasUrdr}}
     <a class="tb-sheet-tab-nav__item item" data-tab="invocations">{{localize 'TB2.HeadingInvocations'}}</a>
     {{/if}}
-<!--    <a class="tb-sheet-tab-nav__item item" data-tab="abilities">{{localize 'TB2.HeadingAbilities'}}</a>-->
+    <a class="tb-sheet-tab-nav__item item" data-tab="wises">{{localize 'TB2.HeadingWises'}}</a>
 <!--    <a class="tb-sheet-tab-nav__item item" data-tab="levels">{{localize 'TB2.HeadingLevels'}}</a>-->
 <!--    <a class="tb-sheet-tab-nav__item item" data-tab="effects">{{localize 'TB2.HeadingEffects'}}</a>-->
 <!--    <a class="tb-sheet-tab-nav__item item" data-tab="biography">{{localize 'TB2.HeadingBiography'}}</a>-->
@@ -37,7 +37,7 @@ SPDX-License-Identifier: MIT
   <section class="sheet-body">
 
     {{!-- {{> systems/torchbearer/templates/sheets/actor/components/traits.hbs}} --}}
-    {{!--  {{> systems/torchbearer/templates/sheets/actor/components/wises.hbs}} --}}
+    {{> systems/torchbearer/templates/sheets/actor/tabs/wises.hbs}}
 
     {{#> systems/torchbearer/templates/sheets/actor/tabs/skill-tab.hbs}}
       {{> systems/torchbearer/templates/sheets/actor/components/skill.hbs}}

@@ -23,6 +23,7 @@ export default async function registerHandlebarsPartials(): Promise<void> {
     'systems/torchbearer/templates/sheets/actor/tabs/character-inventory.hbs',
     'systems/torchbearer/templates/sheets/actor/tabs/levels.hbs',
     'systems/torchbearer/templates/sheets/actor/tabs/skill-tab.hbs',
+    'systems/torchbearer/templates/sheets/actor/tabs/wises.hbs',
     'systems/torchbearer/templates/sheets/item/components/body.hbs',
     'systems/torchbearer/templates/sheets/item/components/sheet-header.hbs',
     'systems/torchbearer/templates/sheets/item/tabs/description.hbs',

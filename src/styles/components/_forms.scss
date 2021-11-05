@@ -65,3 +65,10 @@ header.sheet-header {
 .sheet-body .tab {
   height: 100%;
 }
+
+
+.tb-biography-tab-content {
+  display: grid;
+  grid-template-columns: 1fr 3fr;
+  column-gap: 1em;
+}

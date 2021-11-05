@@ -10,4 +10,6 @@ const helpers = {
   },
   isEmpty: (input: Array<unknown> | null | undefined): boolean => (input?.length ?? 0) === 0,
   beginnersLuckAttributes: (): string[] => TBItem.beginnersLuckAttributes,
+  ifIn: (input: Array<unknown> | null | undefined, elem: unknown): boolean =>
+    input?.includes(elem) || false,
 };
