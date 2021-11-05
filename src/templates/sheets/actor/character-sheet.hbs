@@ -11,6 +11,7 @@ SPDX-License-Identifier: MIT
   {{log 'character sheet' this}}
   {{#> systems/torchbearer/templates/sheets/actor/components/actor-header.hbs}}
   {{> systems/torchbearer/templates/sheets/actor/components/character-conditions.hbs}}
+  {{> systems/torchbearer/templates/sheets/actor/components/bigs.hbs}}
   {{/systems/torchbearer/templates/sheets/actor/components/actor-header.hbs}}
 
     {{!-- Sheet Tab Navigation --}}
@@ -21,7 +22,7 @@ SPDX-License-Identifier: MIT
     <a class="tb2-sheet-tab-nav__item item" data-tab="spells">{{localize 'TB2.HeadingSpells'}}</a>
     {{/if}}
     {{#if hasUrdr}}
-    <a class="tb2-sheet-tab-nav__item item" data-tab="rituals">{{localize 'TB2.HeadingRituals'}}</a>
+    <a class="tb2-sheet-tab-nav__item item" data-tab="invocations">{{localize 'TB2.HeadingInvocations'}}</a>
     {{/if}}
     <a class="tb2-sheet-tab-nav__item item" data-tab="abilities">{{localize 'TB2.HeadingAbilities'}}</a>
     <a class="tb2-sheet-tab-nav__item item" data-tab="levels">{{localize 'TB2.HeadingLevels'}}</a>
@@ -33,22 +34,17 @@ SPDX-License-Identifier: MIT
   <!-- prettier-ignore-start -->
   {{!-- Sheet Body (remove indentation to avoid annoying Handlebars auto-indent) --}}
   <section class="sheet-body">
-    {{!-- Values Tab --}}
-{{!--   {{> systems/torchbearer/templates/sheets/actor/tabs/values.hbs}} --}}
 
-    {{!-- {{> systems/torchbearer/templates/sheets/actor/components/bio-data.hbs}} --}}
-    {{> systems/torchbearer/templates/sheets/actor/components/bigs.hbs}}
     {{> systems/torchbearer/templates/sheets/actor/components/abilities.hbs}}
     {{> systems/torchbearer/templates/sheets/actor/components/rewards.hbs}}
     {{> systems/torchbearer/templates/sheets/actor/components/traits.hbs}}
     {{> systems/torchbearer/templates/sheets/actor/components/wises.hbs}}
 
-    {{!-- Skills Tab --}}
     {{> systems/torchbearer/templates/sheets/actor/tabs/skill-tab.hbs}}
     {{> systems/torchbearer/templates/sheets/actor/components/spells.hbs}}
 
-    {{!-- Inventory Tab --}}
     {{> systems/torchbearer/templates/sheets/actor/tabs/character-inventory.hbs}}
+    {{> systems/torchbearer/templates/sheets/actor/tabs/levels.hbs}}
 
   </section>
   <!-- prettier-ignore-end -->
