@@ -1,7 +1,7 @@
 import { getGame } from '../helpers';
 import { createTestRoll } from '../rolls/CheckFactory';
 import { TB } from '../config';
-import { ClassType, ItemType } from './ItemDataSource';
+import { AttributeType, ClassType, ItemType } from './ItemDataSource';
 
 declare global {
   interface DocumentClassConfig {
@@ -16,8 +16,7 @@ export class TBItem extends Item {
   /** @override */
   prepareDerivedData(): void {
     super.prepareDerivedData();
-    // TODO use TBItem.rollableItemTypes here
-    this.data.data.rollable = TBItem.rollableItemTypes.includes(this.type);
+    this.prepareSkillThings();
     this.data.data.hasMemoryPalace =
       this.data.type === 'class'
         ? TBItem.classesWithMemoryPalace.includes(this.data.data.classType)
@@ -26,6 +25,14 @@ export class TBItem extends Item {
       this.data.type === 'class'
         ? TBItem.classesWithUrdr.includes(this.data.data.classType)
         : false;
+  }
+  protected prepareSkillThings(): void {
+    this.data.data.rollable = TBItem.rollableItemTypes.includes(this.type);
+    if (this.data.type === 'skill') {
+      this.data.data.learning = this.data.data.rank == 0 && this.data.data.attempts >= 1;
+      this.data.data.passes = 0;
+      this.data.data.fails = 0;
+    }
   }
   async roll(options: { speaker?: { token?: TokenDocument; alias?: string } } = {}): Promise<void> {
     switch (this.data.type) {
@@ -110,5 +117,8 @@ export class TBItem extends Item {
   }
   static get classesWithUrdr(): ClassType[] {
     return ['theurge', 'shaman'];
+  }
+  static get beginnersLuckAttributes(): AttributeType[] {
+    return ['health', 'will'];
   }
 }

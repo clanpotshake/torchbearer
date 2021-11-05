@@ -17,4 +17,7 @@
   @include meta.load-css('components/rollable_image');
   @include meta.load-css('components/description');
   @include meta.load-css('components/actor_progression');
+  @include meta.load-css('components/embedded_document_list');
+  @include meta.load-css('components/sheet');
+  @include meta.load-css('components/sheet_tab_nav');
 }

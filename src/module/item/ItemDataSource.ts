@@ -1,4 +1,5 @@
 import { TB } from '../config';
+import { TracksTests } from '../actor/TBActor';
 
 declare global {
   interface SourceConfig {
@@ -8,6 +9,7 @@ declare global {
 
 export type ItemType = keyof typeof TB.i18n.itemTypes;
 export type ClassType = keyof typeof TB.i18n.classes;
+export type AttributeType = keyof typeof TB.i18n.attributes;
 
 type TBItemDataSource =
   | BeliefDataSource
@@ -66,6 +68,10 @@ export interface ClassDataSource {
   type: 'class';
   data: ClassDataSourceData;
 }
+// templates
+
+// types
+
 export interface BeliefDataSourceData extends ArthaEarnerDataSource {
   fate: true;
   persona: true;
@@ -87,24 +93,18 @@ interface ArthaEarnerDataSource {
   persona: boolean;
 }
 export interface TraitDataSourceData {
-  name: string;
   description: string;
   collapsed: boolean;
   level: number;
   checks: number;
 }
-export interface SkillDataSourceData {
-  name: string;
+export interface SkillDataSourceData extends TracksTests {
   collapsed: boolean;
   rank: number;
-  learning: boolean;
   attempts: number;
   tools: boolean;
-  passes: number;
-  fails: number;
 }
 export interface RelationshipDataSourceData {
-  name: string;
   description: string;
   location: string;
   skill: string;
@@ -113,7 +113,6 @@ export interface RelationshipDataSourceData {
   isParent: boolean;
 }
 export interface GearDataSourceData {
-  name: string;
   description: string;
   pack: number;
   held: number;
@@ -132,7 +131,6 @@ export interface PropertyDataSourceData {
   location: string;
 }
 export interface SpellDataSourceData {
-  name: string;
   description: string;
   circle: number;
   scribeOb: number;
@@ -150,7 +148,6 @@ interface LevelBenefit {
 }
 export interface ClassDataSourceData {
   classType: ClassType;
-  name: string;
   level1: string;
   level2: LevelBenefit;
   level3: LevelBenefit;

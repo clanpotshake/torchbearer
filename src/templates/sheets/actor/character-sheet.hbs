@@ -6,28 +6,29 @@ SPDX-FileCopyrightText: 2021 Gesina Schwalbe
 SPDX-License-Identifier: MIT
 --}}
 
-<form class="{{cssClass}} tb2-sheet" autocomplete="off">
+<form class="{{cssClass}} tb-sheet" autocomplete="off">
   {{!-- Header --}}
   {{log 'character sheet' this}}
   {{#> systems/torchbearer/templates/sheets/actor/components/actor-header.hbs}}
   {{> systems/torchbearer/templates/sheets/actor/components/character-conditions.hbs}}
   {{> systems/torchbearer/templates/sheets/actor/components/bigs.hbs}}
+  {{> systems/torchbearer/templates/sheets/actor/components/rewards.hbs}}
   {{/systems/torchbearer/templates/sheets/actor/components/actor-header.hbs}}
 
     {{!-- Sheet Tab Navigation --}}
-  <nav class="tb2-sheet-tab-nav sheet-tabs tabs" data-group="primary">
-    <a class="tb2-sheet-tab-nav__item item" data-tab="skills">{{localize 'TB2.HeadingSkills'}}</a>
-    <a class="tb2-sheet-tab-nav__item item" data-tab="inventory">{{localize 'TB2.HeadingInventory'}}</a>
+  <nav class="tb-sheet-tab-nav sheet-tabs tabs" data-group="primary">
+    <a class="tb-sheet-tab-nav__item item" data-tab="skills">{{localize 'TB2.HeadingSkills'}}</a>
+    <a class="tb-sheet-tab-nav__item item" data-tab="inventory">{{localize 'TB2.HeadingInventory'}}</a>
     {{#if hasMemoryPalace}}
-    <a class="tb2-sheet-tab-nav__item item" data-tab="spells">{{localize 'TB2.HeadingSpells'}}</a>
+    <a class="tb-sheet-tab-nav__item item" data-tab="spells">{{localize 'TB2.HeadingSpells'}}</a>
     {{/if}}
     {{#if hasUrdr}}
-    <a class="tb2-sheet-tab-nav__item item" data-tab="invocations">{{localize 'TB2.HeadingInvocations'}}</a>
+    <a class="tb-sheet-tab-nav__item item" data-tab="invocations">{{localize 'TB2.HeadingInvocations'}}</a>
     {{/if}}
-    <a class="tb2-sheet-tab-nav__item item" data-tab="abilities">{{localize 'TB2.HeadingAbilities'}}</a>
-    <a class="tb2-sheet-tab-nav__item item" data-tab="levels">{{localize 'TB2.HeadingLevels'}}</a>
-    <a class="tb2-sheet-tab-nav__item item" data-tab="effects">{{localize 'TB2.HeadingEffects'}}</a>
-    <a class="tb2-sheet-tab-nav__item item" data-tab="biography">{{localize 'TB2.HeadingBiography'}}</a>
+<!--    <a class="tb-sheet-tab-nav__item item" data-tab="abilities">{{localize 'TB2.HeadingAbilities'}}</a>-->
+<!--    <a class="tb-sheet-tab-nav__item item" data-tab="levels">{{localize 'TB2.HeadingLevels'}}</a>-->
+<!--    <a class="tb-sheet-tab-nav__item item" data-tab="effects">{{localize 'TB2.HeadingEffects'}}</a>-->
+<!--    <a class="tb-sheet-tab-nav__item item" data-tab="biography">{{localize 'TB2.HeadingBiography'}}</a>-->
   </nav>
 
   <!-- beautify ignore:start -->
@@ -35,13 +36,13 @@ SPDX-License-Identifier: MIT
   {{!-- Sheet Body (remove indentation to avoid annoying Handlebars auto-indent) --}}
   <section class="sheet-body">
 
-    {{> systems/torchbearer/templates/sheets/actor/components/abilities.hbs}}
-    {{> systems/torchbearer/templates/sheets/actor/components/rewards.hbs}}
-    {{> systems/torchbearer/templates/sheets/actor/components/traits.hbs}}
-    {{> systems/torchbearer/templates/sheets/actor/components/wises.hbs}}
+    {{!-- {{> systems/torchbearer/templates/sheets/actor/components/traits.hbs}} --}}
+    {{!--  {{> systems/torchbearer/templates/sheets/actor/components/wises.hbs}} --}}
 
-    {{> systems/torchbearer/templates/sheets/actor/tabs/skill-tab.hbs}}
-    {{> systems/torchbearer/templates/sheets/actor/components/spells.hbs}}
+    {{#> systems/torchbearer/templates/sheets/actor/tabs/skill-tab.hbs}}
+      {{> systems/torchbearer/templates/sheets/actor/components/skill.hbs}}
+    {{/systems/torchbearer/templates/sheets/actor/tabs/skill-tab.hbs}}
+   {{!-- {{> systems/torchbearer/templates/sheets/actor/components/spells.hbs}} --}}
 
     {{> systems/torchbearer/templates/sheets/actor/tabs/character-inventory.hbs}}
     {{> systems/torchbearer/templates/sheets/actor/tabs/levels.hbs}}

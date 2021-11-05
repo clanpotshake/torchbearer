@@ -116,6 +116,7 @@ export class TBActorSheet extends ActorSheet<ActorSheet.Options, TBActorSheetDat
    */
   protected onCreateItem(event: JQuery.ClickEvent): void {
     logger.info('in onCreateItem');
+    // TODO item limit validation goes here
     const { type, ...data } = foundry.utils.deepClone(event.currentTarget.dataset);
     const name = getGame().i18n.localize(`TB2.New${type.capitalize()}Name`);
     const itemData = {
@@ -151,7 +152,6 @@ export class TBActorSheet extends ActorSheet<ActorSheet.Options, TBActorSheetDat
    * @param event - The originating change event
    */
   protected onChangeItem(event: JQuery.ChangeEvent): void {
-    logger.info('in onChangeItem');
     return this.onChangeEmbeddedDocument(event, 'Item');
   }
   /**
@@ -295,7 +295,6 @@ export class TBActorSheet extends ActorSheet<ActorSheet.Options, TBActorSheetDat
     );
 
     const newValue = this.parseValue(element);
-    logger.info('updating embedded docs...');
     this.actor.updateEmbeddedDocuments(documentName, [{ _id: id, [property]: newValue }]);
   }
   /**

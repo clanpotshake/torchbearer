@@ -13,34 +13,38 @@ Additional elements of the side-properties div can be handed over via the @parti
 <div class="tab flexrow description" data-group="primary" data-tab="description">
     <div class="side-properties">
         {{#if isOwned}}
-        {{#if (ne data.data.equipped undefined)}}<div class="side-property">
-            <label for="data.equipped">{{localize 'TB2.ItemEquipped'}}</label>
-            <input type="checkbox" name="data.equipped" data-dtype="Boolean" {{checked data.data.equipped}}
-                title="{{localize 'TB2.ItemEquipped'}}">
-        </div>
-        {{/if}}
-        <div class="side-property">
-            <label for="data.actor">{{localize 'TB2.ItemOwner'}}</label>
-            <a class="entity-link" draggable="true" data-entity="Actor" data-id="{{actor.id}}"><i
-                    class="fas fa-user"></i>{{actor.name}}</a>
-        </div>
-        {{#if isPhysical}}
-        <div class="side-property">
-            <label for="data.quantity">{{localize 'TB2.Quantity'}}</label>
-            <input type="number" min="0" step="1" data-dtype="Number" name="data.quantity"
-                value="{{data.data.quantity}}" />
-        </div>
-        <div class="side-property">
-            <label for="data.storageLocation">{{localize 'TB2.StorageLocation'}}</label>
-            <input type="text" data-dtype="String" name="data.storageLocation" value="{{data.data.storageLocation}}" />
-        </div>
-        {{/if}}
+          {{#if (ne data.data.equipped undefined)}}<div class="side-property">
+              <label for="data.equipped">{{localize 'TB2.ItemEquipped'}}</label>
+              <input type="checkbox" name="data.equipped" data-dtype="Boolean" {{checked data.data.equipped}}
+                  title="{{localize 'TB2.ItemEquipped'}}">
+          </div>
+          {{/if}}
+          <div class="side-property">
+              <label for="data.actor">{{localize 'TB2.ItemOwner'}}</label>
+              <a class="entity-link" draggable="true" data-entity="Actor" data-id="{{actor.id}}"><i
+                      class="fas fa-user"></i>{{actor.name}}</a>
+          </div>
+          {{#if isPhysical}}
+          <div class="side-property">
+              <label for="data.quantity">{{localize 'TB2.Quantity'}}</label>
+              <input type="number" min="0" step="1" data-dtype="Number" name="data.quantity"
+                  value="{{data.data.quantity}}" />
+          </div>
+          <div class="side-property">
+              <label for="data.storageLocation">{{localize 'TB2.StorageLocation'}}</label>
+              <input type="text" data-dtype="String" name="data.storageLocation" value="{{data.data.storageLocation}}" />
+          </div>
+          {{/if}}
         {{else}}
-        <span>{{localize "TB2.NotOwned"}}</span>
+          <span>{{localize "TB2.NotOwned"}}</span>
         {{/if}}
         {{> @partial-block}}
     </div>
     <div class="description" title="{{localize 'TB2.HeadingDescription'}}">
-        {{editor content=data.data.description target="data.description" button=true owner=owner editable=editable}}
+        {{editor content=data.data.description
+                 target="data.description"
+                 button=true
+                 owner=owner
+                 editable=editable}}
     </div>
 </div>

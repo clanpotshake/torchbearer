@@ -1,3 +1,5 @@
+import { TBItem } from '../item/TBItem';
+
 export default function registerHandlebarsHelpers(): void {
   Object.entries(helpers).forEach(([key, helper]) => Handlebars.registerHelper(key, helper));
 }
@@ -7,4 +9,5 @@ const helpers = {
     return $(input).text();
   },
   isEmpty: (input: Array<unknown> | null | undefined): boolean => (input?.length ?? 0) === 0,
+  beginnersLuckAttributes: (): string[] => TBItem.beginnersLuckAttributes,
 };

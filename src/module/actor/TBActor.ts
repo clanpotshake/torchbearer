@@ -180,9 +180,7 @@ export interface TracksTests {
   passes: number;
   fails: number;
 }
-export interface Ability extends TracksTests, DisplayClass {
-  foo: number;
-}
 export interface DisplayClass {
   cssClass?: string;
 }
+export interface Ability extends TracksTests, DisplayClass {}

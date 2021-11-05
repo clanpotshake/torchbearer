@@ -18,6 +18,7 @@ const i18nKeys = {
     level: 'TB2.ItemTypeLevelBenefit',
     property: 'TB2.ItemTypeProperty',
     class: 'TB2.ItemTypeClass',
+    attribute: 'TB2.ItemTypeAttribute',
   },
   skills: {
     alchemist: 'TB2.TestAlchemist',

@@ -48,6 +48,7 @@
            value="{{data.data.raiment}}"/>
   </div>
   <div class="tb-actor-properties__property-multi-input">
+    {{log 'fresh is: ' data.data.conditions.fresh}}
     <div class="tb-actor-properties__property">
       <label for="data.conditions.fresh-{{data._id}}" class="tb-actor-properties__property-label">{{localize "TB2.ConditionFresh"}}</label>
       <input id="data.conditions.fresh-{{data._id}}"

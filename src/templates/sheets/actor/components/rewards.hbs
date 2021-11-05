@@ -1,25 +1,29 @@
-<div class="tb2-rewards">
-  <h1>{{localize 'TB2.TitleRewards'}}</h1>
-  <label for="character-fate">{{localize "TB2.CharacterFateLabel"}}</label>
-  <input id="character-fate"
-         data-type="String" type="text"
-         name="data.rewards.fate.current"
-         value="{{data.data.rewards.fate.current}}" />
-  <span class="input-divider"> | </span>
-  <label for="character-fate-spent">{{localize "TB2.CharacterFateSpentLabel"}}</label>
-  <input id="character-fate-spent"
-         data-type="String" type="text"
-         name="data.rewards.fate.spent"
-         value="{{data.data.rewards.fate.spent}}" />
-  <label for="character-persona">{{localize "TB2.CharacterPersonaLabel"}}</label>
-  <input id="character-persona"
-         data-type="String" type="text"
-         name="data.rewards.persona.current"
-         value="{{data.data.rewards.persona.current}}" />
-  <span class="input-divider"> | </span>
-  <label for="character-persona-spent">{{localize "TB2.CharacterPersonaSpentLabel"}}</label>
-  <input id="character-persona-spent"
-         data-type="String" type="text"
-         name="data.rewards.persona.spent"
-         value="{{data.data.rewards.persona.spent}}" />
+<div class="tb-rewards">
+  <h4>{{localize 'TB2.TitleRewards'}}</h4>
+  <div class="tb-actor-properties__property-multi-input">
+    <label for="character-fate">{{localize "TB2.CharacterFateLabel"}}</label>
+    <input id="character-fate"
+           data-type="String" type="text"
+           name="data.rewards.fate.current"
+           value="{{data.data.rewards.fate.current}}" />
+    <span class="input-divider"> | </span>
+    <label for="character-fate-spent">{{localize "TB2.CharacterFateSpentLabel"}}</label>
+    <input id="character-fate-spent"
+           data-type="String" type="text"
+           name="data.rewards.fate.spent"
+           value="{{data.data.rewards.fate.spent}}" />
+  </div>
+  <div class="tb-actor-properties__property-multi-input">
+    <label for="character-persona">{{localize "TB2.CharacterPersonaLabel"}}</label>
+    <input id="character-persona"
+           data-type="String" type="text"
+           name="data.rewards.persona.current"
+           value="{{data.data.rewards.persona.current}}" />
+    <span class="input-divider"> | </span>
+    <label for="character-persona-spent">{{localize "TB2.CharacterPersonaSpentLabel"}}</label>
+    <input id="character-persona-spent"
+           data-type="String" type="text"
+           name="data.rewards.persona.spent"
+           value="{{data.data.rewards.persona.spent}}" />
+  </div>
 </div>

@@ -4,18 +4,18 @@
  * SPDX-License-Identifier: MIT
  */
 
-.ds4-rollable-image {
+.tb-rollable-image {
   position: relative;
 
   &--rollable {
     cursor: pointer;
 
     &:hover {
-      .ds4-rollable-image__image {
+      .tb-rollable-image__image {
         opacity: 0.25;
       }
 
-      .ds4-rollable-image__overlay {
+      .tb-rollable-image__overlay {
         opacity: 1;
       }
     }

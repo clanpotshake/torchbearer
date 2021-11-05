@@ -136,7 +136,7 @@ Item:
     description: 'skill description'
     collapsed: false
     tools: false
-    luck: 'Will'
+    luck: 'will'
   relationship:
     description: 'my parents'
     location: 'Skogenby'

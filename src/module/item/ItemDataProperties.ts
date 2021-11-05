@@ -89,6 +89,9 @@ interface ItemDataPropertiesDataGrantsMagic {
 interface ItemDataPropertiesDataGrantsInvocation {
   hasUrdr: boolean;
 }
+interface ItemDataPropertiesDataLearningSkill {
+  learning: boolean;
+}
 
 // types
 
@@ -130,6 +133,7 @@ interface SkillDataPropertiesData
   extends SkillDataSourceData,
     ItemDataPropertiesDataRollable,
     ItemDataPropertiesDataGrantsMagic,
+    ItemDataPropertiesDataLearningSkill,
     ItemDataPropertiesDataGrantsInvocation {}
 interface RelationshipDataPropertiesData
   extends RelationshipDataSourceData,

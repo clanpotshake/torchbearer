@@ -8,7 +8,7 @@ export default function registerSetupHooks(): void {
 }
 
 function localizeAndSortConfig() {
-  const nosort = [''];
+  const nosort: string[] = ['attributes'];
   const localizeObject = <T extends { [s: string]: string }>(obj: T, sort = true): T => {
     const localized = Object.entries(obj).map(([key, value]): [string, string] => {
       return [key, getGame().i18n.localize(value)];

@@ -1,6 +1,7 @@
 import { TB } from '../../config';
 import { getGame } from '../../helpers';
 import { TBActiveEffect } from '../../ActiveEffect';
+import { TBItem } from '../TBItem';
 
 export class TBItemSheet extends ItemSheet<ItemSheet.Options, TBItemSheetData> {
   /** @override */
@@ -52,7 +53,7 @@ export class TBItemSheet extends ItemSheet<ItemSheet.Options, TBItemSheetData> {
 
     if (this.item.isOwned) {
       // return notifications.warn(
-      //   getGame().i18n.localize('DS4.WarningManageActiveEffectOnOwnedItem'),
+      //   getGame().i18n.localize('TB2.WarningManageActiveEffectOnOwnedItem'),
       // );
     }
     const a = event.currentTarget;
