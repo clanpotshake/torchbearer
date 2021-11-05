@@ -15,27 +15,27 @@ SPDX-License-Identifier: MIT
 !-- @param hideDescription: A flag to disable the description column.
 !-- @param @partial-block: Custom column headers can be passed using the partial block.
 --}}
-<li class="ds4-embedded-document-list__row item" data-item-id="{{itemData._id}}">
+<li class="tb-embedded-document-list__row item" data-item-id="{{itemData._id}}">
     {{!-- equipped --}}
     {{#if isEquipable}}
-    <input class="ds4-embedded-document-list__editable ds4-embedded-document-list__editable--checkbox change-item" type="checkbox" {{checked
+    <input class="tb-embedded-document-list__editable tb-embedded-document-list__editable--checkbox change-item" type="checkbox" {{checked
         itemData.data.equipped}} data-dtype="Boolean" data-property="data.equipped"
-        title="{{localize 'DS4.ItemEquipped'}}">
+        title="{{localize 'TB2.ItemEquipped'}}">
     {{/if}}
 
     {{!-- image --}}
-    {{> systems/ds4/templates/sheets/actor/components/rollable-image.hbs rollable=itemData.data.rollable
-    src=itemData.img alt=(localize "DS4.DocumentImageAltText" name=itemData.name) title=itemData.name
-    rollableTitle=(localize "DS4.RollableImageRollableTitle" name=itemData.name) rollableClass="rollable-item"}}
+    {{> systems/torchbearer/templates/sheets/actor/components/rollable-image.hbs rollable=itemData.data.rollable
+    src=itemData.img alt=(localize "TB2.DocumentImageAltText" name=itemData.name) title=itemData.name
+    rollableTitle=(localize "TB2.RollableImageRollableTitle" name=itemData.name) rollableClass="rollable-item"}}
 
     {{!-- amount --}}
     {{#if hasQuantity}}
-    <input class="ds4-embedded-document-list__editable change-item" type="number" min="0" step="1" value="{{itemData.data.quantity}}"
-        data-dtype="Number" data-property="data.quantity" title="{{localize 'DS4.Quantity'}}" />
+    <input class="tb-embedded-document-list__editable change-item" type="number" min="0" step="1" value="{{itemData.data.quantity}}"
+        data-dtype="Number" data-property="data.quantity" title="{{localize 'TB2.Quantity'}}" />
     {{/if}}
 
     {{!-- name --}}
-    <input class="ds4-embedded-document-list__editable change-item" type="text" value="{{itemData.name}}" data-dtype="String"
+    <input class="tb-embedded-document-list__editable change-item" type="text" value="{{itemData.name}}" data-dtype="String"
         data-property="name" title="{{htmlToPlainText itemData.data.description}}" />
 
     {{!-- item type specifics --}}
@@ -45,11 +45,11 @@ SPDX-License-Identifier: MIT
 
     {{!-- description --}}
     {{#unless hideDescription}}
-    <div class="ds4-embedded-document-list__description" title="{{htmlToPlainText itemData.data.description}}">
+    <div class="tb-embedded-document-list__description" title="{{htmlToPlainText itemData.data.description}}">
         {{{itemData.data.description}}}</div>
     {{/unless}}
 
     {{!-- control button group --}}
-    {{> systems/ds4/templates/sheets/actor/components/control-button-group.hbs documentType="item"
-    editTitle="DS4.UserInteractionEditItemTitle" deleteTitle="DS4.UserInteractionDeleteItemTitle"}}
+    {{> systems/torchbearer/templates/sheets/actor/components/control-button-group.hbs documentType="item"
+    editTitle="TB2.UserInteractionEditItemTitle" deleteTitle="TB2.UserInteractionDeleteItemTitle"}}
 </li>

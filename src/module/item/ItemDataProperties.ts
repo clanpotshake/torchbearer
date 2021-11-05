@@ -76,23 +76,37 @@ interface SpellDataProperties {
   data: SpellDataPropertiesData;
 }
 
-interface BeliefDataPropertiesData extends BeliefDataSourceData {
+// templates
+
+interface ItemDataPropertiesDataRollable {
+  rollable: boolean;
+}
+
+// types
+
+interface BeliefDataPropertiesData extends BeliefDataSourceData, ItemDataPropertiesDataRollable {
   text: string;
 }
 
-interface InstinctDataPropertiesData extends InstinctDataSourceData {
+interface InstinctDataPropertiesData
+  extends InstinctDataSourceData,
+    ItemDataPropertiesDataRollable {
   text: string;
 }
-interface GoalDataPropertiesData extends GoalDataSourceData {
+interface GoalDataPropertiesData extends GoalDataSourceData, ItemDataPropertiesDataRollable {
   text: string;
 }
-interface CreedDataPropertiesData extends CreedDataSourceData {
+interface CreedDataPropertiesData extends CreedDataSourceData, ItemDataPropertiesDataRollable {
   text: string;
 }
-type TraitDataPropertiesData = TraitDataSourceData;
-type SkillDataPropertiesData = SkillDataSourceData;
-type RelationshipDataPropertiesData = RelationshipDataSourceData;
-type GearDataPropertiesData = GearDataSourceData;
-type PropertyDataPropertiesData = PropertyDataSourceData;
-type SpellDataPropertiesData = SpellDataSourceData;
-type ClassDataPropertiesData = ClassDataSourceData;
+interface TraitDataPropertiesData extends TraitDataSourceData, ItemDataPropertiesDataRollable {}
+interface SkillDataPropertiesData extends SkillDataSourceData, ItemDataPropertiesDataRollable {}
+interface RelationshipDataPropertiesData
+  extends RelationshipDataSourceData,
+    ItemDataPropertiesDataRollable {}
+interface GearDataPropertiesData extends GearDataSourceData, ItemDataPropertiesDataRollable {}
+interface PropertyDataPropertiesData
+  extends PropertyDataSourceData,
+    ItemDataPropertiesDataRollable {}
+interface SpellDataPropertiesData extends SpellDataSourceData, ItemDataPropertiesDataRollable {}
+interface ClassDataPropertiesData extends ClassDataSourceData, ItemDataPropertiesDataRollable {}

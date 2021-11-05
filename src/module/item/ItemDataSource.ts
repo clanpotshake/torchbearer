@@ -1,8 +1,12 @@
+import { TB } from '../config';
+
 declare global {
   interface SourceConfig {
     Item: TBItemDataSource;
   }
 }
+
+export type ItemType = keyof typeof TB.i18n.itemTypes;
 
 type TBItemDataSource =
   | BeliefDataSource

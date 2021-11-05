@@ -14,7 +14,7 @@ SPDX-License-Identifier: MIT
 !-- @param hideDescription: A flag to disable the description column.
 !-- @param @partial-block: Custom column headers can be passed using the partial block.
 --}}
-<li class="ds4-embedded-document-list__row ds4-embedded-document-list__row--header">
+<li class="tb-embedded-document-list__row tb-embedded-document-list__row--header">
     {{!-- equipped --}}
     {{#if isEquipable}}
     <div title="{{localize 'DS4.ItemEquipped'}}">{{localize 'DS4.ItemEquippedAbbr'}}</div>
@@ -25,11 +25,11 @@ SPDX-License-Identifier: MIT
 
     {{!-- amount --}}
     {{#if hasQuantity}}
-    <div title="{{localize 'DS4.Quantity'}}">#</div>
+    <div title="{{localize 'TB2.Quantity'}}">#</div>
     {{/if}}
 
     {{!-- name --}}
-    <div>{{localize 'DS4.ItemName'}}</div>
+    <div>{{localize 'TB2.ItemName'}}</div>
 
     {{!-- item type specifics --}}
     {{#if @partial-block }}
@@ -38,7 +38,7 @@ SPDX-License-Identifier: MIT
 
     {{!-- description --}}
     {{#unless hideDescription}}
-    <div>{{localize 'DS4.Description'}}</div>
+    <div>{{localize 'TB2.Description'}}</div>
     {{/unless}}
 
     {{!-- control buttons placeholder --}}

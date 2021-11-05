@@ -1,6 +1,7 @@
 import { getGame } from '../helpers';
 import { createTestRoll } from '../rolls/CheckFactory';
 import { TB } from '../config';
+import { ItemType } from './ItemDataSource';
 
 declare global {
   interface DocumentClassConfig {
@@ -15,8 +16,8 @@ export class TBItem extends Item {
   /** @override */
   prepareDerivedData(): void {
     super.prepareDerivedData();
-    if (this.data.type == 'belief') {
-    }
+    // TODO use TBItem.rollableItemTypes here
+    this.data.data.rollable = this.type == 'skill';
   }
   async roll(options: { speaker?: { token?: TokenDocument; alias?: string } } = {}): Promise<void> {
     switch (this.data.type) {
@@ -89,5 +90,11 @@ export class TBItem extends Item {
         return Number(inputVal);
       },
     });
+  }
+  /**
+   * The list of item types that are rollable.
+   */
+  static get rollableItemTypes(): ItemType[] {
+    return ['skill'];
   }
 }

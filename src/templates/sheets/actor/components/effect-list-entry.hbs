@@ -9,9 +9,9 @@ SPDX-License-Identifier: MIT
 !-- Render an effect list entry row.
 !-- @param effectData: The data of the item.
 --}}
-<li class="ds4-embedded-document-list__row effect" data-effect-id="{{effectData._id}}">
+<li class="tb-embedded-document-list__row effect" data-effect-id="{{effectData._id}}">
     {{!-- enabled --}}
-    <input class="ds4-embedded-document-list__editable ds4-embedded-document-list__editable--checkbox change-effect"
+    <input class="tb-embedded-document-list__editable tb-embedded-document-list__editable--checkbox change-effect"
         type="checkbox" {{checked (ne effectData.disabled true)}} data-dtype="Boolean" data-property="disabled"
         data-inverted="true" title="{{localize 'DS4.EffectEnabled'}}">
 
@@ -19,7 +19,7 @@ SPDX-License-Identifier: MIT
     {{#if effectData.isEffectivelyEnabled}}<i class="fas fa-check"></i>{{else}}<i class="fas fa-ban"></i>{{/if}}
 
     {{!-- icon --}}
-    {{> systems/ds4/templates/sheets/actor/components/rollable-image.hbs rollable=false src=effectData.icon
+    {{> systems/torchbearer/templates/sheets/actor/components/rollable-image.hbs rollable=false src=effectData.icon
     alt=(localize "DS4.EffectIconAltText" label=effectData.label) title=effectData.label}}
 
     {{!-- label --}}
@@ -32,6 +32,6 @@ SPDX-License-Identifier: MIT
     <div title="{{effectData.factor}}">{{effectData.factor}}</div>
 
     {{!-- control button group --}}
-    {{> systems/ds4/templates/sheets/actor/components/control-button-group.hbs documentType="effect"
+    {{> systems/torchbearer/templates/sheets/actor/components/control-button-group.hbs documentType="effect"
     editTitle="DS4.UserInteractionEditEffectTitle" deleteTitle="DS4.UserInteractionDeleteEffectTitle"}}
 </li>

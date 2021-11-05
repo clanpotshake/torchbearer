@@ -18,6 +18,8 @@ export default async function registerHandlebarsPartials(): Promise<void> {
     'systems/torchbearer/templates/sheets/actor/components/spell.hbs',
     'systems/torchbearer/templates/sheets/actor/components/spells.hbs',
     'systems/torchbearer/templates/sheets/actor/components/add-button.hbs',
+    'systems/torchbearer/templates/sheets/actor/components/rollable-image.hbs',
+    'systems/torchbearer/templates/sheets/actor/tabs/skill-tab.hbs',
     'systems/torchbearer/templates/sheets/item/components/body.hbs',
     'systems/torchbearer/templates/sheets/item/components/sheet-header.hbs',
     'systems/torchbearer/templates/sheets/item/tabs/description.hbs',

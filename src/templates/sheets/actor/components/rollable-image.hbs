@@ -1,0 +1,23 @@
+{{!--
+SPDX-FileCopyrightText: 2021 Johannes Loher
+
+SPDX-License-Identifier: MIT
+--}}
+
+{{!--
+!-- Render an image that has a dice overlay image.
+!-- @param rollable: A flag indicating whether or not the image is actually rollable.
+!-- @param rollableClass: The CSS class(es) to add if the image is rollable.
+!-- @param title: The title for the rollable image if it is not actually rollable.
+!-- @param rollableTitle: The title for the rollable image if it is rollable.
+!-- @param src: The path to the image.
+!-- @param alt: An alternate text for the image.
+--}}
+<div class="tb-rollable-image{{#if rollable}} tb-rollable-image--rollable {{rollableClass}}{{/if}}"
+     title="{{#if rollable}}{{rollableTitle}}{{else}}{{title}}{{/if}}">
+  <img class="tb-rollable-image__image" alt="{{alt}}" src="{{src}}" />
+  {{#if rollable}}
+    <img class="tb-rollable-image__overlay" alt="{{localize 'TB2.DiceOverlayImageAltText'}}"
+         src="icons/svg/d20-black.svg" />
+  {{/if}}
+</div>
