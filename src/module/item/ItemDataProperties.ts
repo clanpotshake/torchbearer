@@ -82,31 +82,77 @@ interface ItemDataPropertiesDataRollable {
   rollable: boolean;
 }
 
+interface ItemDataPropertiesDataGrantsMagic {
+  hasMemoryPalace: boolean;
+}
+
+interface ItemDataPropertiesDataGrantsInvocation {
+  hasUrdr: boolean;
+}
+
 // types
 
-interface BeliefDataPropertiesData extends BeliefDataSourceData, ItemDataPropertiesDataRollable {
+interface BeliefDataPropertiesData
+  extends BeliefDataSourceData,
+    ItemDataPropertiesDataRollable,
+    ItemDataPropertiesDataGrantsMagic,
+    ItemDataPropertiesDataGrantsInvocation {
   text: string;
 }
 
 interface InstinctDataPropertiesData
   extends InstinctDataSourceData,
-    ItemDataPropertiesDataRollable {
+    ItemDataPropertiesDataRollable,
+    ItemDataPropertiesDataGrantsMagic,
+    ItemDataPropertiesDataGrantsInvocation {
   text: string;
 }
-interface GoalDataPropertiesData extends GoalDataSourceData, ItemDataPropertiesDataRollable {
+interface GoalDataPropertiesData
+  extends GoalDataSourceData,
+    ItemDataPropertiesDataRollable,
+    ItemDataPropertiesDataGrantsMagic,
+    ItemDataPropertiesDataGrantsInvocation {
   text: string;
 }
-interface CreedDataPropertiesData extends CreedDataSourceData, ItemDataPropertiesDataRollable {
+interface CreedDataPropertiesData
+  extends CreedDataSourceData,
+    ItemDataPropertiesDataRollable,
+    ItemDataPropertiesDataGrantsMagic,
+    ItemDataPropertiesDataGrantsInvocation {
   text: string;
 }
-interface TraitDataPropertiesData extends TraitDataSourceData, ItemDataPropertiesDataRollable {}
-interface SkillDataPropertiesData extends SkillDataSourceData, ItemDataPropertiesDataRollable {}
+interface TraitDataPropertiesData
+  extends TraitDataSourceData,
+    ItemDataPropertiesDataRollable,
+    ItemDataPropertiesDataGrantsMagic,
+    ItemDataPropertiesDataGrantsInvocation {}
+interface SkillDataPropertiesData
+  extends SkillDataSourceData,
+    ItemDataPropertiesDataRollable,
+    ItemDataPropertiesDataGrantsMagic,
+    ItemDataPropertiesDataGrantsInvocation {}
 interface RelationshipDataPropertiesData
   extends RelationshipDataSourceData,
-    ItemDataPropertiesDataRollable {}
-interface GearDataPropertiesData extends GearDataSourceData, ItemDataPropertiesDataRollable {}
+    ItemDataPropertiesDataRollable,
+    ItemDataPropertiesDataGrantsMagic,
+    ItemDataPropertiesDataGrantsInvocation {}
+interface GearDataPropertiesData
+  extends GearDataSourceData,
+    ItemDataPropertiesDataRollable,
+    ItemDataPropertiesDataGrantsMagic,
+    ItemDataPropertiesDataGrantsInvocation {}
 interface PropertyDataPropertiesData
   extends PropertyDataSourceData,
-    ItemDataPropertiesDataRollable {}
-interface SpellDataPropertiesData extends SpellDataSourceData, ItemDataPropertiesDataRollable {}
-interface ClassDataPropertiesData extends ClassDataSourceData, ItemDataPropertiesDataRollable {}
+    ItemDataPropertiesDataRollable,
+    ItemDataPropertiesDataGrantsMagic,
+    ItemDataPropertiesDataGrantsInvocation {}
+interface SpellDataPropertiesData
+  extends SpellDataSourceData,
+    ItemDataPropertiesDataRollable,
+    ItemDataPropertiesDataGrantsMagic,
+    ItemDataPropertiesDataGrantsInvocation {}
+interface ClassDataPropertiesData
+  extends ClassDataSourceData,
+    ItemDataPropertiesDataRollable,
+    ItemDataPropertiesDataGrantsMagic,
+    ItemDataPropertiesDataGrantsInvocation {}

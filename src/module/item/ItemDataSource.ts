@@ -7,6 +7,7 @@ declare global {
 }
 
 export type ItemType = keyof typeof TB.i18n.itemTypes;
+export type ClassType = keyof typeof TB.i18n.classes;
 
 type TBItemDataSource =
   | BeliefDataSource
@@ -148,6 +149,7 @@ interface LevelBenefit {
   optionB: string;
 }
 export interface ClassDataSourceData {
+  classType: ClassType;
   name: string;
   level1: string;
   level2: LevelBenefit;

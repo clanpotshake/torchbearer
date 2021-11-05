@@ -4,6 +4,16 @@ Actor:
     - character
     - npc
   templates:
+    conditions:
+      conditions:
+        fresh: true
+        hungry-thirsty: false
+        angry: false
+        afraid: false
+        exhausted: false
+        injured: false
+        sick: false
+        dead: false
     advances:
       passes: 0
       fails: 0
@@ -51,6 +61,7 @@ Actor:
     description: 'setting desc'
   character:
     templates:
+      - conditions
       - common
       - displayProps
     stock: 'Human'
@@ -70,17 +81,19 @@ Actor:
     bio: 'an NPC bio'
 Item:
   types:
-    - wise
     - belief
     - instinct
-    - goal
     - creed
+    - goal
+    - gear
     - trait
     - skill
+    - wise
     - relationship
-    - gear
-    - property
     - spell
+    - invocation
+    - level
+    - property
     - class
   templates:
     arthaEarner:
@@ -172,4 +185,8 @@ Item:
     level8: *levelBenefit
     level9: *levelBenefit
     level10: *levelBenefit
+  level:
+    # a level benefit
+    text: ''
+    level: 2
 

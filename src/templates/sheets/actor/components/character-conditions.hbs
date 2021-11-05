@@ -1,0 +1,108 @@
+<div class="tb-actor-properties">
+    <h2>{{localize 'TB2.TitleBiographicalData'}}</h2>
+    <div class="tb-actor-properties__property">
+      <label for="name-{{data._id}}" class="tb-actor-properties__property-label">{{localize "TB2.CharacterNameLabel"}}</label>
+      <input id="name-{{data._id}}"
+             data-type="String" type="text"
+             name="name"
+             value="{{actor.name}}"/>
+    </div>
+
+  <div class="tb-actor-properties__property">
+    <label for="data.stock-{{data._id}}" class="tb-actor-properties__property-label">{{localize "TB2.CharacterStockLabel"}}</label>
+    <input id="data.stock-{{data._id}}"
+           data-type="String" type="text"
+           name="data.stock"
+           value="{{data.data.stock}}"/>
+  </div>
+
+  <div class="tb-actor-properties__property">
+    <label for="data.class-{{data._id}}" class="tb-actor-properties__property-label">{{localize "TB2.CharacterClassLabel"}}</label>
+    <input id="data.class-{{data._id}}"
+           data-type="String" type="text"
+           name="data.career"
+           value="{{data.data.career}}"/>
+  </div>
+
+  <div class="tb-actor-properties__property">
+    <label for="data.age-{{data._id}}" class="tb-actor-properties__property-label">{{localize "TB2.CharacterAgeLabel"}}</label>
+    <input id="data.age-{{data._id}}"
+           data-type="Number" type="number"
+           name="data.age"
+           value="{{data.data.age}}"/>
+  </div>
+
+  <div class="tb-actor-properties__property">
+    <label for="data.hometown-{{data._id}}" class="tb-actor-properties__property-label">{{localize "TB2.CharacterHomeLabel"}}</label>
+    <input id="data.hometown-{{data._id}}"
+           data-type="String" type="text"
+           name="data.hometown"
+           value="{{data.data.hometown}}"/>
+  </div>
+
+  <div class="tb-actor-properties__property">
+    <label for="data.raiment-{{data._id}}" class="tb-actor-properties__property-label">{{localize "TB2.CharacterRaimentLabel"}}</label>
+    <input id="data.raiment-{{data._id}}"
+           data-type="String" type="text"
+           name="data.raiment"
+           value="{{data.data.raiment}}"/>
+  </div>
+  <div class="tb-actor-properties__property-multi-input">
+    <div class="tb-actor-properties__property">
+      <label for="data.conditions.fresh-{{data._id}}" class="tb-actor-properties__property-label">{{localize "TB2.ConditionFresh"}}</label>
+      <input id="data.conditions.fresh-{{data._id}}"
+             data-type="Boolean" type="checkbox"
+             name="data.conditions.fresh"
+             checked="{{data.data.conditions.fresh}}"/>
+    </div>
+
+    <div class="tb-actor-properties__property">
+      <label for="data.conditions.hungry-thirsty-{{data._id}}" class="tb-actor-properties__property-label">{{localize "TB2.ConditionHungryThirsty"}}</label>
+      <input id="data.conditions.hungry-thirsty-{{data._id}}"
+             data-type="Boolean" type="checkbox"
+             name="data.conditions.hungry-thirsty"
+             checked="{{data.data.conditions.hungry-thirsty}}"/>
+    </div>
+
+    <div class="tb-actor-properties__property">
+      <label for="data.conditions.angry-{{data._id}}" class="tb-actor-properties__property-label">{{localize "TB2.ConditionAngry"}}</label>
+      <input id="data.conditions.angry-{{data._id}}"
+             data-type="Boolean" type="checkbox"
+             name="data.conditions.angry"
+             checked="{{data.data.conditions.angry}}"/>
+    </div>
+
+    <div class="tb-actor-properties__property">
+      <label for="data.conditions.exhausted-{{data._id}}" class="tb-actor-properties__property-label">{{localize "TB2.ConditionExhausted"}}</label>
+      <input id="data.conditions.exhausted-{{data._id}}"
+             data-type="Boolean" type="checkbox"
+             name="data.conditions.exhausted"
+             checked="{{data.data.conditions.exhausted}}"/>
+    </div>
+
+    <div class="tb-actor-properties__property">
+      <label for="data.conditions.injured-{{data._id}}" class="tb-actor-properties__property-label">{{localize "TB2.ConditionInjured"}}</label>
+      <input id="data.conditions.injured-{{data._id}}"
+             data-type="Boolean" type="checkbox"
+             name="data.conditions.injured"
+             checked="{{data.data.conditions.injured}}"/>
+    </div>
+
+    <div class="tb-actor-properties__property">
+      <label for="data.conditions.sick-{{data._id}}k" class="tb-actor-properties__property-label">{{localize "TB2.ConditionSick"}}</label>
+      <input id="data.conditions.sick-{{data._id}}"
+             data-type="Boolean" type="checkbox"
+             name="data.conditions.sick"
+             checked="{{data.data.conditions.sick}}"/>
+    </div>
+
+    <div class="tb-actor-properties__property">
+      <label for="data.conditions.dead-{{data._id}}" class="tb-actor-properties__property-label">{{localize "TB2.ConditionDead"}}</label>
+      <input id="data.conditions.dead-{{data._id}}"
+             data-type="Boolean" type="checkbox"
+             name="data.conditions.dead"
+             checked="{{data.data.conditions.dead}}"/>
+    </div>
+  </div>
+
+</div>

@@ -6,8 +6,15 @@
 @include meta.load-css('global/window');
 
 @include meta.load-css('components/actor_sheet');
-@include meta.load-css('components/dice_total');
+/*@include meta.load-css('components/dice_total');*/
 
 .tb2 {
+  @include meta.load-css('components/actor_properties');
+  @include meta.load-css('components/apps');
+  @include meta.load-css('components/basic_properties');
+  @include meta.load-css('components/control_button_group');
+  @include meta.load-css('components/forms');
+  @include meta.load-css('components/rollable_image');
   @include meta.load-css('components/description');
+  @include meta.load-css('components/actor_progression');
 }

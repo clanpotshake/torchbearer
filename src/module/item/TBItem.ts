@@ -1,7 +1,7 @@
 import { getGame } from '../helpers';
 import { createTestRoll } from '../rolls/CheckFactory';
 import { TB } from '../config';
-import { ItemType } from './ItemDataSource';
+import { ClassType, ItemType } from './ItemDataSource';
 
 declare global {
   interface DocumentClassConfig {
@@ -17,7 +17,15 @@ export class TBItem extends Item {
   prepareDerivedData(): void {
     super.prepareDerivedData();
     // TODO use TBItem.rollableItemTypes here
-    this.data.data.rollable = this.type == 'skill';
+    this.data.data.rollable = TBItem.rollableItemTypes.includes(this.type);
+    this.data.data.hasMemoryPalace =
+      this.data.type === 'class'
+        ? TBItem.classesWithMemoryPalace.includes(this.data.data.classType)
+        : false;
+    this.data.data.hasUrdr =
+      this.data.type === 'class'
+        ? TBItem.classesWithUrdr.includes(this.data.data.classType)
+        : false;
   }
   async roll(options: { speaker?: { token?: TokenDocument; alias?: string } } = {}): Promise<void> {
     switch (this.data.type) {
@@ -96,5 +104,11 @@ export class TBItem extends Item {
    */
   static get rollableItemTypes(): ItemType[] {
     return ['skill'];
+  }
+  static get classesWithMemoryPalace(): ClassType[] {
+    return ['magician', 'dreamwalker'];
+  }
+  static get classesWithUrdr(): ClassType[] {
+    return ['theurge', 'shaman'];
   }
 }
