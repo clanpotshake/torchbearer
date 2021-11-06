@@ -146,16 +146,17 @@ Item:
     isEnemy: false
   gear:
     description: 'item description'
-    pack: 0,
-    held: 0,
-    belt: 0,
-    torso: 0,
-    head: 0,
-    hand: 0,
-    feet: 0,
-    neck: 0,
+    pack: 0
+    held: 0
+    belt: 0
+    torso: 0
+    head: 0
+    hand: 0
+    feet: 0
+    neck: 0
     arm: 0
-    pocket: false
+    slots: 0
+    pocket: 0
   property:
     isWorkshop: false
     description: 'Home'

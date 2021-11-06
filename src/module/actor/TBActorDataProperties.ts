@@ -50,6 +50,8 @@ export function isTest(value: string): value is SkillTest {
   return Object.keys(TB.i18n.skills).includes(value);
 }
 
+// templates
+
 // types
 
 type TBCreatureDataPropertiesData = TBActorDataPropertiesDataBase;

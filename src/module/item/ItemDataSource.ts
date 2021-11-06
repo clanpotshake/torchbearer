@@ -70,6 +70,11 @@ export interface ClassDataSource {
 }
 // templates
 
+export interface GMOnly {
+  gmEditOnly: boolean;
+  gmViewOnly: boolean;
+}
+
 // types
 
 export interface BeliefDataSourceData extends ArthaEarnerDataSource {
@@ -112,7 +117,7 @@ export interface RelationshipDataSourceData {
   isEnemy: boolean;
   isParent: boolean;
 }
-export interface GearDataSourceData {
+export interface GearDataSourceData extends GMOnly {
   description: string;
   pack: number;
   held: number;
