@@ -1,4 +1,3 @@
-
 <form class="{{cssClass}}" autocomplete="off">
   {{#> systems/torchbearer/templates/sheets/item/components/sheet-header.hbs}}
     {{#if editable}}
@@ -8,31 +7,54 @@
     {{/if}}
   {{/systems/torchbearer/templates/sheets/item/components/sheet-header.hbs}}
 
+  <nav class="tb-sheet-tab-nav sheet-tabs tabs" data-group="primary">
+    <a class="tb-sheet-tab-nav__item item" data-tab="description">{{localize "TB2.HeadingDescription"}}</a>
+    <a class="tb-sheet-tab-nav__item item" data-tab="effects">{{localize "TB2.HeadingEffects"}}</a>
+    {{#if isPhysical}}
+      <a class="tb-sheet-tab-nav__item item" data-tab="details">{{localize "TB2.HeadingDetails"}}</a>
+    {{/if}}
+    {{#if editable}}
+      <a class="tb-sheet-tab-nav__item item" data-tab="configuration">{{localize "TB2.HeadingConfiguration"}}</a>
+    {{/if}}
+  </nav>
+
   {{log 'gear sheet' this}}
   {{!-- Common Item body --}}
-  {{#> systems/torchbearer/templates/sheets/item/tabs/configuration.hbs}}
-    <div class="form-group">
-      <label for="data.cost-{{data._id}}">{{localize 'TB2.GearCostLabel'}}</label>
-      <input
-        class="tb-embedded-document-list__editable change-item"
-        type="number" data-type="Number"
-        title="{{localize 'TB2.GearCostInput'}}"
-        id="data.cost-{{data._id}}"
-        name="data.cost"
-        value="{{data.data.cost}}">
-      <label for="data.cost-{{data._id}}">{{localize 'TB2.GearAvailabilityLabel'}}</label>
-      <input
-        class="tb-embedded-document-list__editable change-item"
-        type="text" data-type="String"
-        title="{{localize 'TB2.GearAvailabilityInput'}}"
-        id="data.cost-{{data.availability}}"
-        name="data.availability"
-        value="{{data.data.availability}}">
-    </div>
-    {{> systems/torchbearer/templates/sheets/item/components/gear-slots.hbs}}
-  {{/systems/torchbearer/templates/sheets/item/tabs/configuration.hbs}}
+  <section class="sheet-body">
 
-  {{#> systems/torchbearer/templates/sheets/item/components/body.hbs}}
+    {{!-- Description Tab --}}
+    {{#> systems/torchbearer/templates/sheets/item/tabs/description.hbs}}
+    {{/systems/torchbearer/templates/sheets/item/tabs/description.hbs}}
 
-  {{/systems/torchbearer/templates/sheets/item/components/body.hbs}}
+    {{!-- Effects Tab --}}
+    {{> systems/torchbearer/templates/sheets/item/tabs/effects.hbs}}
+
+    {{#if isPhysical}}
+    {{!-- Details Tab --}}
+      {{> systems/torchbearer/templates/sheets/item/tabs/details.hbs}}
+    {{/if}}
+
+    {{#> systems/torchbearer/templates/sheets/item/tabs/configuration.hbs}}
+        <div class="form-group">
+          <label for="data.cost-{{data._id}}">{{localize 'TB2.GearCostLabel'}}</label>
+          <input
+            class="tb-embedded-document-list__editable change-item"
+            type="number" data-type="Number"
+            title="{{localize 'TB2.GearCostInput'}}"
+            id="data.cost-{{data._id}}"
+            name="data.cost"
+            value="{{data.data.cost}}">
+          <label for="data.cost-{{data._id}}">{{localize 'TB2.GearAvailabilityLabel'}}</label>
+          <input
+            class="tb-embedded-document-list__editable change-item"
+            type="text" data-type="String"
+            title="{{localize 'TB2.GearAvailabilityInput'}}"
+            id="data.cost-{{data.availability}}"
+            name="data.availability"
+            value="{{data.data.availability}}">
+        </div>
+      {{> systems/torchbearer/templates/sheets/item/components/gear-slots.hbs}}
+    {{/systems/torchbearer/templates/sheets/item/tabs/configuration.hbs}}
+
+  </section>
 </form>
