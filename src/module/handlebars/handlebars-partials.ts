@@ -26,6 +26,7 @@ export default async function registerHandlebarsPartials(): Promise<void> {
     'systems/torchbearer/templates/sheets/actor/tabs/wises.hbs',
     'systems/torchbearer/templates/sheets/item/components/body.hbs',
     'systems/torchbearer/templates/sheets/item/components/sheet-header.hbs',
+    'systems/torchbearer/templates/sheets/item/components/gear-slots.hbs',
     'systems/torchbearer/templates/sheets/item/tabs/description.hbs',
     'systems/torchbearer/templates/sheets/item/tabs/details.hbs',
     'systems/torchbearer/templates/sheets/item/tabs/effects.hbs',

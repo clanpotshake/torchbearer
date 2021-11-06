@@ -10,7 +10,7 @@ Render a description tab.
 Additional elements of the side-properties div can be handed over via the @partial-block.
 --}}
 
-<div class=" flexrow description">
+<div class="flexrow description">
     <div class="side-properties">
         {{#if isOwned}}
           {{#if (ne data.data.equipped undefined)}}<div class="side-property">
@@ -42,7 +42,8 @@ Additional elements of the side-properties div can be handed over via the @parti
     </div>
 </div>
 
-<div class="tab description tb-biography-tab-content" data-group="primary" data-tab="description"
+<div class="tab description tb-biography-tab-content"
+     data-group="primary" data-tab="description"
      title="{{localize 'TB2.HeadingDescription'}}">
   {{editor content=data.data.description
            target="data.description"

@@ -97,10 +97,14 @@ Item:
     - level
     - property
     - class
+    - location
   templates:
     arthaEarner:
       fate: false
       persona: false
+    book:
+      bookName: 'LMM'
+      page: 0
   wise:
     pass: false
     fail: false
@@ -147,6 +151,8 @@ Item:
     isParent: false
     isEnemy: false
   gear:
+    templates:
+      - book
     description: 'item description'
     pack: 0
     held: 0
@@ -159,6 +165,8 @@ Item:
     arm: 0
     slots: 0
     pocket: 0
+    cost: 0
+    availability: 'X'
   property:
     isWorkshop: false
     description: 'Home'
@@ -192,4 +200,6 @@ Item:
     # a level benefit
     text: ''
     level: 2
+  location:
+    description: 'a town, dungeon, or camp'
 

@@ -14,22 +14,25 @@ SPDX-License-Identifier: MIT
     {{#if isPhysical}}
     <a class="tb-sheet-tab-nav__item item" data-tab="details">{{localize "TB2.HeadingDetails"}}</a>
     {{/if}}
+    {{#if editable}}
+    <a class="tb-sheet-tab-nav__item item" data-tab="configuration">{{localize "TB2.HeadingConfiguration"}}</a>
+    {{/if}}
 </nav>
 
 {{!-- Sheet Body --}}
 <section class="sheet-body">
-
-    {{!-- Description Tab --}}
     {{#> systems/torchbearer/templates/sheets/item/tabs/description.hbs}}
     {{> @partial-block}}
     {{/systems/torchbearer/templates/sheets/item/tabs/description.hbs}}
 
-    {{!-- Effects Tab --}}
     {{> systems/torchbearer/templates/sheets/item/tabs/effects.hbs}}
 
     {{#if isPhysical}}
-    {{!-- Details Tab --}}
-    {{> systems/torchbearer/templates/sheets/item/tabs/details.hbs}}
+      {{> systems/torchbearer/templates/sheets/item/tabs/details.hbs}}
     {{/if}}
 
+    {{#if editable}}
+      {{#> systems/torchbearer/templates/sheets/item/tabs/configuration.hbs}}
+      {{/systems/torchbearer/templates/sheets/item/tabs/configuration.hbs}}
+    {{/if}}
 </section>

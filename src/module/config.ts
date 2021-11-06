@@ -1,5 +1,4 @@
 const i18nKeys = {
-  // localization keys go here
   actorTypes: {
     character: 'TB2.ActorTypeCharacter',
   },
@@ -19,6 +18,7 @@ const i18nKeys = {
     property: 'TB2.ItemTypeProperty',
     class: 'TB2.ItemTypeClass',
     attribute: 'TB2.ItemTypeAttribute',
+    location: 'TB2.ItemTypeLocation',
   },
   skills: {
     alchemist: 'TB2.TestAlchemist',
