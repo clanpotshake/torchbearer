@@ -1,6 +1,7 @@
 export default async function registerHandlebarsPartials(): Promise<void> {
   // register every component and tab used in the main sheet classes
   const templatePaths = [
+    'systems/torchbearer/templates/sheets/actor/components/advances.hbs',
     'systems/torchbearer/templates/sheets/actor/components/bio-data.hbs',
     'systems/torchbearer/templates/sheets/actor/components/bigs.hbs',
     'systems/torchbearer/templates/sheets/actor/components/control-button-group.hbs',

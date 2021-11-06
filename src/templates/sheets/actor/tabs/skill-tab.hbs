@@ -4,22 +4,20 @@
     {{> systems/torchbearer/templates/sheets/actor/components/abilities.hbs}}
   </div>
 
-    {{#unless (isEmpty itemsByType.skill)}}
+  {{#unless (isEmpty itemsByType.skill)}}
     <hr>
     <h4 class="tb-embedded-document-list-title">{{localize 'TB2.SkillsHeader'}}</h4>
     <ol class="tb-embedded-document-list tb-embedded-document-list--skill item-list">
       {{#> systems/torchbearer/templates/sheets/actor/components/item-list-header.hbs}}
         <div>{{localize 'TB2.SkillHeader'}}</div>
-        {{/systems/torchbearer/templates/sheets/actor/components/item-list-header.hbs}}
+      {{/systems/torchbearer/templates/sheets/actor/components/item-list-header.hbs}}
 
       {{#each itemsByType.skill as |itemData id|}}
         {{> systems/torchbearer/templates/sheets/actor/components/item-list-entry.hbs
-          itemData=itemData
-          id=id}}
+          itemData=itemData}}
       {{/each}}
-
-      </ol>
-    {{/unless}}
+    </ol>
+  {{/unless}}
   {{> systems/torchbearer/templates/sheets/actor/components/add-button.hbs
     title='TB2.UserInteractionAddItemTitle'
     documentType='item'

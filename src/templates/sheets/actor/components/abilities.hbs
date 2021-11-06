@@ -1,6 +1,6 @@
 <div class="tb-character-sheet-abilities">
   <h1>{{localize 'TB2.TitleAbilities'}}</h1>
-  <div class="tb-actor-properties__property">
+  <div class="tb-actor-properties__property form-group">
     <label for="data.abilities.will-{{data._id}}"
            class="tb-actor-properties__property-label">{{localize "TB2.AbilityWillLabel"}}</label>
     <input id="data.abilities.will-{{data._id}}"
@@ -15,7 +15,7 @@
            name="data.abilities.health.rank"
            value="{{data.data.abilities.health.rank}}" />
 
-    <div class="tb-actor-properties__property-multi-input">
+    <div class="tb-actor-properties__property-multi-input form-group">
       <label for="data.abilities.nature-current-{{data._id}}"
              class="tb-actor-properties__property-label">
         {{localize "TB2.AbilityNatureCurrentLabel"}}</label>
@@ -45,16 +45,18 @@
            name="data.abilities.circles.rank"
            value="{{data.data.abilities.circles.rank}}" />
 
-    <label for="data.might-{{data._id}}">{{localize "TB2.MightLabel"}}</label>
-    <input id="data.might-{{data._id}}"
-           data-type="Number" type="number"
-           name="data.might"
-           value="{{data.data.might}}" />
+    <div class="tb-actor-properties__property-multi-input form-group">
+      <label for="data.might-{{data._id}}">{{localize "TB2.MightLabel"}}</label>
+      <input id="data.might-{{data._id}}"
+             data-type="Number" type="number"
+             name="data.might"
+             value="{{data.data.might}}" />
 
-    <label for="data.precedence-{{data._id}}">{{localize "TB2.PrecedenceLabel"}}</label>
-    <input id="data.precedence-{{data._id}}"
-           data-type="Number" type="number"
-           name="data.precedence"
-           value="{{data.data.precedence}}" />
+      <label for="data.precedence-{{data._id}}">{{localize "TB2.PrecedenceLabel"}}</label>
+      <input id="data.precedence-{{data._id}}"
+             data-type="Number" type="number"
+             name="data.precedence"
+             value="{{data.data.precedence}}" />
+    </div>
   </div>
 </div>
