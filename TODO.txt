@@ -3,7 +3,9 @@
 -- conflictless play
 
 
-need a character builder page to burn in stock/class selections to be uneditable on the main actor page
-represent places as an item, map to contacts/hometown
+- need a character builder page to burn in stock/class selections to be uneditable on the main actor page
+-- override createDialog in actor to get class/stock options set, do nature
+- represent places as an item, map to contacts/hometown
+- add item slots to actor? lists with a matching soft-limit for each body slot
 
 gm can call for a roll, link in chat message goes to clicking user's version of that item. so each user gets their own skill values used when they click the linked item name

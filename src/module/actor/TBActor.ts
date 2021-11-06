@@ -2,6 +2,11 @@ import { getGame } from '../helpers';
 import { SkillTest } from './TBActorDataProperties';
 import { createTestRoll } from '../rolls/CheckFactory';
 import { TB } from '../config';
+import {
+  ConfiguredDocumentClass,
+  ConstructorDataType,
+  DocumentConstructor,
+} from '@league-of-foundry-developers/foundry-vtt-types/src/types/helperTypes';
 
 declare global {
   interface DocumentClassConfig {
@@ -174,6 +179,22 @@ export class TBActor extends Actor {
       ...overrides,
     });
   }
+
+  /**
+   * @override
+   * @param data
+   * @param options
+   */
+  // static createDialog<T extends DocumentConstructor>(
+  //   this: T,
+  //   data?: DeepPartial<
+  //     | ConstructorDataType<InstanceType<T>['data']>
+  //     | (ConstructorDataType<InstanceType<T>['data']> & Record<string, unknown>)
+  //   >,
+  //   options?: Dialog.Options,
+  // ): Promise<InstanceType<ConfiguredDocumentClass<T>> | undefined> {
+  //   return super.createDialog(this, { ...data });
+  // }
 }
 
 export interface TracksTests {

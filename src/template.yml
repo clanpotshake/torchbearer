@@ -45,18 +45,20 @@ Actor:
           current: 0
           spent: 0
     displayProps:
-      collapseBeliefs: false
-      collapseInstincts: false
-      collapseGoals: false
-      collapseTraits: false
-      collapseAbilities: false
-      collapseRelationships: false
-      collapseGear: false
-      collapseSkills: false
-      collapseLearning: false
-      collapseMisc: false
-      collapseSpells: false
-      collapseInvocations: false
+      collapse:
+        beliefs: false
+        instincts: false
+        goals: false
+        traits: false
+        abilities: false
+        relationships: false
+        gear: false
+        skills: false
+        learning: false
+        misc: false
+        spells: false
+        invocations: false
+        moreFields: false
   setting:
     description: 'setting desc'
   character:
