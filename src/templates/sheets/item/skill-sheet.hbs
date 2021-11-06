@@ -1,4 +1,3 @@
-
 <form class="{{cssClass}}" autocomplete="off">
   {{#> systems/torchbearer/templates/sheets/item/components/sheet-header.hbs}}
   {{/systems/torchbearer/templates/sheets/item/components/sheet-header.hbs}}
@@ -9,9 +8,7 @@
     <select name="data.luck" data-type="String">
       {{#select data.data.luck}}
         {{#each (beginnersLuckAttributes) as |value key|}}
-          <!--            TODO probably need to fix the types here, key is just an index -->
-        
-          <option value="{{value}}">{{value}}</option>
+          <option value="{{value}}">{{localize (lookup ../config.i18n.attributes value)}}</option>
         {{/each}}
       {{/select}}
     </select>
