@@ -76,12 +76,13 @@ export class TBItem extends Item {
       'tests',
       this.data.name,
     ]);
-    await createTestRoll(this.data.name, this.data.data.rank, nature, might, precedence, {
+    const x = await createTestRoll(this.data.name, this.data.data.rank, nature, might, precedence, {
       rollMode: getGame().settings.get('core', 'rollMode'),
       flavor: flavor,
       flavorData: { actor: speaker.alias ?? this.actor.name, skill: this.name },
       speaker,
     });
+    logger.info('test result is', x);
   }
 
   /**
