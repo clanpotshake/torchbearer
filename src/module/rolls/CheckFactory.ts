@@ -110,7 +110,10 @@ export async function createTestRoll(
   const successMod = dialogOptions.successMod ?? 0;
   // TODO bulky et al only apply to specific skill tests, not yet implemented
 
-  const finalDicePool = [luckPool + traitDie + freshDie + personaDie + natureDice].reduce(add, 0);
+  const finalDicePool = [luckPool, traitDie, freshDie, personaDie /* , natureDice */].reduce(
+    add,
+    0,
+  );
 
   const newOptions: Partial<TBCheckFactoryOptions> = {
     dicePool: finalDicePool,
@@ -148,11 +151,9 @@ async function askRollOptions(
   { template, title }: { template?: string; title?: string } = {},
 ): Promise<Partial<DiceRollInfo>> {
   const usedTemplate = template ?? 'systems/torchbearer/templates/dialogs/roll-options.hbs';
-  const maybeN = skillName[0].toUpperCase() === 'A' ? 'n' : '';
   const fullTitle = utilities.interpolate(
     getGame().i18n.localize('TB2.DialogRollOptionsDefaultTitle'),
     skillName,
-    maybeN,
   );
   const usedTitle = title ?? fullTitle;
   const templateData = {
@@ -227,8 +228,16 @@ function parseDialogFormData(formData: HTMLFormElement): Partial<DiceRollInfo> {
   const chosenObstacle = handyParse(formData['check-target-number']?.value, 10);
   const chosenSkillRank = handyParse(formData['skill-rank']?.value, 10);
   const chosenSuccessMod = handyParse(formData['success-mod']?.value, 10);
-  const chosenTraitCheck = formData['check-trait']?.value;
-  const chosenTraitHelp = formData['help-trait']?.value;
+  let chosenTraitHelp = false;
+  switch (formData['help-trait']?.value) {
+    case 'help':
+      chosenTraitHelp = true;
+      break;
+    case 'check':
+    case 'none':
+      chosenTraitHelp = false;
+      break;
+  }
   const chosenPersonaDice = handyParse(formData['persona-buy']?.value, 10);
   const chosenFresh = formData['fresh-die']?.value;
   const chosenLuck = formData['luck-roll']?.value;
@@ -248,7 +257,7 @@ function parseDialogFormData(formData: HTMLFormElement): Partial<DiceRollInfo> {
     precedence: chosenPrecedence,
     skillRank: chosenSkillRank,
     successMod: chosenSuccessMod,
-    traitCheck: chosenTraitCheck,
+    traitCheck: false, // TODO how this behaves depends on the kind of roll
     traitHelp: chosenTraitHelp,
     rollMode: Object.values(CONST.DICE_ROLL_MODES).includes(chosenRollMode)
       ? chosenRollMode
