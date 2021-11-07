@@ -15,6 +15,12 @@ SPDX-License-Identifier: MIT
 --}}
 <form class="tb-roll-options">
     <div class="form-group">
+<!--      TODO skill rank and precedence as hidden fields for roller -->
+        <label for="check-target-number">{{localize "TB2.DialogRollOptionsCheckTargetNumberLabel"}}</label>
+        <input id="check-target-number" data-type="Number" type="number" name="check-target-number"
+            value="{{checkTargetNumber}}" />
+    </div>
+    <div class="form-group">
         <label for="check-target-number">{{localize "TB2.DialogRollOptionsCheckTargetNumberLabel"}}</label>
         <input id="check-target-number" data-type="Number" type="number" name="check-target-number"
             value="{{checkTargetNumber}}" />
@@ -25,7 +31,7 @@ SPDX-License-Identifier: MIT
     </div>
     <div class="form-group">
       <label for="none-trait">{{localize "TB2.DialogRollOptionsTraitNoneLabel"}}</label>
-      <input id="none-trait" data-type="Boolean" type="radio" name="use-trait" value="0" checked="true" />
+      <input id="none-trait" data-type="Boolean" type="radio" name="use-trait" value="0" checked="" />
       <label for="help-trait">{{localize "TB2.DialogRollOptionsTraitHelpLabel"}}</label>
       <input id="help-trait" data-type="Boolean" type="radio" name="use-trait" value="0" />
       <label for="check-trait">{{localize "TB2.DialogRollOptionsTraitCheckLabel"}}</label>
@@ -53,16 +59,6 @@ SPDX-License-Identifier: MIT
     <label for="apply-hometown">{{localize "TB2.DialogRollOptionsApplyHomeTownLabel"}}</label>
     <input id="apply-hometown" data-type="Boolean" type="checkbox" name="apply-hometown" />
   </div>
-<!--    <div class="form-group">-->
-<!--        <label for="maximum-coup-result">{{localize "TB2.DialogRollOptionsMaximumCoupResultLabel"}}</label>-->
-<!--        <input id="maximum-coup-result" data-type="Number" type="number" name="maximum-coup-result"-->
-<!--            value="{{maximumCoupResult}}" />-->
-<!--    </div>-->
-<!--    <div class="form-group">-->
-<!--        <label for="minimum-fumble-result">{{localize "TB2.DialogRollOptionsMinimumFumbleResultLabel"}}</label>-->
-<!--        <input id="minimum-fumble-result" data-type="Number" type="number" name="minimum-fumble-result"-->
-<!--            value="{{minimumFumbleResult}}" />-->
-<!--    </div>-->
     <div class="form-group">
         <label for="roll-mode">{{localize "TB2.DialogRollOptionsRollModeLabel"}}</label>
         <div class="form-fields">

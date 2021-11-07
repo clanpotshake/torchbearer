@@ -216,6 +216,7 @@ export class TBActorSheet extends ActorSheet<ActorSheet.Options, TBActorSheetDat
    * @param event - The originating click event
    */
   protected onRollItem(event: JQuery.ClickEvent): void {
+    logger.info('in onRollItem');
     event.preventDefault();
     const id = $(event.currentTarget)
       .parents(embeddedDocumentListEntryProperties.Item.selector)
@@ -225,7 +226,7 @@ export class TBActorSheet extends ActorSheet<ActorSheet.Options, TBActorSheetDat
       item,
       getGame().i18n.format('TB2.ErrorActorDoesNotHaveItem', { id, actor: this.actor.name }),
     );
-    // item.roll().catch((e) => notifications.error(e, { log: true }));
+    item.roll().catch((e) => notifications.error(e, { log: true }));
   }
 
   /**

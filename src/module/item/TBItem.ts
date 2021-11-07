@@ -64,9 +64,8 @@ export class TBItem extends Item {
         getGame().i18n.format('TB2.ErrorCannotRollUnownedItem', { name: this.name, id: this.id }),
       );
     }
-    const ob = await this.getTestObValue();
     const speaker = ChatMessage.getSpeaker({ actor: this.actor, ...options.speaker });
-    await createTestRoll(ob, {
+    await createTestRoll(0, {
       rollMode: getGame().settings.get('core', 'rollMode'),
       flavor: 'TB2.ItemWeaponCheckFlavor',
       flavorData: { actor: speaker.alias ?? this.actor.name, weapon: this.name },

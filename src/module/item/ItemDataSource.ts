@@ -70,6 +70,14 @@ export interface ClassDataSource {
 }
 // templates
 
+interface ArthaEarnerDataSource {
+  fate: boolean;
+  persona: boolean;
+}
+interface BookDataSource {
+  bookName: string;
+  page: number;
+}
 export interface GMOnly {
   gmEditOnly: boolean;
   gmViewOnly: boolean;
@@ -93,17 +101,13 @@ export interface CreedDataSourceData extends ArthaEarnerDataSource {
   fate: false;
   persona: true;
 }
-interface ArthaEarnerDataSource {
-  fate: boolean;
-  persona: boolean;
-}
-export interface TraitDataSourceData {
+export interface TraitDataSourceData extends BookDataSource {
   description: string;
   collapsed: boolean;
   level: number;
   checks: number;
 }
-export interface SkillDataSourceData extends TracksTests {
+export interface SkillDataSourceData extends TracksTests, BookDataSource {
   collapsed: boolean;
   rank: number;
   attempts: number;
@@ -117,7 +121,7 @@ export interface RelationshipDataSourceData {
   isEnemy: boolean;
   isParent: boolean;
 }
-export interface GearDataSourceData extends GMOnly {
+export interface GearDataSourceData extends GMOnly, BookDataSource {
   description: string;
   pack: number;
   held: number;
@@ -135,7 +139,7 @@ export interface PropertyDataSourceData {
   isWorkshop: boolean;
   location: string;
 }
-export interface SpellDataSourceData {
+export interface SpellDataSourceData extends BookDataSource {
   description: string;
   circle: number;
   scribeOb: number;
@@ -148,10 +152,9 @@ export interface SpellDataSourceData {
   factors: string;
 }
 interface LevelBenefit {
-  optionA: string;
-  optionB: string;
+  options: string[];
 }
-export interface ClassDataSourceData {
+export interface ClassDataSourceData extends BookDataSource {
   classType: ClassType;
   level1: string;
   level2: LevelBenefit;

@@ -37,8 +37,8 @@ const defaultCheckOptions = new DefaultCheckOptions();
  */
 class CheckFactory {
   constructor(
-    private checkTargetNumber: number,
-    private gmModifier: number,
+    private obstacle: number,
+    private diePool: number,
     options: Partial<TBCheckFactoryOptions> = {},
   ) {
     this.options = defaultCheckOptions.mergeWith(options);
@@ -47,7 +47,8 @@ class CheckFactory {
   private options: TBCheckFactoryOptions;
 
   async execute(): Promise<ChatMessage | undefined> {
-    const innerFormula = ['tb', this.createCheckTargetNumberModifier()].filterJoin('');
+    const innerFormula = [`${this.obstacle}d6`].filterJoin('');
+    // const innerFormula = ['ds', this.createCheckTargetNumberModifier()].filterJoin('');
     const roll = Roll.create(innerFormula);
     const speaker = this.options.speaker ?? ChatMessage.getSpeaker();
 
@@ -61,11 +62,6 @@ class CheckFactory {
       },
       { rollMode: this.options.rollMode, create: true },
     );
-  }
-
-  createCheckTargetNumberModifier(): string {
-    const totalCheckTargetNumber = Math.max(this.checkTargetNumber + this.gmModifier, 0);
-    return `v${totalCheckTargetNumber}`;
   }
 }
 
@@ -82,7 +78,7 @@ export async function createTestRoll(
   const gmModifierData = await askGmModifier(checkTargetNumber, options);
 
   const newTargetValue = checkTargetNumber;
-  const gmModifier = gmModifierData.gmModifier ?? 0;
+  const gmModifier = gmModifierData.obstacle ?? 0;
   const newOptions: Partial<TBCheckFactoryOptions> = {
     applyBulky: options.applyBulky,
     applyHometown: options.applyHometown,
@@ -109,7 +105,8 @@ export async function createTestRoll(
 }
 
 /**
- * Responsible for rendering the modal interface asking for the modifier specified by GM and (currently) additional data.
+ * Responsible for rendering the modal interface asking for the modifier
+ * specified by GM and (currently) additional data.
  *
  * @returns The data given by the user.
  */
@@ -117,7 +114,7 @@ async function askGmModifier(
   checkTargetNumber: number,
   options: Partial<TBCheckFactoryOptions> = {},
   { template, title }: { template?: string; title?: string } = {},
-): Promise<Partial<GmModifierData>> {
+): Promise<Partial<DiceRollInfo>> {
   const usedTemplate = template ?? 'systems/torchbearer/templates/dialogs/roll-options.hbs';
   const usedTitle = title ?? getGame().i18n.localize('TB2.DialogRollOptionsDefaultTitle');
   const templateData = {
@@ -173,14 +170,36 @@ async function askGmModifier(
  * Extracts Dialog data from the returned DOM element.
  * @param formData - The filled dialog
  */
-function parseDialogFormData(formData: HTMLFormElement): Partial<GmModifierData> {
+function parseDialogFormData(formData: HTMLFormElement): Partial<DiceRollInfo> {
   // const chosenCheckTargetNumber = parseInt(formData['check-target-number']?.value);
   // const chosenGMModifier = parseInt(formData['gm-modifier']?.value);
   const chosenRollMode = formData['roll-mode']?.value;
+  const chosenApplyBulky = formData['apply-bulky']?.value;
+  const chosenApplyHometown = formData['apply-hometown']?.value;
+  const chosenApplyWeary = formData['apply-weary']?.value;
+  const chosenHelpGear = formData['help-gear']?.value;
+  const chosenMight = formData['might']?.value;
+  const chosenPrecedence = formData['precedence']?.value;
+  const chosenObstacle = formData['check-target-number']?.value;
+  const chosenSkillRank = formData['skill-rank']?.value;
+  const chosenSuccessMod = formData['success-mod']?.value;
+  const chosenTraitCheck = formData['check-trait']?.value;
+  const chosenTraitHelp = formData['help-trait']?.value;
+  const chosenPersonaDice = formData['persona-buy']?.value;
 
   return {
-    gmModifier: undefined,
-
+    applyBulky: chosenApplyBulky,
+    applyHometown: chosenApplyHometown,
+    applyWeary: chosenApplyWeary,
+    helpGear: chosenHelpGear,
+    might: chosenMight,
+    obstacle: chosenObstacle,
+    purchasedDice: chosenPersonaDice,
+    precedence: chosenPrecedence,
+    skillRank: chosenSkillRank,
+    successMod: chosenSuccessMod,
+    traitCheck: chosenTraitCheck,
+    traitHelp: chosenTraitHelp,
     rollMode: Object.values(CONST.DICE_ROLL_MODES).includes(chosenRollMode)
       ? chosenRollMode
       : undefined,
@@ -190,8 +209,19 @@ function parseDialogFormData(formData: HTMLFormElement): Partial<GmModifierData>
 /**
  * Contains data that needs retrieval from an interactive Dialog.
  */
-interface GmModifierData {
-  gmModifier: number;
+interface DiceRollInfo {
+  obstacle: number;
+  skillRank: number;
+  might: number;
+  purchasedDice: number;
+  precedence: number;
+  helpGear: number;
+  traitHelp: boolean;
+  traitCheck: boolean;
+  successMod: number;
+  applyBulky: boolean;
+  applyWeary: boolean;
+  applyHometown: boolean;
   rollMode: foundry.CONST.DiceRollMode;
 }
 

@@ -11,3 +11,9 @@
 -gm can call for a roll, link in chat message goes to clicking user's version of that item. so each user gets their own skill values used when they click the linked item name
 - Gear should be grouped by category
 - container items (bags, caches) should have their own sheet visible to all with their contents. drag and drop to actor sheets for easy inventory management
+
+
+SHEETS
+  ITEM
+    roll button on owned items in header
+    

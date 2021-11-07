@@ -1,11 +1,21 @@
 <form class="{{cssClass}}" autocomplete="off">
+  {{log 'skill sheet' this}}
   {{#> systems/torchbearer/templates/sheets/item/components/sheet-header.hbs}}
+    {{#if (ne actor null)}}
+      {{> systems/torchbearer/templates/sheets/actor/components/rollable-image.hbs
+        src=data.img
+        alt=(localize "TB2.DocumentImageAltText" name=data.name)
+        title=data.name
+        rollableTitle=(localize "TB2.RollableImageRollableTitle" name=data.name)
+        rollable=data.data.rollable
+        rollableClass="rollable-item"}}
+  {{/if}}
   {{/systems/torchbearer/templates/sheets/item/components/sheet-header.hbs}}
 
   {{!-- Common Item body --}}
   <div class="side-property">
-    <label for="data.luck">{{localize "TB2.SkillBeginnersLuckLabel"}}</label>
-    <select name="data.luck" data-type="String">
+    <label for="skill.luck.select">{{localize "TB2.SkillBeginnersLuckLabel"}}</label>
+    <select id="skill.luck.select" name="data.luck" data-type="String">
       {{#select data.data.luck}}
         {{#each (beginnersLuckAttributes) as |value key|}}
           <option value="{{value}}">{{localize (lookup ../config.i18n.attributes value)}}</option>
