@@ -31,18 +31,20 @@ export interface NpcDataSource {
   data: NpcDataSourceData;
 }
 export interface HasDisplayPropsDataSourceData {
-  collapseBeliefs: boolean;
-  collapseInstincts: boolean;
-  collapseGoals: boolean;
-  collapseTraits: boolean;
-  collapseAbilities: boolean;
-  collapseRelationships: boolean;
-  collapseGear: boolean;
-  collapseSkills: boolean;
-  collapseLearning: boolean;
-  collapseMisc: boolean;
-  collapseSpells: boolean;
-  collapseInvocations: boolean;
+  collapse: {
+    beliefs: boolean;
+    instincts: boolean;
+    goals: boolean;
+    traits: boolean;
+    abilities: boolean;
+    relationships: boolean;
+    gear: boolean;
+    skills: boolean;
+    learning: boolean;
+    misc: boolean;
+    spells: boolean;
+    invocations: boolean;
+  };
 }
 export interface CharacterDataSourceData
   extends CommonDataSourceData,

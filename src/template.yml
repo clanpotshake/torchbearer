@@ -127,11 +127,15 @@ Item:
       - arthaEarner
     text: 'creed'
   trait:
+    templates:
+      - book
     description: 'adventurousness text'
     collapsed: true
     level: 1
     checks: 2
   skill:
+    templates:
+      - book
     templates:
       - advances
     rank: 1
@@ -154,6 +158,7 @@ Item:
     templates:
       - book
     description: 'item description'
+    
     pack: 0
     held: 0
     belt: 0
@@ -167,11 +172,14 @@ Item:
     pocket: 0
     cost: 0
     availability: 'X'
+    containedIn: 'pack'
   property:
     isWorkshop: false
     description: 'Home'
     location: 'Skogenby'
   spell:
+    templates:
+      - book
     description: 'spell description'
     circle: 0
     scribeOb: 0
@@ -184,6 +192,8 @@ Item:
     duration: 'One Phase'
     factors: ''
   class:
+    templates:
+      - book
     level1: 'warrior level 1 text'
     level2: &levelBenefit
       optionA: 'warrior option A'

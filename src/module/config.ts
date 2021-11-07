@@ -175,6 +175,18 @@ const i18nKeys = {
     sorcerer: 'TB2.ClassSorcerer',
     stoneteller: 'TB2.ClassStoneteller',
   },
+  slots: {
+    arm: 'TB2.SlotTypeArm',
+    belt: 'TB2.SlotTypeBelt',
+    feet: 'TB2.SlotTypeFeet',
+    hand: 'TB2.SlotTypeHand',
+    held: 'TB2.SlotTypeHeld',
+    neck: 'TB2.SlotTypeNeck',
+    pack: 'TB2.SlotTypePack',
+    pocket: 'TB2.SlotTypePocket',
+    torso: 'TB2.SlotTypeTorso',
+    custom: 'TB2.SlotTypeCustom',
+  },
 };
 export const TB = {
   ASCII: String.raw`
