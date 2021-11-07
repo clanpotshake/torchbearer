@@ -69,7 +69,11 @@ class CheckFactory {
 
 /**
  * Asks the user for all unknown/necessary information and passes them on to perform a roll.
+ * @param skillName
  * @param skillRank - The Actor's rating in the rolling skill
+ * @param nature
+ * @param might
+ * @param precedence
  * @param options   - Options changing the behavior of the roll and message.
  */
 export async function createTestRoll(
@@ -151,9 +155,12 @@ async function askRollOptions(
   { template, title }: { template?: string; title?: string } = {},
 ): Promise<Partial<DiceRollInfo>> {
   const usedTemplate = template ?? 'systems/torchbearer/templates/dialogs/roll-options.hbs';
+  const nString = utilities.isVowel(skillName) ? 'n' : '';
+
   const fullTitle = utilities.interpolate(
     getGame().i18n.localize('TB2.DialogRollOptionsDefaultTitle'),
-    skillName,
+    nString,
+    [skillName],
   );
   const usedTitle = title ?? fullTitle;
   const templateData = {

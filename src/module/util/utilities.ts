@@ -1,17 +1,21 @@
 export const utilities = {
-  interpolate: (baseString: string, value: string): string => {
+  interpolate: (baseString: string, nString: string, values: string[]): string => {
     function format(source: string, params: string[]) {
       $.each(params, function (i, n) {
         source = source.replace(new RegExp('\\{' + i + '\\}', 'g'), n);
       });
       return source;
     }
-    function isVowel(x: string) {
-      return 'aeiouAEIOU'.indexOf(x) != -1;
-    }
-    const maybeN = isVowel(value[0]) ? 'n' : '';
     const target = baseString ? baseString : '';
-    const insert = String(value ? value : '');
-    return format(target, [maybeN, insert]);
+    const cleanValues = values.map((x) => (x ? String(x) : ''));
+    return format(target, cleanValues).replace('{maybeN}', nString);
+  },
+
+  isVowel: (x: string | null): boolean => {
+    if (typeof x != 'undefined' && x?.trim()) {
+      return 'aeiouAEIOU'.indexOf(x[0]) != -1;
+    } else {
+      return false;
+    }
   },
 };

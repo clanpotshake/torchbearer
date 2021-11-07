@@ -2,6 +2,7 @@ import { getGame } from '../helpers';
 import { createTestRoll } from '../rolls/CheckFactory';
 import { TB } from '../config';
 import { AttributeType, ClassType, ItemType } from './ItemDataSource';
+import { utilities } from '../util/utilities';
 
 declare global {
   interface DocumentClassConfig {
@@ -69,46 +70,20 @@ export class TBItem extends Item {
     const might = this.actor.data.data.might;
     const precedence = this.actor.data.data.precedence;
     const nature = this.actor.data.data.abilities.nature.current;
+    const nString = utilities.isVowel(this.name) ? 'n' : '';
+    const flavor = utilities.interpolate(getGame().i18n.localize('TB2.SkillCheckFlavor'), nString, [
+      this.actor.name || 'ERROR_NO_ACTOR',
+      'tests',
+      this.data.name,
+    ]);
     await createTestRoll(this.data.name, this.data.data.rank, nature, might, precedence, {
       rollMode: getGame().settings.get('core', 'rollMode'),
-      flavor: 'TB2.ItemWeaponCheckFlavor',
+      flavor: flavor,
       flavorData: { actor: speaker.alias ?? this.actor.name, skill: this.name },
       speaker,
     });
   }
 
-  // TODO probably don't need this, see checkfactory
-  protected async getTestObValue(): Promise<number> {
-    const identifier = 'test-ob-input';
-    return Dialog.prompt({
-      title: getGame().i18n.localize('TB2.DialogSkillTestObInputTitle'),
-      content: await renderTemplate(
-        'systems/torchbearer/templates/dialogs/simple-select-form.hbs',
-        {
-          selects: [
-            {
-              label: getGame().i18n.localize('TB2.TestOb'),
-              identifier,
-              options: {},
-            },
-          ],
-        },
-      ),
-      label: getGame().i18n.localize('TB2.GenericOkButton'),
-      callback: (html) => {
-        const inputVal = html.find(`#${identifier}`).val();
-        if (Number.isNumeric(inputVal)) {
-          throw new Error(
-            getGame().i18n.format('TB2.ErrorInvalidInputType', {
-              actualType: inputVal,
-              expectedTypes: 'number',
-            }),
-          );
-        }
-        return Number(inputVal);
-      },
-    });
-  }
   /**
    * The list of item types that are rollable.
    */

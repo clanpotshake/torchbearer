@@ -6,7 +6,7 @@
 @include meta.load-css('global/window');
 
 @include meta.load-css('components/actor_sheet');
-/*@include meta.load-css('components/dice_total');*/
+@include meta.load-css('components/dice_total');
 
 .tb2 {
   @include meta.load-css('components/actor_properties');

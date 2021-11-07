@@ -1,0 +1,26 @@
+/*
+ * SPDX-FileCopyrightText: 2021 Johannes Loher
+ *
+ * SPDX-License-Identifier: MIT
+ */
+
+@use "../utils/colors";
+
+// Needs to be nested in .dice-roll to win against foundry's style.css with respect to specificity
+.dice-roll .tb-dice-total {
+  @mixin color-filter($rotation) {
+    filter: sepia(0.5) hue-rotate($rotation);
+  }
+
+  &--six {
+    @include color-filter(60deg);
+    background-color: $c-six-bg;
+    color: $c-six;
+  }
+
+  &--wyrm {
+    @include color-filter(-60deg);
+    background-color: $c-wyrm-bg;
+    color: $c-wyrm;
+  }
+}

@@ -13,6 +13,7 @@ declare global {
 export class TBChatMessage extends ChatMessage {
   /** @override */
   prepareData(): void {
+    // runs when loading the chat sidebar
     super.prepareData();
     if (this.data.flavor) {
       const game = getGame();
