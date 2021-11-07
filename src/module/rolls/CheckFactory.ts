@@ -9,9 +9,10 @@ import { getGame } from '../helpers';
  * Provides default values for all arguments the `CheckFactory` expects.
  */
 class DefaultCheckOptions implements TBCheckFactoryOptions {
+  readonly skillRank: number = 0;
   readonly takeCheck: boolean = false;
   readonly useTrait: boolean = false;
-  readonly channelNature: boolean = false;
+  readonly nature: number = 0;
   readonly successMod: number = 0;
   readonly purchasedDice: number = 0;
   readonly helpAndGear: number = 0;
@@ -36,19 +37,15 @@ const defaultCheckOptions = new DefaultCheckOptions();
  * Most basic class responsible for generating the chat formula and passing it to the chat as roll.
  */
 class CheckFactory {
-  constructor(
-    private obstacle: number,
-    private diePool: number,
-    options: Partial<TBCheckFactoryOptions> = {},
-  ) {
+  constructor(options: Partial<TBCheckFactoryOptions> = {}) {
     this.options = defaultCheckOptions.mergeWith(options);
   }
 
   private options: TBCheckFactoryOptions;
 
   async execute(): Promise<ChatMessage | undefined> {
-    const innerFormula = [`${this.obstacle}d6`].filterJoin('');
-    // const innerFormula = ['ds', this.createCheckTargetNumberModifier()].filterJoin('');
+    logger.info('executing roll...', this.options);
+    const innerFormula = CheckFactory.rollFormula({ ...this.options });
     const roll = Roll.create(innerFormula);
     const speaker = this.options.speaker ?? ChatMessage.getSpeaker();
 
@@ -62,6 +59,15 @@ class CheckFactory {
       },
       { rollMode: this.options.rollMode, create: true },
     );
+  }
+  static rollFormula(options: TBCheckFactoryOptions): string {
+    logger.info('rollFormula', options);
+    const successes =
+      Math.sign(options.successMod) > 0 ? `+${options.successMod}` : `${options.successMod}`;
+    const diePool = options.skillRank;
+    // todo where to handle beginners luck?
+
+    return [`${diePool}d6${successes}`].filterJoin('');
   }
 }
 
@@ -77,26 +83,25 @@ export async function createTestRoll(
   // Ask for additional required data;
   const gmModifierData = await askGmModifier(checkTargetNumber, options);
 
-  const newTargetValue = checkTargetNumber;
-  const gmModifier = gmModifierData.obstacle ?? 0;
   const newOptions: Partial<TBCheckFactoryOptions> = {
-    applyBulky: options.applyBulky,
-    applyHometown: options.applyHometown,
-    applyWeary: options.applyWeary,
-    channelNature: options.channelNature,
-    helpAndGear: options.helpAndGear,
-    purchasedDice: options.purchasedDice,
-    successMod: options.successMod,
-    takeCheck: options.takeCheck,
-    useTrait: options.useTrait,
-    rollMode: gmModifierData.rollMode ?? options.rollMode,
+    skillRank: gmModifierData.skillRank,
+    applyBulky: gmModifierData.applyBulky,
+    applyHometown: gmModifierData.applyHometown,
+    applyWeary: gmModifierData.applyWeary,
+    nature: gmModifierData.nature,
+    helpAndGear: gmModifierData.helpGear,
+    purchasedDice: gmModifierData.purchasedDice,
+    successMod: gmModifierData.successMod,
+    takeCheck: gmModifierData.traitCheck,
+    useTrait: gmModifierData.traitHelp,
+    rollMode: gmModifierData.rollMode ?? gmModifierData.rollMode,
     flavor: options.flavor,
     flavorData: options.flavorData,
     speaker: options.speaker,
   };
 
   // Create Factory
-  const cf = new CheckFactory(newTargetValue, gmModifier, newOptions);
+  const cf = new CheckFactory(newOptions);
 
   // Possibly additional processing
 
@@ -212,6 +217,7 @@ function parseDialogFormData(formData: HTMLFormElement): Partial<DiceRollInfo> {
 interface DiceRollInfo {
   obstacle: number;
   skillRank: number;
+  nature: number;
   might: number;
   purchasedDice: number;
   precedence: number;
@@ -229,9 +235,10 @@ interface DiceRollInfo {
  * The minimum behavioral options that need to be passed to the factory.
  */
 export interface TBCheckFactoryOptions {
+  skillRank: number;
   takeCheck: boolean;
   useTrait: boolean;
-  channelNature: boolean;
+  nature: number;
   purchasedDice: number; // dice purchased with persona
   successMod: number;
   helpAndGear: number;
