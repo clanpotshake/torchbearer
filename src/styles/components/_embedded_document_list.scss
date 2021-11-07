@@ -21,7 +21,7 @@
   overflow-y: auto;
   padding: 0;
 
-  &--weapon {
+  &--skill {
     grid-template-columns: $row-height $row-height 3ch 3fr $row-height 1fr 3ch 5fr 5ch;
     :nth-child(9n + 1),
     :nth-child(9n + 5),

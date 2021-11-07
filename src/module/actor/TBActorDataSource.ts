@@ -7,22 +7,24 @@ declare global {
 }
 type AllCharacterDataSource = CharacterDataSource | NpcDataSource;
 export interface CommonDataSourceData {
-  will: Ability;
-  health: Ability;
-  circles: Ability;
-  resources: Ability;
-  nature: Ability & { current: number; max: number };
-  custom1: Ability & { name: string };
-  custom2: Ability & { name: string };
-  property: string;
-  fate: number;
-  persona: number;
+  abilities: {
+    will: Ability;
+    health: Ability;
+    circles: Ability;
+    resources: Ability;
+    nature: Ability & { current: number; max: number };
+    custom1: Ability & { name: string };
+    custom2: Ability & { name: string };
+    property: string;
+    fate: number;
+    persona: number;
+  };
 }
 export interface NpcDataSourceData extends CommonDataSourceData, HasDisplayPropsDataSourceData {
   exitMode: boolean;
   bio: string;
 }
-export interface CharacterDataSource {
+export interface CharacterDataSource extends CommonDataSourceData, HasDisplayPropsDataSourceData {
   type: 'character';
   data: CharacterDataSourceData;
 }

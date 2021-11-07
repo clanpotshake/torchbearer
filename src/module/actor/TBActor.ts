@@ -99,8 +99,9 @@ export class TBActor extends Actor {
     check: SkillTest,
     options: { speaker?: { token?: TokenDocument; alias?: string } } = {},
   ): Promise<void> {
+    logger.info('in rollCheck', this);
     const speaker = ChatMessage.getSpeaker({ actor: this, ...options.speaker });
-    await createTestRoll(this.data.data.tests[check], {
+    await createTestRoll(check, this.data.data.tests[check], 0, 0, 0, {
       rollMode: getGame().settings.get('core', 'rollMode'),
       flavor: 'TB2.ActorTestFlavor',
       flavorData: { actor: speaker.alias ?? this.name, test: TB.i18nKeys.skills[check] },

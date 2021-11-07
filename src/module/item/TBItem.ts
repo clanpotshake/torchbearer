@@ -48,6 +48,7 @@ export class TBItem extends Item {
   protected async rollSkill(
     options: { speaker?: { token?: TokenDocument; alias?: string } } = {},
   ): Promise<void> {
+    logger.info('in rollSkill', this);
     if (this.data.type != 'skill') {
       throw new Error(
         getGame().i18n.format('TB2.ErrorWrongItemType', {
@@ -65,10 +66,13 @@ export class TBItem extends Item {
       );
     }
     const speaker = ChatMessage.getSpeaker({ actor: this.actor, ...options.speaker });
-    await createTestRoll(0, {
+    const might = this.actor.data.data.might;
+    const precedence = this.actor.data.data.precedence;
+    const nature = this.actor.data.data.abilities.nature.current;
+    await createTestRoll(this.data.name, this.data.data.rank, nature, might, precedence, {
       rollMode: getGame().settings.get('core', 'rollMode'),
       flavor: 'TB2.ItemWeaponCheckFlavor',
-      flavorData: { actor: speaker.alias ?? this.actor.name, weapon: this.name },
+      flavorData: { actor: speaker.alias ?? this.actor.name, skill: this.name },
       speaker,
     });
   }

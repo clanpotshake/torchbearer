@@ -4,6 +4,7 @@
 
 import { TB } from '../config';
 import { ModifiableDataBaseTotal } from '../common/CommonData';
+import { CharacterDataSource, NpcDataSourceData } from './TBActorDataSource';
 
 declare global {
   interface DataConfig {
@@ -11,8 +12,7 @@ declare global {
   }
 }
 
-export type TBActorDataProperties = TBCharacterDataProperties;
-// | TBCreatureDataProperties;
+export type TBActorDataProperties = TBCharacterDataProperties | TBCreatureDataProperties;
 
 interface TBCharacterDataProperties {
   type: 'character';
@@ -30,6 +30,11 @@ interface TBActorDataPropertiesDataBase {
   attributes: TBActorDataPropertiesDataAttributes;
   traits: TBActorDataPropertiesDataTraits;
   tests: TBActorDataPropertiesDataChecks;
+}
+
+interface HasMight {
+  might: number;
+  precedence: number;
 }
 
 type TBActorDataPropertiesDataAttributes = {
@@ -50,10 +55,14 @@ export function isTest(value: string): value is SkillTest {
   return Object.keys(TB.i18n.skills).includes(value);
 }
 
-// templates
-
 // types
 
-type TBCreatureDataPropertiesData = TBActorDataPropertiesDataBase;
+interface TBCreatureDataPropertiesData
+  extends TBActorDataPropertiesDataBase,
+    HasMight,
+    CharacterDataSource {}
 
-type TBCharacterDataPropertiesData = TBActorDataPropertiesDataBase;
+interface TBCharacterDataPropertiesData
+  extends TBActorDataPropertiesDataBase,
+    HasMight,
+    NpcDataSourceData {}

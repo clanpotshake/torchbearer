@@ -4,21 +4,17 @@
 // SPDX-License-Identifier: MIT
 
 import { getGame } from '../helpers';
+import { number } from 'yargs';
+import { utilities } from '../util/utilities';
 
 /**
  * Provides default values for all arguments the `CheckFactory` expects.
  */
 class DefaultCheckOptions implements TBCheckFactoryOptions {
-  readonly skillRank: number = 0;
-  readonly takeCheck: boolean = false;
-  readonly useTrait: boolean = false;
-  readonly nature: number = 0;
+  readonly dicePool: number = 0;
+  readonly obstacle: number = 0;
+  readonly beginnersLuck: boolean = false;
   readonly successMod: number = 0;
-  readonly purchasedDice: number = 0;
-  readonly helpAndGear: number = 0;
-  readonly applyBulky: boolean = false;
-  readonly applyWeary: boolean = false;
-  readonly applyHometown: boolean = false;
 
   readonly rollMode: foundry.CONST.DiceRollMode = 'roll';
   readonly flavor: undefined;
@@ -45,7 +41,7 @@ class CheckFactory {
 
   async execute(): Promise<ChatMessage | undefined> {
     logger.info('executing roll...', this.options);
-    const innerFormula = CheckFactory.rollFormula({ ...this.options });
+    const innerFormula = this.rollFormula();
     const roll = Roll.create(innerFormula);
     const speaker = this.options.speaker ?? ChatMessage.getSpeaker();
 
@@ -60,41 +56,68 @@ class CheckFactory {
       { rollMode: this.options.rollMode, create: true },
     );
   }
-  static rollFormula(options: TBCheckFactoryOptions): string {
-    logger.info('rollFormula', options);
+  private rollFormula(): string {
+    logger.info('rollFormula', this.options);
+    const diePool = this.options.dicePool;
     const successes =
-      Math.sign(options.successMod) > 0 ? `+${options.successMod}` : `${options.successMod}`;
-    const diePool = options.skillRank;
-    // todo where to handle beginners luck?
+      this.options.successMod >= 0 ? `+${this.options.successMod}` : `${this.options.successMod}`;
 
+    // TODO need to parse results manually before applying successes
     return [`${diePool}d6${successes}`].filterJoin('');
   }
 }
 
 /**
  * Asks the user for all unknown/necessary information and passes them on to perform a roll.
- * @param checkTargetNumber - The Check Target Number ("CTN")
- * @param options           - Options changing the behavior of the roll and message.
+ * @param skillRank - The Actor's rating in the rolling skill
+ * @param options   - Options changing the behavior of the roll and message.
  */
 export async function createTestRoll(
-  checkTargetNumber: number,
+  skillName: string,
+  skillRank: number,
+  nature: number,
+  might: number,
+  precedence: number,
   options: Partial<TBCheckFactoryOptions> = {},
 ): Promise<ChatMessage | unknown> {
   // Ask for additional required data;
-  const gmModifierData = await askGmModifier(checkTargetNumber, options);
+  const dialogOptions = await askRollOptions(
+    skillName,
+    skillRank,
+    nature,
+    might,
+    precedence,
+    options,
+  );
+  function add(accumulator: number, a: number) {
+    return accumulator + a;
+  }
+
+  // Total up the dice for the ability, wises, help, supplies and gear,
+  // divide that by half and round up.
+  // Then add traits, persona points, channeled Nature, the fresh condition and any
+  // other special or magic bonus dice.
+  // If an ability is at zero due to injury or sickness, you cannot test it using
+  // Beginner’s Luck. You must roll your Nature until you’ve recovered.
+  const luckFactor = dialogOptions.luck ? 0.5 : 1.0;
+  const skill = dialogOptions.skillRank ?? 0; // if luck, skillrank is ability rank
+  const help = dialogOptions.helpGear ?? 0;
+  const luckPool = Math.ceil((skill + help) * luckFactor);
+  const traitDie = dialogOptions.traitHelp ? 1 : dialogOptions.traitCheck ? -1 : 0;
+  const freshDie = dialogOptions.fresh ? 1 : 0;
+  const personaDie = dialogOptions.purchasedDice ?? 0;
+  const natureDice = dialogOptions.nature ?? 0;
+  const successMod = dialogOptions.successMod ?? 0;
+  // TODO bulky et al only apply to specific skill tests, not yet implemented
+
+  const finalDicePool = [luckPool + traitDie + freshDie + personaDie + natureDice].reduce(add, 0);
 
   const newOptions: Partial<TBCheckFactoryOptions> = {
-    skillRank: gmModifierData.skillRank,
-    applyBulky: gmModifierData.applyBulky,
-    applyHometown: gmModifierData.applyHometown,
-    applyWeary: gmModifierData.applyWeary,
-    nature: gmModifierData.nature,
-    helpAndGear: gmModifierData.helpGear,
-    purchasedDice: gmModifierData.purchasedDice,
-    successMod: gmModifierData.successMod,
-    takeCheck: gmModifierData.traitCheck,
-    useTrait: gmModifierData.traitHelp,
-    rollMode: gmModifierData.rollMode ?? gmModifierData.rollMode,
+    dicePool: finalDicePool,
+    obstacle: dialogOptions.obstacle ?? 0,
+    successMod: successMod,
+    beginnersLuck: dialogOptions.luck ?? false,
+    rollMode: dialogOptions.rollMode ?? dialogOptions.rollMode,
     flavor: options.flavor,
     flavorData: options.flavorData,
     speaker: options.speaker,
@@ -115,16 +138,29 @@ export async function createTestRoll(
  *
  * @returns The data given by the user.
  */
-async function askGmModifier(
-  checkTargetNumber: number,
+async function askRollOptions(
+  skillName: string,
+  skillRank: number,
+  nature: number,
+  might: number,
+  precedence: number,
   options: Partial<TBCheckFactoryOptions> = {},
   { template, title }: { template?: string; title?: string } = {},
 ): Promise<Partial<DiceRollInfo>> {
   const usedTemplate = template ?? 'systems/torchbearer/templates/dialogs/roll-options.hbs';
-  const usedTitle = title ?? getGame().i18n.localize('TB2.DialogRollOptionsDefaultTitle');
+  const maybeN = skillName[0].toUpperCase() === 'A' ? 'n' : '';
+  const fullTitle = utilities.interpolate(
+    getGame().i18n.localize('TB2.DialogRollOptionsDefaultTitle'),
+    skillName,
+    maybeN,
+  );
+  const usedTitle = title ?? fullTitle;
   const templateData = {
     title: usedTitle,
-    checkTargetNumber: checkTargetNumber,
+    skillRank: skillRank,
+    nature: nature,
+    might: might,
+    precedence: precedence,
     rollMode: options.rollMode ?? getGame().settings.get('core', 'rollMode'),
     rollModes: CONFIG.Dice.rollModes,
   };
@@ -176,27 +212,36 @@ async function askGmModifier(
  * @param formData - The filled dialog
  */
 function parseDialogFormData(formData: HTMLFormElement): Partial<DiceRollInfo> {
-  // const chosenCheckTargetNumber = parseInt(formData['check-target-number']?.value);
-  // const chosenGMModifier = parseInt(formData['gm-modifier']?.value);
+  function handyParse(input: number | string | undefined | null, radix: number): number {
+    if (!input) return 0;
+    if (typeof input === 'number') return input;
+    return parseInt(input, radix);
+  }
   const chosenRollMode = formData['roll-mode']?.value;
   const chosenApplyBulky = formData['apply-bulky']?.value;
   const chosenApplyHometown = formData['apply-hometown']?.value;
   const chosenApplyWeary = formData['apply-weary']?.value;
-  const chosenHelpGear = formData['help-gear']?.value;
-  const chosenMight = formData['might']?.value;
-  const chosenPrecedence = formData['precedence']?.value;
-  const chosenObstacle = formData['check-target-number']?.value;
-  const chosenSkillRank = formData['skill-rank']?.value;
-  const chosenSuccessMod = formData['success-mod']?.value;
+  const chosenHelpGear = handyParse(formData['help-gear']?.value, 10);
+  const chosenMight = handyParse(formData['might']?.value, 10);
+  const chosenPrecedence = handyParse(formData['precedence']?.value, 10);
+  const chosenObstacle = handyParse(formData['check-target-number']?.value, 10);
+  const chosenSkillRank = handyParse(formData['skill-rank']?.value, 10);
+  const chosenSuccessMod = handyParse(formData['success-mod']?.value, 10);
   const chosenTraitCheck = formData['check-trait']?.value;
   const chosenTraitHelp = formData['help-trait']?.value;
-  const chosenPersonaDice = formData['persona-buy']?.value;
+  const chosenPersonaDice = handyParse(formData['persona-buy']?.value, 10);
+  const chosenFresh = formData['fresh-die']?.value;
+  const chosenLuck = formData['luck-roll']?.value;
+  const chosenNature = handyParse(formData['nature-channel']?.value, 10);
 
   return {
     applyBulky: chosenApplyBulky,
     applyHometown: chosenApplyHometown,
     applyWeary: chosenApplyWeary,
     helpGear: chosenHelpGear,
+    fresh: chosenFresh,
+    luck: chosenLuck,
+    nature: chosenNature,
     might: chosenMight,
     obstacle: chosenObstacle,
     purchasedDice: chosenPersonaDice,
@@ -219,6 +264,8 @@ interface DiceRollInfo {
   skillRank: number;
   nature: number;
   might: number;
+  luck: boolean;
+  fresh: boolean;
   purchasedDice: number;
   precedence: number;
   helpGear: number;
@@ -235,16 +282,10 @@ interface DiceRollInfo {
  * The minimum behavioral options that need to be passed to the factory.
  */
 export interface TBCheckFactoryOptions {
-  skillRank: number;
-  takeCheck: boolean;
-  useTrait: boolean;
-  nature: number;
-  purchasedDice: number; // dice purchased with persona
+  dicePool: number;
+  obstacle: number;
+  beginnersLuck: boolean;
   successMod: number;
-  helpAndGear: number;
-  applyBulky: boolean;
-  applyWeary: boolean;
-  applyHometown: boolean;
   rollMode: foundry.CONST.DiceRollMode;
   flavor?: string;
   flavorData?: Record<string, string | number | null>;

@@ -9,7 +9,7 @@
   "TB2.DialogRollOptionsApplyWearyLabel": "Weary",
   "TB2.DialogRollOptionsApplyBulkyLabel": "Bulky",
   "TB2.DialogRollOptionsApplyHomeTownLabel": "Home Town",
-  "TB2.DialogRollOptionsDefaultTitle": "Roll a Test",
+  "TB2.DialogRollOptionsDefaultTitle": "Roll a{0} {1} Test",
   "TB2.SkillTooltip": "Click on the name of the skill to perform a roll",
   "TB2.ErrorWrongItemType": "Wrong Item Type!",
   "TB2.ErrorCannotRollUnownedItem": "Must own an Item to Roll it",
