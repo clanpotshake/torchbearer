@@ -155,7 +155,7 @@ async function askRollOptions(
   { template, title }: { template?: string; title?: string } = {},
 ): Promise<Partial<DiceRollInfo>> {
   const usedTemplate = template ?? 'systems/torchbearer/templates/dialogs/roll-options.hbs';
-  const nString = utilities.isVowel(skillName) ? 'n' : '';
+  const nString = utilities.startsWithVowel(skillName) ? 'n' : '';
 
   const fullTitle = utilities.interpolate(
     getGame().i18n.localize('TB2.DialogRollOptionsDefaultTitle'),

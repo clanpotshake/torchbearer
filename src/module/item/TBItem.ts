@@ -70,7 +70,7 @@ export class TBItem extends Item {
     const might = this.actor.data.data.might;
     const precedence = this.actor.data.data.precedence;
     const nature = this.actor.data.data.abilities.nature.current;
-    const nString = utilities.isVowel(this.name) ? 'n' : '';
+    const nString = utilities.startsWithVowel(this.name) ? 'n' : '';
     const flavor = utilities.interpolate(getGame().i18n.localize('TB2.SkillCheckFlavor'), nString, [
       this.actor.name || 'ERROR_NO_ACTOR',
       'tests',
