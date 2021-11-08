@@ -16,6 +16,7 @@ SPDX-License-Identifier: MIT
 !-- @param @partial-block: Custom column headers can be passed using the partial block.
 --}}
 <li class="tb-embedded-document-list__row item" data-item-id="{{itemData._id}}">
+  {{log 'item-list-entry.itemData' itemData}}
     {{#if isEquipable}}
     <input class="tb-embedded-document-list__editable tb-embedded-document-list__editable--checkbox change-item"
            type="checkbox" {{checked itemData.data.equipped}}

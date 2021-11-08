@@ -6,7 +6,7 @@
 
   {{#unless (isEmpty itemsByType.skill)}}
     <hr>
-    <h4 class="tb-embedded-document-list-title">{{localize 'TB2.SkillsHeader'}}</h4>
+    <h3 class="tb-embedded-document-list-title">{{localize 'TB2.SkillsHeader'}}</h3>
     <ol class="tb-embedded-document-list tb-embedded-document-list--skill item-list">
       {{#> systems/torchbearer/templates/sheets/actor/components/item-list-header.hbs}}
         <div>{{localize 'TB2.SkillHeader'}}</div>
@@ -14,7 +14,8 @@
 
       {{#each itemsByType.skill as |itemData id|}}
         {{> systems/torchbearer/templates/sheets/actor/components/item-list-entry.hbs
-          itemData=itemData}}
+          itemData=itemData
+          hideDescription=true}}
       {{/each}}
     </ol>
   {{/unless}}

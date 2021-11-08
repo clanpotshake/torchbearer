@@ -291,6 +291,18 @@
   "TB2.ItemOwner": "Owner: ",
   "TB2.DialogRollOptionsRollModeLabel": "Mode: ",
   "TB2.SkillCheckFlavor": "{0} {1} {2}",
+  "TB2.DialogRollOptionsSkillRankLabel": "Rank",
+  "TB2.DialogRollOptionsMightLabel": "Might",
+  "TB2.DialogRollOptionsPrecedenceLabel": "Precedence",
+  "TB2.DialogRollOptionsNatureRankLabel": "Current Nature",
+  "TB2.DialogRollOptionsChannelNatureLabel": "Channel Nature",
+  "TB2.UserInteractionEditItemTitle": "Edit Item",
+  "TB2.UserInteractionDeleteItemTitle": "Delete Item",
+  "TB2.Description": "Description",
+  "TB2.ItemName": "Name",
+  "TB2.": "PLACEHOLDER",
+  "TB2.": "PLACEHOLDER",
+  "TB2.": "PLACEHOLDER",
   "TB2.": "PLACEHOLDER",
   "TB2.": ""
 }

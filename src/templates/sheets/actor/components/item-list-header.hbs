@@ -15,6 +15,7 @@ SPDX-License-Identifier: MIT
 !-- @param @partial-block: Custom column headers can be passed using the partial block.
 --}}
 <li class="tb-embedded-document-list__row tb-embedded-document-list__row--header">
+  {{log 'item-list-header.this' this}}
     {{!-- equipped --}}
     {{#if isEquipable}}
     <div title="{{localize 'TB2.ItemEquipped'}}">{{localize 'TB2.ItemEquippedAbbr'}}</div>
