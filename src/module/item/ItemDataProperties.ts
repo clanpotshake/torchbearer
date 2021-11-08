@@ -92,6 +92,9 @@ interface ItemDataPropertiesDataGrantsInvocation {
 interface ItemDataPropertiesDataLearningSkill {
   learning: boolean;
 }
+interface ItemDataPropertiesDataIsContainer {
+  isContainer: boolean;
+}
 
 // types
 
@@ -144,6 +147,7 @@ interface GearDataPropertiesData
   extends GearDataSourceData,
     ItemDataPropertiesDataRollable,
     ItemDataPropertiesDataGrantsMagic,
+    ItemDataPropertiesDataIsContainer,
     ItemDataPropertiesDataGrantsInvocation {}
 interface PropertyDataPropertiesData
   extends PropertyDataSourceData,

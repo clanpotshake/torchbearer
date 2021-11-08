@@ -124,16 +124,27 @@ export interface RelationshipDataSourceData {
 }
 export interface GearDataSourceData extends GMOnly, BookDataSource {
   description: string;
-  pack: number;
-  held: number;
-  belt: number;
-  torso: number;
-  head: number;
-  hand: number;
-  feet: number;
-  neck: number;
-  arm: number;
-  pocket: boolean;
+  capacity: {
+    pack: number; // most things should only ever need this one
+    held: number;
+    belt: number;
+    torso: number;
+    head: number;
+    hand: number;
+    feet: number;
+    neck: number;
+  };
+  volume: {
+    pack: number;
+    held: number;
+    belt: number;
+    torso: number;
+    head: number;
+    hand: number;
+    feet: number;
+    neck: number;
+    pocket: number; // number of items per pocket (don't use this and stackSize)
+  };
   containedIn: SlotType;
   // the number of items in each instance of the Item (e.g. Torches would be 4, as they are Pack 1 for 4)
   stackSize: number;

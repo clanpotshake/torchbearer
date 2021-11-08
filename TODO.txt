@@ -23,6 +23,16 @@ SHEETS
       SKILLS
         pass/fails are getting saved to the actor, not the item (old data? make a new actor)
       GEAR
+        fuck load of repetition around slot names, factor that out
+        how to represent containers? should they be their own item type?
+          from discord:
+            https://discord.com/channels/170995199584108546/670336275496042502/907269076768915466
+            Foundry does not support items within items. And you don't need a module for dragging
+            items between actors.
+            In HBS you can just have some element that is marked as draggable via defaultOptions
+            dragDrop select with data-item-id="{{item.id}}" and it'll drag the item with the id
+            from the actor out, and any sheet accepting that will then get a copy of it.
+            It's all built-in to foundry for really easy implementation.
         add item button doesn't work
           filter to type=gear
   ITEM

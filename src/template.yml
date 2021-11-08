@@ -170,20 +170,29 @@ Item:
     templates:
       - book
     description: 'item description'
-    pack: 0
-    held: 0
-    belt: 0
-    torso: 0
-    head: 0
-    hand: 0
-    feet: 0
-    neck: 0
-    slots: 0
-    pocket: 0
-    cost: 0
-    stackSize: 1
-    availability: 'X'
     containedIn: 'pack'
+    availability: 'X'
+    cost: 0
+    volume:
+      pack: 0
+      held: 0
+      belt: 0
+      torso: 0
+      head: 0
+      hand: 0
+      feet: 0
+      neck: 0
+      pocket: 0
+      stackSize: 1
+    capacity:
+      pack: 0
+      held: 0
+      belt: 0
+      torso: 0
+      head: 0
+      hand: 0
+      feet: 0
+      neck: 0
   property:
     isWorkshop: false
     description: 'Home'

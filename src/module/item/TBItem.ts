@@ -26,6 +26,11 @@ export class TBItem extends Item {
       this.data.type === 'class'
         ? TBItem.classesWithUrdr.includes(this.data.data.classType)
         : false;
+    if (this.data.type === 'gear') {
+      this.data.data.isContainer = Object.values(this.data.data.capacity).some((slot) => {
+        return slot > 0;
+      });
+    }
   }
   protected prepareSkillThings(): void {
     this.data.data.rollable = TBItem.rollableItemTypes.includes(this.type);
