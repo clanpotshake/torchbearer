@@ -169,6 +169,7 @@ Item:
     slots: 0
     pocket: 0
     cost: 0
+    stackSize: 1
     availability: 'X'
     containedIn: 'pack'
   property:

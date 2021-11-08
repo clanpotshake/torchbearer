@@ -50,6 +50,7 @@ type TBActorDataPropertiesDataChecks = {
 };
 
 export type SkillTest = keyof typeof TB.i18n.skills;
+export type SlotType = keyof typeof TB.i18n.slots;
 
 export function isTest(value: string): value is SkillTest {
   return Object.keys(TB.i18n.skills).includes(value);

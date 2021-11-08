@@ -7,38 +7,18 @@
   {{#unless (isEmpty itemsByType.gear)}}
     <hr>
     <h4 class="tb-embedded-document-list-title">{{localize 'TB2.WhatIsWornHeader'}}</h4>
-    <ol class="tb-embedded-document-list tb-embedded-document-list--gear item-list">
-      {{#> systems/torchbearer/templates/sheets/actor/components/item-list-header.hbs}}
-        <div>{{localize 'TB2.GearHeader'}}</div>
-      {{/systems/torchbearer/templates/sheets/actor/components/item-list-header.hbs}}
+    {{#each config.i18n.slots as |value key|}}
+      <ol class="tb-embedded-document-list tb-embedded-document-list--gear item-list">
+        {{#> systems/torchbearer/templates/sheets/actor/components/item-list-header.hbs}}
+          <div>{{localize 'TB2.GearHeader'}}</div>
+        {{/systems/torchbearer/templates/sheets/actor/components/item-list-header.hbs}}
 
-      {{#each itemsByType.gear as |itemData id|}}
-        {{> systems/torchbearer/templates/sheets/actor/components/item-list-entry.hbs
-          itemData=itemData}}
-      {{/each}}
-    </ol>
-    <h4 class="tb-embedded-document-list-title">{{localize 'TB2.WhatIsHeldHeader'}}</h4>
-    <ol class="tb-embedded-document-list tb-embedded-document-list--gear item-list">
-      {{#> systems/torchbearer/templates/sheets/actor/components/item-list-header.hbs}}
-        <div>{{localize 'TB2.GearHeader'}}</div>
-      {{/systems/torchbearer/templates/sheets/actor/components/item-list-header.hbs}}
-
-      {{#each itemsByType.gear as |itemData id|}}
-        {{> systems/torchbearer/templates/sheets/actor/components/item-list-entry.hbs
-          itemData=itemData}}
-      {{/each}}
-    </ol>
-    <h4 class="tb-embedded-document-list-title">{{localize 'TB2.InventoryHeader'}}</h4>
-    <ol class="tb-embedded-document-list tb-embedded-document-list--gear item-list">
-      {{#> systems/torchbearer/templates/sheets/actor/components/item-list-header.hbs}}
-        <div>{{localize 'TB2.GearHeader'}}</div>
-      {{/systems/torchbearer/templates/sheets/actor/components/item-list-header.hbs}}
-
-      {{#each itemsByType.gear as |itemData id|}}
-        {{> systems/torchbearer/templates/sheets/actor/components/item-list-entry.hbs
-          itemData=itemData}}
-      {{/each}}
-    </ol>
+        {{#each itemsByType.gear as |itemData id|}}
+          {{> systems/torchbearer/templates/sheets/actor/components/item-list-entry.hbs
+            itemData=itemData}}
+        {{/each}}
+      </ol>
+    {{/each}}
   {{/unless}}
   {{> systems/torchbearer/templates/sheets/actor/components/add-button.hbs
     title='TB2.UserInteractionAddItemTitle'

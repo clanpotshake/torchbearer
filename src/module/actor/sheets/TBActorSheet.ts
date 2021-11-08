@@ -38,6 +38,18 @@ export class TBActorSheet extends ActorSheet<ActorSheet.Options, TBActorSheetDat
         ];
       }),
     );
+    const gearBySlot = Object.fromEntries(
+      Object.keys(TB.i18nKeys.slots).map((slot) => {
+        const itemsInSlot = this.actor.items
+          .filter((item) => {
+            return item.data.type === 'gear' && item.data.data.containedIn === slot;
+          })
+          .map((item) => item.data);
+        return [slot, itemsInSlot];
+      }),
+    );
+
+    // logger.info('final gear list', gear);
 
     const enrichedEffectPromises = this.actor.effects.map(async (effect) => {
       return {
@@ -54,6 +66,7 @@ export class TBActorSheet extends ActorSheet<ActorSheet.Options, TBActorSheetDat
       ...this.addTooltipsToData(await super.getData()),
       config: TB,
       itemsByType,
+      gearBySlot,
       enrichedEffects,
       settings: getTBSettings(),
     };
@@ -334,6 +347,7 @@ export class TBActorSheet extends ActorSheet<ActorSheet.Options, TBActorSheetDat
 interface TBActorSheetData extends ActorSheet.Data<ActorSheet.Options> {
   config: typeof TB;
   itemsByType: Record<string, foundry.data.ItemData[]>;
+  gearBySlot: Record<string, foundry.data.ItemData[]>;
   enrichedEffects: EnrichedActiveEffectDataSource[];
   settings: TBSettings;
 }
