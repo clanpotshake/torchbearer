@@ -1,6 +1,8 @@
 import { TBItem } from '../item/TBItem';
+import { utilities } from '../util/utilities';
 
 export default function registerHandlebarsHelpers(): void {
+  Object.entries(utilities).forEach(([key, helper]) => Handlebars.registerHelper(key, helper));
   Object.entries(helpers).forEach(([key, helper]) => Handlebars.registerHelper(key, helper));
 }
 const helpers = {

@@ -49,8 +49,6 @@ export class TBActorSheet extends ActorSheet<ActorSheet.Options, TBActorSheetDat
       }),
     );
 
-    // logger.info('final gear list', gear);
-
     const enrichedEffectPromises = this.actor.effects.map(async (effect) => {
       return {
         ...effect.toObject(),

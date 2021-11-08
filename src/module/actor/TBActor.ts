@@ -202,22 +202,6 @@ export interface TracksTests {
   passes: number;
   fails: number;
 }
-// the intent here is to have anything that has an inventory (i.e. player character) can define
-// how many slots and of what type they contain. or, actor item slots represent _capacity_, and
-// item inventory slots represent volume against that capacity.
-export interface HasInventorySlots {
-  pack: number;
-  held: number;
-  belt: number;
-  torso: number;
-  head: number;
-  hand: number;
-  feet: number;
-  neck: number;
-  arm: number;
-  // as pockets are effectively infinite, this represents the capability to have item slots at all
-  pocket: boolean;
-}
 export interface DisplayClass {
   cssClass?: string;
 }

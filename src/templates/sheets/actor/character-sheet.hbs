@@ -44,7 +44,8 @@ SPDX-License-Identifier: MIT
     {{/systems/torchbearer/templates/sheets/actor/tabs/skill-tab.hbs}}
    {{!-- {{> systems/torchbearer/templates/sheets/actor/components/spells.hbs}} --}}
 
-    {{> systems/torchbearer/templates/sheets/actor/tabs/character-inventory.hbs}}
+    {{> systems/torchbearer/templates/sheets/actor/tabs/character-inventory.hbs
+      gearSlotMap=this.gearBySlot}}
     {{> systems/torchbearer/templates/sheets/actor/tabs/levels.hbs}}
 
   </section>

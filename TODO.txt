@@ -18,6 +18,13 @@ DIALOGS
     account for successes on 3
 
 SHEETS
+  ACTOR
+    PLAYER CHARACTER
+      SKILLS
+        pass/fails are getting saved to the actor, not the item (old data? make a new actor)
+      GEAR
+        add item button doesn't work
+          filter to type=gear
   ITEM
     roll button on owned items in header
 

@@ -4,6 +4,17 @@ Actor:
     - character
     - npc
   templates:
+    hasInventorySlots:
+      containerSlots:
+        pack: 0
+        held: 2
+        belt: 3
+        torso: 3
+        head: 1
+        hand: 2
+        feet: 1
+        neck: 1
+        pocket: true
     conditions:
       conditions:
         fresh: true
@@ -63,6 +74,7 @@ Actor:
     description: 'setting desc'
   character:
     templates:
+      - hasInventorySlots
       - conditions
       - common
       - displayProps
@@ -78,6 +90,7 @@ Actor:
   npc:
     templates:
       - common
+      - hasInventorySlots
       - displayProps
     editMode: false
     bio: 'an NPC bio'
@@ -165,7 +178,6 @@ Item:
     hand: 0
     feet: 0
     neck: 0
-    arm: 0
     slots: 0
     pocket: 0
     cost: 0

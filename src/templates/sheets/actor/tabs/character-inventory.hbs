@@ -1,27 +1,186 @@
 <div class="tab" data-tab="inventory">
+  {{log 'inventory-tab' this}}
+  {{log 'inventory-tab.gearSlotMap' gearSlotMap}}
 
   <div class="tb-actor-header__data-row">
-    <div>content</div>
+    <div>header content</div>
   </div>
 
   {{#unless (isEmpty itemsByType.gear)}}
     <hr>
-    <h4 class="tb-embedded-document-list-title">{{localize 'TB2.WhatIsWornHeader'}}</h4>
-    {{#each config.i18n.slots as |value key|}}
-      <ol class="tb-embedded-document-list tb-embedded-document-list--gear item-list">
-        {{#> systems/torchbearer/templates/sheets/actor/components/item-list-header.hbs}}
-          <div>{{localize 'TB2.GearHeader'}}</div>
-        {{/systems/torchbearer/templates/sheets/actor/components/item-list-header.hbs}}
+    <h3 class="tb-embedded-document-list-title">{{localize 'TB2.WhatIsWornHeader'}}</h3>
+    {{#each config.i18n.slots as |translation name|}}
+      {{log 'slot: ' name}}
+      {{log 'items in slot:' (lookup ../gearSlotMap name)}}
+      {{#unless (isEmpty (lookup ../gearSlotMap name))}}
+      {{log 'actor has slots of type' (gt (lookup ../data.data.containerSlots name) 0)}}
 
-        {{#each itemsByType.gear as |itemData id|}}
-          {{> systems/torchbearer/templates/sheets/actor/components/item-list-entry.hbs
-            itemData=itemData}}
-        {{/each}}
-      </ol>
+<!--  HEAD-->
+        {{log 'has head slots' (gt ../data.data.containerSlots.head 0)}}
+        {{#if (gt ../data.data.containerSlots.head 0)}}
+        <h4 class="tb-embedded-document-list-title">{{localize 'TB2.HeadSlotHeader'}}</h4>
+        <ol class="tb-embedded-document-list tb-embedded-document-list--gear item-list">
+          {{#each ../gearSlotMap.head as |itemData id|}}
+            {{#> systems/torchbearer/templates/sheets/actor/components/item-list-header.hbs}}
+              <div>Item: {{localize translation}}</div>
+            {{/systems/torchbearer/templates/sheets/actor/components/item-list-header.hbs}}
+
+            {{> systems/torchbearer/templates/sheets/actor/components/item-list-entry.hbs
+              itemData=itemData}}
+          {{/each}}
+        </ol>
+
+        {{/if}}
+
+
+<!--    NECK-->
+          {{log 'has neck slots' (gt ../data.data.containerSlots.neck 0)}}
+          {{#if (gt ../data.data.containerSlots.neck 0)}}
+        <h4 class="tb-embedded-document-list-title">{{localize 'TB2.NeckSlotHeader'}}</h4>
+        <ol class="tb-embedded-document-list tb-embedded-document-list--gear item-list">
+          {{#each ../gearSlotMap.neck as |itemData id|}}
+            {{#> systems/torchbearer/templates/sheets/actor/components/item-list-header.hbs}}
+              <div>{{localize 'TB2.GearHeader'}}</div>
+            {{/systems/torchbearer/templates/sheets/actor/components/item-list-header.hbs}}
+
+            {{> systems/torchbearer/templates/sheets/actor/components/item-list-entry.hbs
+              itemData=itemData}}
+          {{/each}}
+        </ol>
+        {{/if}}
+<!--    HANDS-->
+            {{log 'has hands slots' (gt ../data.data.containerSlots.hand 0)}}
+            {{#if (gt ../data.data.containerSlots.hand 0)}}
+        <h4 class="tb-embedded-document-list-title">{{localize 'TB2.HandSlotHeader'}}</h4>
+        <ol class="tb-embedded-document-list tb-embedded-document-list--gear item-list">
+          {{#each ../gearSlotMap.hands as |itemData id|}}
+            {{#> systems/torchbearer/templates/sheets/actor/components/item-list-header.hbs}}
+              <div>{{localize 'TB2.GearHeader'}}</div>
+            {{/systems/torchbearer/templates/sheets/actor/components/item-list-header.hbs}}
+
+            {{> systems/torchbearer/templates/sheets/actor/components/item-list-entry.hbs
+              itemData=itemData}}
+          {{/each}}
+        </ol>
+            {{/if}}
+
+<!--    FEET-->
+              {{log 'has feet slots' (gt ../data.data.containerSlots.feet 0)}}
+              {{#if (gt ../data.data.containerSlots.feet 0)}}
+        <h4 class="tb-embedded-document-list-title">{{localize 'TB2.FeetSlotHeader'}}</h4>
+        <ol class="tb-embedded-document-list tb-embedded-document-list--gear item-list">
+          {{#each ../gearSlotMap.feet as |itemData id|}}
+            {{#> systems/torchbearer/templates/sheets/actor/components/item-list-header.hbs}}
+              <div>{{localize 'TB2.GearHeader'}}</div>
+            {{/systems/torchbearer/templates/sheets/actor/components/item-list-header.hbs}}
+
+            {{> systems/torchbearer/templates/sheets/actor/components/item-list-entry.hbs
+              itemData=itemData}}
+          {{/each}}
+        </ol>
+              {{/if}}
+<!--    TORSO-->
+                {{log 'has torso slots' (gt ../data.data.containerSlots.torso 0)}}
+                {{#if (gt ../data.data.containerSlots.torso 0)}}
+        <h4 class="tb-embedded-document-list-title">{{localize 'TB2.TorsoSlotHeader'}}</h4>
+        <ol class="tb-embedded-document-list tb-embedded-document-list--gear item-list">
+          {{#each ../gearSlotMap.torso as |itemData id|}}
+            {{#> systems/torchbearer/templates/sheets/actor/components/item-list-header.hbs}}
+              <div>{{localize 'TB2.GearHeader'}}</div>
+            {{/systems/torchbearer/templates/sheets/actor/components/item-list-header.hbs}}
+
+            {{> systems/torchbearer/templates/sheets/actor/components/item-list-entry.hbs
+              itemData=itemData}}
+          {{/each}}
+        </ol>
+                {{/if}}
+
+
+<!--    BELT-->
+        {{log 'has belt slots' (gt ../data.data.containerSlots.belt 0)}}
+        {{#if (gt ../data.data.containerSlots.belt 0)}}
+          <h4 class="tb-embedded-document-list-title">{{localize 'TB2.BeltSlotHeader'}}</h4>
+          <ol class="tb-embedded-document-list tb-embedded-document-list--gear item-list">
+          {{#each ../gearSlotMap.belt as |itemData id|}}
+            {{#> systems/torchbearer/templates/sheets/actor/components/item-list-header.hbs}}
+              <div>{{localize 'TB2.GearHeader'}}</div>
+            {{/systems/torchbearer/templates/sheets/actor/components/item-list-header.hbs}}
+
+            {{> systems/torchbearer/templates/sheets/actor/components/item-list-entry.hbs
+              itemData=itemData}}
+          {{/each}}
+          </ol>
+        {{/if}}
+<!--    POCKET-->
+        {{log 'has pocket slots' ../data.data.containerSlots.pocket}}
+        {{#if ../data.data.containerSlots.pocket}}
+          <h4 class="tb-embedded-document-list-title">{{localize 'TB2.PocketSlotHeader'}}</h4>
+          <ol class="tb-embedded-document-list tb-embedded-document-list--gear item-list">
+          {{#each ../gearSlotMap.pocket as |itemData id|}}
+            {{#> systems/torchbearer/templates/sheets/actor/components/item-list-header.hbs}}
+              <div>{{localize 'TB2.GearHeader'}}</div>
+            {{/systems/torchbearer/templates/sheets/actor/components/item-list-header.hbs}}
+
+            {{> systems/torchbearer/templates/sheets/actor/components/item-list-entry.hbs
+              itemData=itemData}}
+          {{/each}}
+        </ol>
+        {{/if}}
+<!--    HELD-->
+        {{log 'has held slots' (gt ../data.data.containerSlots.held 0)}}
+        {{#if (gt ../data.data.containerSlots.held 0)}}
+        <h4 class="tb-embedded-document-list-title">{{localize 'TB2.HeldSlotHeader'}}</h4>
+        <ol class="tb-embedded-document-list tb-embedded-document-list--gear item-list">
+          {{#each ../gearSlotMap.held as |itemData id|}}
+            {{#> systems/torchbearer/templates/sheets/actor/components/item-list-header.hbs}}
+              <div>{{localize 'TB2.GearHeader'}}</div>
+            {{/systems/torchbearer/templates/sheets/actor/components/item-list-header.hbs}}
+
+            {{> systems/torchbearer/templates/sheets/actor/components/item-list-entry.hbs
+              itemData=itemData}}
+          {{/each}}
+        </ol>
+      {{/if}}
+<!--    PACK-->
+      {{log 'has pack slots' (gt ../data.data.containerSlots.pack 0)}}
+      {{#if (gt ../data.data.containerSlots.pack 0)}}
+        <h4 class="tb-embedded-document-list-title">{{localize 'TB2.PackSlotHeader'}}</h4>
+        <ol class="tb-embedded-document-list tb-embedded-document-list--gear item-list">
+          {{#each ../gearSlotMap.pack as |itemData id|}}
+            {{log 'itemData' itemData}}
+            {{log 'each.loop.gearSlotMap' ../../gearSlotMap}}
+            {{#> systems/torchbearer/templates/sheets/actor/components/item-list-header.hbs}}
+              <div>{{localize 'TB2.GearHeader'}}</div>
+            {{/systems/torchbearer/templates/sheets/actor/components/item-list-header.hbs}}
+
+            {{> systems/torchbearer/templates/sheets/actor/components/item-list-entry.hbs
+              itemData=itemData}}
+          {{/each}}
+        </ol>
+      {{/if}}
+
+<!--    CUSTOM-->
+      {{log 'has custom slots' (gt ../data.data.containerSlots.custom 0)}}
+      {{#if (gt ../data.data.containerSlots.custom 0)}}
+        <h4 class="tb-embedded-document-list-title">{{localize 'TB2.CustomSlotHeader'}}</h4>
+        <ol class="tb-embedded-document-list tb-embedded-document-list--gear item-list">
+          {{#each ../gearSlotMap.custom as |itemData id|}}
+            {{#> systems/torchbearer/templates/sheets/actor/components/item-list-header.hbs}}
+              <div>{{localize 'TB2.GearHeader'}}</div>
+            {{/systems/torchbearer/templates/sheets/actor/components/item-list-header.hbs}}
+
+            {{> systems/torchbearer/templates/sheets/actor/components/item-list-entry.hbs
+              itemData=itemData}}
+          {{/each}}
+        </ol>
+      {{/if}}
+    {{/unless}}
     {{/each}}
   {{/unless}}
+<!--  TODO containers (torso backpack, caches, etc -->
   {{> systems/torchbearer/templates/sheets/actor/components/add-button.hbs
     title='TB2.UserInteractionAddItemTitle'
     documentType='item'
     type='gear'}}
 </div>
+
