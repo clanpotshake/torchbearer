@@ -36,8 +36,6 @@ export class TBItem extends Item {
     this.data.data.rollable = TBItem.rollableItemTypes.includes(this.type);
     if (this.data.type === 'skill') {
       this.data.data.learning = this.data.data.rank == 0 && this.data.data.attempts >= 1;
-      this.data.data.passes = 0;
-      this.data.data.fails = 0;
     }
   }
   async roll(options: { speaker?: { token?: TokenDocument; alias?: string } } = {}): Promise<void> {

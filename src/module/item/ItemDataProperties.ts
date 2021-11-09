@@ -95,6 +95,10 @@ interface ItemDataPropertiesDataLearningSkill {
 interface ItemDataPropertiesDataIsContainer {
   isContainer: boolean;
 }
+export interface TracksTests {
+  passes: number;
+  fails: number;
+}
 
 // types
 

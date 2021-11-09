@@ -1,6 +1,6 @@
 import { TB } from '../config';
-import { TracksTests } from '../actor/TBActor';
 import { SlotType } from '../actor/TBActorDataProperties';
+import { TracksTests } from './ItemDataProperties';
 
 declare global {
   interface SourceConfig {

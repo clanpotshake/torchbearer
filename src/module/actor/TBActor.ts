@@ -198,11 +198,11 @@ export class TBActor extends Actor {
   // }
 }
 
-export interface TracksTests {
-  passes: number;
-  fails: number;
-}
 export interface DisplayClass {
   cssClass?: string;
+}
+interface TracksTests {
+  passes: number;
+  fails: number;
 }
 export interface Ability extends TracksTests, DisplayClass {}
