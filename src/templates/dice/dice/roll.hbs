@@ -12,15 +12,13 @@ SPDX-License-Identifier: MIT
     <div class="dice-result">
         <div class="dice-formula">{{formula}}</div>
         {{{tooltip}}}
-<!--        <h4 class="dice-total tb-dice-total-fail  tb-dice-total-pass">{{total}}-->
         <h4 class="dice-total{{#if isFail}} tb-dice-total-fail{{/if}}{{#if isSuccess}} tb-dice-total-pass{{/if}}">{{total}}
         </h4>
       {{#if (gt sixes 0)}}
-        <div>You have {{sixes}} available to reroll</div>
+        <div>You have {{sixes}} 6s available to reroll</div>
       {{/if}}
       {{#if (gt fails 0)}}
-        <div>You have {{fails}} available to reroll</div>
+        <div>You have {{fails}} fails available to reroll</div>
       {{/if}}
-      <div>TODO roll results here, fails to reroll/6s to explode</div>
     </div>
 </div>

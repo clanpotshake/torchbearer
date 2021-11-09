@@ -35,4 +35,19 @@ export class TBTest extends DiceTerm {
     logger.info('found sixes:', this.rerollableSixes);
     logger.info('found fails:', this.rerollableFails);
   }
+  /**
+   * @override
+   * @remarks "min" and "max" are filtered out because they are irrelevant for
+   * {@link DS4Check}s and only result in some dice rolls being highlighted
+   * incorrectly.
+   */
+  getResultCSS(result: DiceTerm.Result): (string | null)[] {
+    return super.getResultCSS(result).filter((cssClass) => cssClass !== 'min');
+  }
+  /** @override */
+  _evaluateSync({ minimize = false, maximize = false } = {}): this {
+    super._evaluateSync({ minimize, maximize });
+    this.evaluateResults();
+    return this;
+  }
 }

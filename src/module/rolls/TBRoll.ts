@@ -1,5 +1,6 @@
 import { getGame } from '../helpers';
 import { TBTest } from './TBTest';
+import logger from '../logger';
 
 export class TBRoll<D extends Record<string, unknown> = Record<string, unknown>> extends Roll<D> {
   static CHAT_TEMPLATE = 'systems/torchbearer/templates/dice/dice/roll.hbs';
@@ -9,6 +10,8 @@ export class TBRoll<D extends Record<string, unknown> = Record<string, unknown>>
    */
   async render(chatOptions: Parameters<Roll['render']>[0] = {}): Promise<string> {
     logger.info('TBRoll.render', this);
+    const x = await super.getTooltip();
+    logger.info('tooltip is', x);
     chatOptions = foundry.utils.mergeObject(
       {
         user: getGame().user?.id,
@@ -44,7 +47,7 @@ export class TBRoll<D extends Record<string, unknown> = Record<string, unknown>>
       formula: isPrivate ? '???' : this._formula,
       flavor: isPrivate ? null : chatOptions.flavor,
       user: chatOptions.user,
-      tooltip: isPrivate ? '' : await this.getTooltip(),
+      tooltip: isPrivate ? '' : await this.getTooltip(), // this is where the dice face display comes from
       sixes: sixes,
       fails: fails,
       isFail: isFail,
@@ -52,5 +55,13 @@ export class TBRoll<D extends Record<string, unknown> = Record<string, unknown>>
       totalPasses: totalPasses,
     };
     return renderTemplate(chatOptions.template ?? '', chatData);
+  }
+
+  /**
+   * @override
+   */
+  getTooltip(): Promise<string> {
+    // dice highlighting css comes out of this
+    return super.getTooltip();
   }
 }
