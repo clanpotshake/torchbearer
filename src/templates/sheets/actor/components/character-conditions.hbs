@@ -1,4 +1,5 @@
 <div class="tb-actor-properties form-group">
+  <div class="grid grid-2col basic-properties tb-actor-properties__property-multi-input">
     <h2>{{localize 'TB2.TitleBiographicalData'}}</h2>
     <div class="tb-actor-properties__property">
       <label for="name-{{data._id}}" class="tb-actor-properties__property-label">{{localize "TB2.CharacterNameLabel"}}</label>
@@ -8,46 +9,48 @@
              value="{{actor.name}}"/>
     </div>
 
-  <div class="tb-actor-properties__property">
-    <label for="data.stock-{{data._id}}" class="tb-actor-properties__property-label">{{localize "TB2.CharacterStockLabel"}}</label>
-    <input id="data.stock-{{data._id}}"
-           data-type="String" type="text"
-           name="data.stock"
-           value="{{data.data.stock}}"/>
-  </div>
+    <div class="tb-actor-properties__property">
+      <label for="data.stock-{{data._id}}" class="tb-actor-properties__property-label">{{localize "TB2.CharacterStockLabel"}}</label>
+      <input id="data.stock-{{data._id}}"
+             data-type="String" type="text"
+             name="data.stock"
+             value="{{data.data.stock}}"/>
+    </div>
 
-  <div class="tb-actor-properties__property">
-    <label for="data.class-{{data._id}}" class="tb-actor-properties__property-label">{{localize "TB2.CharacterClassLabel"}}</label>
-    <input id="data.class-{{data._id}}"
-           data-type="String" type="text"
-           name="data.career"
-           value="{{data.data.career}}"/>
-  </div>
+    <div class="tb-actor-properties__property">
+      <label for="data.class-{{data._id}}" class="tb-actor-properties__property-label">{{localize "TB2.CharacterClassLabel"}}</label>
+      <input id="data.class-{{data._id}}"
+             data-type="String" type="text"
+             name="data.career"
+             value="{{data.data.career}}"/>
+    </div>
 
-  <div class="tb-actor-properties__property">
-    <label for="data.age-{{data._id}}" class="tb-actor-properties__property-label">{{localize "TB2.CharacterAgeLabel"}}</label>
-    <input id="data.age-{{data._id}}"
-           data-type="Number" type="number"
-           name="data.age"
-           value="{{data.data.age}}"/>
-  </div>
+    <div class="tb-actor-properties__property">
+      <label for="data.age-{{data._id}}" class="tb-actor-properties__property-label">{{localize "TB2.CharacterAgeLabel"}}</label>
+      <input id="data.age-{{data._id}}"
+             data-type="Number" type="number"
+             name="data.age"
+             value="{{data.data.age}}"/>
+    </div>
 
-  <div class="tb-actor-properties__property">
-    <label for="data.hometown-{{data._id}}" class="tb-actor-properties__property-label">{{localize "TB2.CharacterHomeLabel"}}</label>
-    <input id="data.hometown-{{data._id}}"
-           data-type="String" type="text"
-           name="data.hometown"
-           value="{{data.data.hometown}}"/>
-  </div>
+    <div class="tb-actor-properties__property">
+      <label for="data.hometown-{{data._id}}" class="tb-actor-properties__property-label">{{localize "TB2.CharacterHomeLabel"}}</label>
+      <input id="data.hometown-{{data._id}}"
+             data-type="String" type="text"
+             name="data.hometown"
+             value="{{data.data.hometown}}"/>
+    </div>
 
-  <div class="tb-actor-properties__property">
-    <label for="data.raiment-{{data._id}}" class="tb-actor-properties__property-label">{{localize "TB2.CharacterRaimentLabel"}}</label>
-    <input id="data.raiment-{{data._id}}"
-           data-type="String" type="text"
-           name="data.raiment"
-           value="{{data.data.raiment}}"/>
+    <div class="tb-actor-properties__property">
+      <label for="data.raiment-{{data._id}}" class="tb-actor-properties__property-label">{{localize "TB2.CharacterRaimentLabel"}}</label>
+      <input id="data.raiment-{{data._id}}"
+             data-type="String" type="text"
+             name="data.raiment"
+             value="{{data.data.raiment}}"/>
+    </div>
   </div>
-  <div class="tb-actor-properties__property-multi-input">
+  <div class="grid grid-2col basic-properties tb-actor-properties__property-multi-input">
+    <h3>{{localize 'TB2.ConditionsHeader'}}</h3>
     <div class="tb-actor-properties__property">
       <label for="data.conditions.fresh-{{data._id}}"
              class="tb-actor-properties__property-label">{{localize "TB2.ConditionFresh"}}</label>

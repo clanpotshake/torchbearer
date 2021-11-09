@@ -22,6 +22,7 @@ SHEETS
     PLAYER CHARACTER
       SKILLS
         pass/fails are getting saved to the actor, not the item (old data? make a new actor)
+        compute Bulky et al (skill + gear combO) and pass to roll formula
       GEAR
         fuck load of repetition around slot names, factor that out
         how to represent containers? should they be their own item type?

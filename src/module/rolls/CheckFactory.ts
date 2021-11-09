@@ -6,6 +6,7 @@
 import { getGame } from '../helpers';
 import { number } from 'yargs';
 import { utilities } from '../util/utilities';
+import { TBRoll } from './TBRoll';
 
 /**
  * Provides default values for all arguments the `CheckFactory` expects.
@@ -42,7 +43,7 @@ class CheckFactory {
   async execute(): Promise<ChatMessage | undefined> {
     logger.info('executing roll...', this.options);
     const innerFormula = this.rollFormula();
-    const roll = Roll.create(innerFormula);
+    const roll = TBRoll.create(innerFormula);
     const speaker = this.options.speaker ?? ChatMessage.getSpeaker();
 
     return roll.toMessage(

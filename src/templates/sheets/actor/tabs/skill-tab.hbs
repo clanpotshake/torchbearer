@@ -6,18 +6,20 @@
 
   {{#unless (isEmpty itemsByType.skill)}}
     <hr>
-    <h3 class="tb-embedded-document-list-title">{{localize 'TB2.SkillsHeader'}}</h3>
-    <ol class="tb-embedded-document-list tb-embedded-document-list--skill item-list">
-      {{#> systems/torchbearer/templates/sheets/actor/components/item-list-header.hbs}}
-        <div>{{localize 'TB2.SkillHeader'}}</div>
-      {{/systems/torchbearer/templates/sheets/actor/components/item-list-header.hbs}}
+    <div class="grid grid-3col tb-actor-properties__property-multi-input">
+      <h3 class="tb-embedded-document-list-title">{{localize 'TB2.SkillsHeader'}}</h3>
+      <ol class="tb-embedded-document-list tb-embedded-document-list--skill item-list">
+        {{#> systems/torchbearer/templates/sheets/actor/components/item-list-header.hbs}}
+          <div>{{localize 'TB2.SkillHeader'}}</div>
+        {{/systems/torchbearer/templates/sheets/actor/components/item-list-header.hbs}}
 
-      {{#each itemsByType.skill as |itemData id|}}
-        {{> systems/torchbearer/templates/sheets/actor/components/item-list-entry.hbs
-          itemData=itemData
-          hideDescription=true}}
-      {{/each}}
-    </ol>
+        {{#each itemsByType.skill as |itemData id|}}
+          {{> systems/torchbearer/templates/sheets/actor/components/item-list-entry.hbs
+            itemData=itemData
+            hideDescription=true}}
+        {{/each}}
+      </ol>
+    </div>
   {{/unless}}
   {{> systems/torchbearer/templates/sheets/actor/components/add-button.hbs
     title='TB2.UserInteractionAddItemTitle'
