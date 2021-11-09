@@ -1,6 +1,5 @@
 <div class="tab" data-tab="inventory">
   {{log 'inventory-tab' this}}
-  {{log 'inventory-tab.gearSlotMap' gearSlotMap}}
 
   <div class="tb-actor-header__data-row">
     <div>header content</div>
@@ -10,10 +9,7 @@
     <hr>
     <h3 class="tb-embedded-document-list-title">{{localize 'TB2.WhatIsWornHeader'}}</h3>
     {{#each config.i18n.slots as |translation name|}}
-      {{log 'slot: ' name}}
-      {{log 'items in slot:' (lookup ../gearSlotMap name)}}
       {{#unless (isEmpty (lookup ../gearSlotMap name))}}
-      {{log 'actor has slots of type' (gt (lookup ../data.data.containerSlots name) 0)}}
 
 <!--  HEAD-->
         {{log 'has head slots' (gt ../data.data.containerSlots.head 0)}}
