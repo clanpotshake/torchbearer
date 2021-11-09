@@ -26,28 +26,24 @@
                      class="tb-embedded-document-list__editable change-item"
                      data-type="Number" type="number"
                      data-property="data.rank"
-                     name="data.rank"
                      value="{{itemData.data.rank}}" />
-              <label for="data.passes-{{itemData._id}}">{{itemData.name}}</label>
+              <label for="data.passes-{{itemData._id}}">{{localize 'TB2.SkillPassesLabel'}}</label>
               <input id="data.passes-{{itemData._id}}"
                      class="tb-embedded-document-list__editable change-item"
                      data-type="Number" type="number"
                      data-property="data.passes"
-                     name="data.passes"
                      value="{{itemData.data.passes}}" />
-              <label for="data.fails-{{itemData._id}}">{{itemData.name}}</label>
+              <label for="data.fails-{{itemData._id}}">{{localize 'TB2.SkillFailsLabel'}}</label>
               <input id="data.fails-{{itemData._id}}"
                      class="tb-embedded-document-list__editable change-item"
                      data-type="Number" type="number"
                      data-property="data.fails"
-                     name="data.fails"
                      value="{{itemData.data.fails}}" />
-              <label for="data.attempts-{{itemData._id}}">{{itemData.name}}</label>
+              <label for="data.attempts-{{itemData._id}}">{{localize 'TB2.SkillAttemptsLabel'}}</label>
               <input id="data.attempts-{{itemData._id}}"
                      class="tb-embedded-document-list__editable change-item"
                      data-type="Number" type="number"
                      data-property="data.attempts"
-                     name="data.attempts"
                      value="{{itemData.data.attempts}}" />
             </div>
           {{/systems/torchbearer/templates/sheets/actor/components/item-list-entry.hbs}}
