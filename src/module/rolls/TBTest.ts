@@ -9,10 +9,13 @@ export class TBTest extends DiceTerm {
     logger.info('TBTest.constructor', results);
     if (this.results.length > 0) {
       this.evaluateResults();
+    } else {
+      logger.error('TBTest has empty results', this);
     }
   }
   rerollableSixes = 0;
   rerollableFails = 0;
+  successes = 0;
 
   /** @override */
   roll({ minimize = false, maximize = false } = {}): DiceTerm.Result {
@@ -26,17 +29,20 @@ export class TBTest extends DiceTerm {
         this.rerollableSixes++;
       }
       // TODO mastery here
-      if (die.result <= 4) {
+      if (die.result < 4) {
         this.rerollableFails++;
+      } else {
+        this.successes++;
       }
     });
     logger.info('found sixes:', this.rerollableSixes);
     logger.info('found fails:', this.rerollableFails);
+    logger.info('found successes:', this.successes);
   }
   /**
    * @override
    * @remarks "min" and "max" are filtered out because they are irrelevant for
-   * {@link DS4Check}s and only result in some dice rolls being highlighted
+   * {@link TBTest}s and only result in some dice rolls being highlighted
    * incorrectly.
    */
   getResultCSS(result: DiceTerm.Result): (string | null)[] {

@@ -27,21 +27,10 @@ export class TBRoll<D extends Record<string, unknown> = Record<string, unknown>>
     // Execute the roll, if needed
     if (!this._evaluated) this.evaluate();
 
-    let sixes = 0;
-    let fails = 0;
-    let successes = 0;
-    this.dice.flatMap((die) =>
-      die.results.map((face) => {
-        if (face.result == 6) {
-          sixes++;
-          successes++;
-        } else if (face.result <= 3) {
-          fails++;
-        } else {
-          successes++;
-        }
-      }),
-    );
+    const firstDiceTerm = this.dice[0];
+    const successes = firstDiceTerm instanceof TBTest ? firstDiceTerm.successes : 0;
+    const sixes = firstDiceTerm instanceof TBTest ? firstDiceTerm.rerollableSixes : 0;
+    const fails = firstDiceTerm instanceof TBTest ? firstDiceTerm.rerollableFails : 0;
     const isFail = false;
 
     const chatData = {
@@ -53,8 +42,10 @@ export class TBRoll<D extends Record<string, unknown> = Record<string, unknown>>
       fails: fails,
       isFail: isFail,
       isSuccess: !isFail,
+      total: successes,
       totalSuccesses: successes,
     };
+    logger.info('TBRoll.render.chatData', chatData);
     return renderTemplate(chatOptions.template ?? '', chatData);
   }
 

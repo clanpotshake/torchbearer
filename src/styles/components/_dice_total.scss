@@ -12,15 +12,21 @@
     filter: sepia(0.5) hue-rotate($rotation);
   }
 
+  &--success {
+    @include color-filter(30deg);
+    background-color: colors.$c-success-bg;
+    color: colors.$c-success;
+  }
+
   &--six {
     @include color-filter(60deg);
-    background-color: $c-six-bg;
-    color: $c-six;
+    background-color: colors.$c-six-bg;
+    color: colors.$c-six;
   }
 
   &--wyrm {
     @include color-filter(-60deg);
-    background-color: $c-wyrm-bg;
-    color: $c-wyrm;
+    background-color: colors.$c-wyrm-bg;
+    color: colors.$c-wyrm;
   }
 }

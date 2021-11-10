@@ -4,8 +4,8 @@
 // SPDX-License-Identifier: MIT
 
 import { getGame } from '../helpers';
-import { number } from 'yargs';
 import { utilities } from '../util/utilities';
+import { TBRoll } from './TBRoll';
 
 /**
  * Provides default values for all arguments the `CheckFactory` expects.
