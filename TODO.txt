@@ -16,6 +16,7 @@ DIALOGS
   ROLL
     preview dice pool size. make the helper static so the dialog can call it to update
     account for successes on 3
+    free text field for flavor text
 
 SHEETS
   ACTOR

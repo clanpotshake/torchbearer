@@ -6,7 +6,6 @@
 import { getGame } from '../helpers';
 import { number } from 'yargs';
 import { utilities } from '../util/utilities';
-import { TBRoll } from './TBRoll';
 
 /**
  * Provides default values for all arguments the `CheckFactory` expects.
@@ -43,9 +42,8 @@ class CheckFactory {
   async execute(): Promise<ChatMessage | undefined> {
     logger.info('executing roll...', this.options);
     const innerFormula = this.rollFormula();
-    const roll = TBRoll.create(innerFormula);
+    const roll = Roll.create(innerFormula);
     const speaker = this.options.speaker ?? ChatMessage.getSpeaker();
-
     return roll.toMessage(
       {
         speaker,
@@ -58,13 +56,11 @@ class CheckFactory {
     );
   }
   private rollFormula(): string {
-    logger.info('rollFormula', this.options);
     const diePool = this.options.dicePool;
-    const successes =
-      this.options.successMod >= 0 ? `+${this.options.successMod}` : `${this.options.successMod}`;
-
+    // const successes =
+    //   this.options.successMod >= 0 ? `+${this.options.successMod}` : `${this.options.successMod}`;
     // TODO need to parse results manually before applying successes
-    return [`${diePool}d6${successes}`].filterJoin('');
+    return `${diePool}d6`;
   }
 }
 

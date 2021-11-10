@@ -16,9 +16,7 @@ export class TBTest extends DiceTerm {
 
   /** @override */
   roll({ minimize = false, maximize = false } = {}): DiceTerm.Result {
-    logger.info('TBTest.roll', this);
-    const x = super.roll({ minimize: minimize, maximize: maximize });
-    return x;
+    return super.roll({ minimize: false, maximize: maximize });
   }
   evaluateResults(): void {
     this.rerollableFails = 0;

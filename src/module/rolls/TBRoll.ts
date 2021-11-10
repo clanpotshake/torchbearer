@@ -4,6 +4,7 @@ import logger from '../logger';
 
 export class TBRoll<D extends Record<string, unknown> = Record<string, unknown>> extends Roll<D> {
   static CHAT_TEMPLATE = 'systems/torchbearer/templates/dice/dice/roll.hbs';
+  static TOOLTIP_TEMPLATE = 'systems/torchbearer/templates/dice/dice/dice-tooltip.hbs';
 
   /**
    * @override
@@ -28,16 +29,16 @@ export class TBRoll<D extends Record<string, unknown> = Record<string, unknown>>
 
     let sixes = 0;
     let fails = 0;
-    let totalPasses = 0;
+    let successes = 0;
     this.dice.flatMap((die) =>
       die.results.map((face) => {
         if (face.result == 6) {
           sixes++;
-          totalPasses++;
+          successes++;
         } else if (face.result <= 3) {
           fails++;
         } else {
-          totalPasses++;
+          successes++;
         }
       }),
     );
@@ -52,7 +53,7 @@ export class TBRoll<D extends Record<string, unknown> = Record<string, unknown>>
       fails: fails,
       isFail: isFail,
       isSuccess: !isFail,
-      totalPasses: totalPasses,
+      totalSuccesses: successes,
     };
     return renderTemplate(chatOptions.template ?? '', chatData);
   }

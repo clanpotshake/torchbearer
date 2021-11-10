@@ -1,0 +1,16 @@
+{{log 'dice-tooltip.hbs' this}}
+<div class="dice-tooltip">
+  <section class="tooltip-part">
+    <div class="dice">
+      <header class="part-header flexrow">
+        <span class="part-formula">{{formula}}</span>
+        <span class="part-total">{{totalSuccesses}}</span>
+      </header>
+      <ol class="dice-rolls">
+        {{#each this.parts.[0].rolls as |die|}}
+          <li class="roll die d6 {{#if (eq die.result '6')}}max{{/if}}">{{die.result}}</li>
+        {{/each}}
+      </ol>
+    </div>
+  </section>
+</div>
