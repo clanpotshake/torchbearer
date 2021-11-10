@@ -42,6 +42,7 @@ class CheckFactory {
   async execute(): Promise<ChatMessage | undefined> {
     logger.info('executing roll...', this.options);
     const innerFormula = this.rollFormula();
+    logger.info('formula is', innerFormula);
     const roll = Roll.create(innerFormula);
     const speaker = this.options.speaker ?? ChatMessage.getSpeaker();
     return roll.toMessage(
@@ -60,7 +61,7 @@ class CheckFactory {
     // const successes =
     //   this.options.successMod >= 0 ? `+${this.options.successMod}` : `${this.options.successMod}`;
     // TODO need to parse results manually before applying successes
-    return `${diePool}d6`;
+    return `${diePool}ds6`;
   }
 }
 
