@@ -43,6 +43,7 @@ class CheckFactory {
     logger.info('executing roll...', this.options);
     const innerFormula = this.rollFormula();
     logger.info('formula is', innerFormula);
+    // TODO roll.create is breaking on the formula, defaulting to 1d
     const roll = Roll.create(innerFormula);
     const speaker = this.options.speaker ?? ChatMessage.getSpeaker();
     return roll.toMessage(

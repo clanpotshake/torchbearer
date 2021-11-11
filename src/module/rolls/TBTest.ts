@@ -18,8 +18,26 @@ export class TBTest extends DiceTerm {
   successes = 0;
 
   /** @override */
+  // evaluate(
+  //   options: Partial<RollTerm.EvaluationOptions & { async: boolean }> | undefined = {},
+  // ): Promise<this> {
+  //   logger.info('in TBTest.evaluate');
+  //   return super.evaluate({ minimize: false, maximize: true, async: options?.async || true });
+  // }
+  /** @override */
+  get expression(): string {
+    return `ds${this.modifiers.join('')}`;
+  }
+  /** @override */
+  get total(): string | number | null | undefined {
+    return this.successes;
+  }
+
+  /** @override */
   roll({ minimize = false, maximize = false } = {}): DiceTerm.Result {
+    logger.info('in TBTest.roll');
     if (!this._evaluated) {
+      logger.info('roll not yet evaluated, doing so...');
       super.roll({ minimize: false, maximize: maximize });
       this.evaluateResults();
     }
@@ -61,4 +79,10 @@ export class TBTest extends DiceTerm {
     this.evaluateResults();
     return this;
   }
+  static DENOMINATION = 's';
+  static MODIFIERS = {
+    c: (): void => undefined, // Modifier is consumed in constructor for maximumCoupResult / minimumFumbleResult
+    v: (): void => undefined, // Modifier is consumed in constructor for checkTargetNumber
+    n: (): void => undefined, // Modifier is consumed in constructor for canFumble
+  };
 }
