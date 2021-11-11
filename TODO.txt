@@ -20,6 +20,7 @@ DIALOGS
 
 SHEETS
   ACTOR
+    pocket defaults to 0, should be true or whatever
     PLAYER CHARACTER
       SKILLS
         pass/fails are getting saved to the actor, not the item (old data? make a new actor)

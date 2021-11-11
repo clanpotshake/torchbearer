@@ -170,8 +170,8 @@ Item:
     templates:
       - book
     description: 'item description'
-    containedIn: 'pack'
-    availability: 'X'
+    containedIn: ''
+    availability: ''
     cost: 0
     volume:
       pack: 0

@@ -176,7 +176,7 @@ const i18nKeys = {
     stoneteller: 'TB2.ClassStoneteller',
   },
   slots: {
-    arm: 'TB2.SlotTypeArm',
+    head: 'TB2.SlotTypeHead',
     belt: 'TB2.SlotTypeBelt',
     feet: 'TB2.SlotTypeFeet',
     hand: 'TB2.SlotTypeHand',

@@ -40,18 +40,28 @@
           <input
             class="tb-embedded-document-list__editable change-item"
             type="number" data-type="Number"
-            title="{{localize 'TB2.GearCostInput'}}"
-            id="data.cost-{{data._id}}"
             name="data.cost"
+            title="{{localize 'TB2.GearCostInput'}}"
             value="{{data.data.cost}}">
           <label for="data.cost-{{data._id}}">{{localize 'TB2.GearAvailabilityLabel'}}</label>
           <input
             class="tb-embedded-document-list__editable change-item"
             type="text" data-type="String"
-            title="{{localize 'TB2.GearAvailabilityInput'}}"
-            id="data.cost-{{data.availability}}"
             name="data.availability"
+            title="{{localize 'TB2.GearAvailabilityInput'}}"
             value="{{data.data.availability}}">
+          <label>{{localize 'TB2.GearBookNameLabel'}}</label>
+          <input
+            class="tb-embedded-document-list__editable change-item"
+            type="text" data-type="String"
+            name="data.bookName"
+            value="{{data.data.bookName}}">
+          <label for="data.page-{{data._id}}">{{localize 'TB2.GearBookPageLabel'}}</label>
+          <input
+            class="tb-embedded-document-list__editable change-item"
+            type="text" data-type="String"
+            name="data.page"
+            value="{{data.data.page}}">
         </div>
       {{> systems/torchbearer/templates/sheets/item/components/gear-slots.hbs}}
     {{/systems/torchbearer/templates/sheets/item/tabs/configuration.hbs}}

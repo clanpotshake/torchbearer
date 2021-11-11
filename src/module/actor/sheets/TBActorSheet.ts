@@ -48,6 +48,22 @@ export class TBActorSheet extends ActorSheet<ActorSheet.Options, TBActorSheetDat
         return [slot, itemsInSlot];
       }),
     );
+    const ghostGear = this.actor.items
+      .filter((item) => {
+        return item.data.type === 'gear' && item.data.data.containedIn === undefined;
+      })
+      .map((item) => item.data);
+
+    const containers = this.actor.items.filter((item) => {
+      return (
+        item.data.type === 'gear' &&
+        Object.values(item.data.data.capacity).some((slot) => {
+          return slot > 0;
+        })
+      );
+      // TODO isContainer isn't getting set properly, use it when the bug is fixed
+      // return item.data.type === 'gear' && item.data.data.isContainer;
+    });
 
     const enrichedEffectPromises = this.actor.effects.map(async (effect) => {
       return {
@@ -65,6 +81,8 @@ export class TBActorSheet extends ActorSheet<ActorSheet.Options, TBActorSheetDat
       config: TB,
       itemsByType,
       gearBySlot,
+      containers,
+      ghostGear,
       enrichedEffects,
       settings: getTBSettings(),
     };
@@ -163,6 +181,10 @@ export class TBActorSheet extends ActorSheet<ActorSheet.Options, TBActorSheetDat
    * @param event - The originating change event
    */
   protected onChangeItem(event: JQuery.ChangeEvent): void {
+    const target = event.target;
+    const data = event.data;
+    logger.info('onChangeItem.target', target);
+    logger.info('onChangeItem.data', data);
     return this.onChangeEmbeddedDocument(event, 'Item');
   }
   /**
