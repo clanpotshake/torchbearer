@@ -34,16 +34,8 @@
             {{/systems/torchbearer/templates/sheets/actor/components/item-list-header.hbs}}
             {{> systems/torchbearer/templates/sheets/actor/components/item-list-entry.hbs
               itemData=itemData}} --}}
-            <li class="tb-embedded-document-list__row grid-4col">
-              <div>
-                <label>Name: </label>
-                <input
-                  type="text" datatype="String"
-                  name="data.name"
-                  value="{{itemData.name}}">
-              </div>
-            </li>
-            {{{times itemData.data.data.capacity.pack '<li>Empty slot!</li>'}}}
+            <div>{{itemData.name}}</div>
+            {{{times itemData.data.data.capacity.pack '<li class="tb-embedded-document-list__row grid-4col">Empty slot!</li>'}}}
           </ul>
       {{/each}}
     </div>
