@@ -14,4 +14,8 @@ const helpers = {
   beginnersLuckAttributes: (): string[] => TBItem.beginnersLuckAttributes,
   ifIn: (input: Array<unknown> | null | undefined, elem: unknown): boolean =>
     input?.includes(elem) || false,
+  times: (input: number, repeatMe: string | null | undefined): string => {
+    logger.info(`in times with, repeating ${repeatMe} ${input} times`);
+    return repeatMe?.repeat(input) || '';
+  },
 };

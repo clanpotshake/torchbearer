@@ -1,0 +1,53 @@
+/*
+ * SPDX-FileCopyrightText: 2021 Johannes Loher
+ *
+ * SPDX-License-Identifier: MIT
+ */
+
+@use "../utils/typography";
+
+.ds4-actor-header {
+  display: flex;
+  flex-grow: 0;
+  flex-shrink: 0;
+  gap: 1em;
+
+  &__img {
+    border: none;
+    cursor: pointer;
+    height: 100px;
+    width: 100px;
+  }
+
+  &__data {
+    display: flex;
+    flex-direction: column;
+  }
+
+  &__data-row {
+    align-content: center;
+    display: flex;
+    flex: 1;
+    flex-direction: row;
+    gap: 0.5em;
+    > * {
+      flex: 1;
+    }
+  }
+
+  &__name {
+    display: flex;
+    align-items: center;
+    border-bottom: 0;
+    margin: 0;
+  }
+
+  &__name-input {
+    @include typography.font-heading-upper;
+    background-color: transparent;
+    border: none;
+    flex: 1;
+    font-size: 1.25em;
+    height: auto;
+  }
+}

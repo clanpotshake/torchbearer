@@ -9,6 +9,7 @@
 @include meta.load-css('components/dice_total');
 
 .tb2 {
+  @include meta.load-css('components/actor_header');
   @include meta.load-css('components/actor_properties');
   @include meta.load-css('components/apps');
   @include meta.load-css('components/basic_properties');
