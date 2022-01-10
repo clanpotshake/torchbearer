@@ -1,0 +1,73 @@
+{{!--
+SPDX-FileCopyrightText: 2021 Johannes Loher
+SPDX-FileCopyrightText: 2021 Gesina Schwalbe
+
+SPDX-License-Identifier: MIT
+--}}
+
+{{!--
+!-- Render an item list entry row.
+!-- If the partial is called with a partial block, the partial block
+!-- content is inserted before the description.
+!-- @param itemData: The data of the item.
+!-- @param isEquipable: A flag to enable the equipped column.
+!-- @param hasQuantity: A flag to enable the quantity column.
+!-- @param hideDescription: A flag to disable the description column.
+!-- @param @partial-block: Custom column headers can be passed using the partial block.
+--}}
+<li class="tb-embedded-document-list__row item" data-item-id="{{itemData._id}}">
+  {{log 'item-list-entry.itemData' itemData}}
+    {{#if isEquipable}}
+    <input class="tb-embedded-document-list__editable tb-embedded-document-list__editable--checkbox change-item"
+           type="checkbox" {{checked itemData.data.equipped}}
+           data-dtype="Boolean"
+           data-property="data.equipped"
+           title="{{localize 'TB2.ItemEquipped'}}">
+    {{/if}}
+
+    {{!-- image --}}
+    {{> systems/torchbearer/templates/sheets/actor/components/rollable-image.hbs
+      src=itemData.img
+      alt=(localize "TB2.DocumentImageAltText" name=itemData.name)
+      title=itemData.name
+      rollableTitle=(localize "TB2.RollableImageRollableTitle" name=itemData.name)
+      rollable=itemData.data.rollable
+      rollableClass="rollable-item"}}
+
+    {{!-- amount --}}
+    {{#if hasQuantity}}
+    <input class="tb-embedded-document-list__editable change-item"
+           type="number" data-dtype="Number"
+           min="0"
+           step="1"
+           value="{{itemData.data.quantity}}"
+           data-property="data.quantity"
+           title="{{localize 'TB2.Quantity'}}" />
+    {{/if}}
+
+    {{!-- name --}}
+    <input class="tb-embedded-document-list__editable change-item"
+           type="text"
+           data-dtype="String"
+           value="{{itemData.name}}"
+           data-property="name"
+           title="{{htmlToPlainText itemData.data.description}}" />
+
+    {{!-- item type specifics --}}
+    {{#if @partial-block }}
+    {{> @partial-block}}
+    {{/if}}
+
+    {{!-- description --}}
+    {{#unless hideDescription}}
+    <div class="tb-embedded-document-list__description"
+         title="{{htmlToPlainText itemData.data.description}}">
+        {{{itemData.data.description}}}</div>
+    {{/unless}}
+
+    {{!-- control button group --}}
+    {{> systems/torchbearer/templates/sheets/actor/components/control-button-group.hbs
+      documentType="item"
+      editTitle="TB2.UserInteractionEditItemTitle"
+      deleteTitle="TB2.UserInteractionDeleteItemTitle"}}
+</li>

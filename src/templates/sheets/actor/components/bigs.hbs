@@ -1,0 +1,31 @@
+<div class="tb-character-sheet-bigs">
+  <h1>{{localize 'TB2.TitleBigs'}}</h1>
+  {{log 'hasCreed' hasCreed}}
+  <div>
+    <label for="belief">{{localize "TB2.BigsBeliefLabel"}}</label>
+    <input id="belief"
+           data-type="String" type="text"
+           name="data.belief"
+           value="{{data.data.belief}}" />
+
+    <label for="instinct">{{localize "TB2.BigsInstinctLabel"}}</label>
+    <input id="instinct"
+           data-type="String" type="text"
+           name="data.instinct"
+           value="{{data.data.instinct}}" />
+
+    <label for="goal">{{localize "TB2.BigsGoalLabel"}}</label>
+    <input id="goal"
+           data-type="String" type="text"
+           name="data.goal"
+           value="{{data.data.goal}}" />
+<!---->
+    {{#if hasCreed}}
+      <label for="creed">{{localize "TB2.BigsCreedLabel"}}</label>
+      <input id="creed"
+             data-type="String" type="text"
+             name="data.creed"
+             value="{{data.data.creed}}" />
+    {{/if}}
+  </div>
+</div>

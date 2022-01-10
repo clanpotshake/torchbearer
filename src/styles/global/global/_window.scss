@@ -1,0 +1,16 @@
+/*
+ * SPDX-FileCopyrightText: 2021 Johannes Loher
+ *
+ * SPDX-License-Identifier: MIT
+ */
+
+
+.window-app {
+    input[type="text"],
+    input[type="number"],
+    input[type="password"],
+    input[type="date"],
+    input[type="time"] {
+        width: 100%;
+    }
+}

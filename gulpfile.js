@@ -6,6 +6,7 @@ const gulp = require('gulp');
 const path = require('path');
 const rollupConfig = require('./rollup.config');
 const semver = require('semver');
+const yaml = require('gulp-yaml');
 
 /********************/
 /*  CONFIGURATION   */
@@ -13,7 +14,7 @@ const semver = require('semver');
 
 const name = path.basename(path.resolve('.'));
 const sourceDirectory = './src';
-const distDirectory = './dist';
+const distDirectory = './dist/';
 const stylesDirectory = `${sourceDirectory}/styles`;
 const stylesExtension = 'css';
 const sourceFileExtension = 'ts';
@@ -222,7 +223,14 @@ function bumpVersion(cb) {
   }
 }
 
-const execBuild = gulp.parallel(buildCode, buildStyles, copyFiles);
+function buildYml() {
+  return gulp
+    .src('src/template.yml')
+    .pipe(yaml({ space: 2 }))
+    .pipe(gulp.dest('./dist'));
+}
+
+const execBuild = gulp.parallel(buildCode, buildStyles, buildYml, copyFiles);
 
 exports.build = gulp.series(clean, execBuild);
 exports.watch = buildWatch;

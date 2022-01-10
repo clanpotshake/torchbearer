@@ -1,0 +1,10 @@
+<div class="tb-character-sheet-traits">
+  <h1>{{localize 'TB2.TitleTraits'}}</h1>
+  <div>
+    {{#each itemsByType.trait as |i|}}
+      {{> systems/torchbearer/templates/sheets/actor/components/trait.hbs
+        trait-level=i.data.level
+        trait-name=i.name }}
+    {{/each}}
+  </div>
+</div>

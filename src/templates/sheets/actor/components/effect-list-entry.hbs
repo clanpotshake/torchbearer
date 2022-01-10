@@ -1,0 +1,37 @@
+{{!--
+SPDX-FileCopyrightText: 2021 Johannes Loher
+SPDX-FileCopyrightText: 2021 Gesina Schwalbe
+
+SPDX-License-Identifier: MIT
+--}}
+
+{{!--
+!-- Render an effect list entry row.
+!-- @param effectData: The data of the item.
+--}}
+<li class="tb-embedded-document-list__row effect" data-effect-id="{{effectData._id}}">
+    {{!-- enabled --}}
+    <input class="tb-embedded-document-list__editable tb-embedded-document-list__editable--checkbox change-effect"
+        type="checkbox" {{checked (ne effectData.disabled true)}} data-dtype="Boolean" data-property="disabled"
+        data-inverted="true" title="{{localize 'TB2.EffectEnabled'}}">
+
+    {{!-- effectively enabled --}}
+    {{#if effectData.isEffectivelyEnabled}}<i class="fas fa-check"></i>{{else}}<i class="fas fa-ban"></i>{{/if}}
+
+    {{!-- icon --}}
+    {{> systems/torchbearer/templates/sheets/actor/components/rollable-image.hbs rollable=false src=effectData.icon
+    alt=(localize "TB2.EffectIconAltText" label=effectData.label) title=effectData.label}}
+
+    {{!-- label --}}
+    <div title="{{effectData.label}}">{{effectData.label}}</div>
+
+    {{!-- source name --}}
+    <div>{{effectData.sourceName}}</div>
+
+    {{!-- factor --}}
+    <div title="{{effectData.factor}}">{{effectData.factor}}</div>
+
+    {{!-- control button group --}}
+    {{> systems/torchbearer/templates/sheets/actor/components/control-button-group.hbs documentType="effect"
+    editTitle="TB2.UserInteractionEditEffectTitle" deleteTitle="TB2.UserInteractionDeleteEffectTitle"}}
+</li>

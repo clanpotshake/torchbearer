@@ -1,0 +1,53 @@
+<div class="tab" data-tab="wises">
+  {{log 'wises-tab.this' this}}
+  {{#unless (isEmpty itemsByType.wise)}}
+    <hr>
+    <h4 class="tb-embedded-document-list-title">{{localize 'TB2.WisesHeader'}}</h4>
+    <ol class="tb-embedded-document-list tb-embedded-document-list--wise item-list">
+      {{#> systems/torchbearer/templates/sheets/actor/components/item-list-header.hbs}}
+        <div>{{localize 'TB2.WisesHeader'}}</div>
+      {{/systems/torchbearer/templates/sheets/actor/components/item-list-header.hbs}}
+
+      {{#each itemsByType.wise as |itemData id|}}
+        {{#> systems/torchbearer/templates/sheets/actor/components/item-list-entry.hbs
+          itemData=itemData}}
+          <div class="form-group">
+            <label for="data.pass-{{itemData._id}}">{{localize 'TB2.WisePass'}}</label>
+            <input id="data.pass-{{itemData._id}}"
+                   type="checkbox" data-type="Boolean"
+                   data-property="data.pass"
+                   name="data.pass"
+                   class="change-item tb-embedded-document-list__editable"
+                   {{checked itemData.data.pass}}>
+            <label for="data.fail-{{itemData._id}}">{{localize 'TB2.WiseFail'}}</label>
+            <input id="data.fail-{{itemData._id}}"
+                   type="checkbox" data-type="Boolean"
+                   class="change- tb-embedded-document-list__editable"
+                   data-property="data.fail"
+                   name="data.fail"
+                   {{checked itemData.data.fail}}>
+            <label for="data.fate-{{itemData._id}}">{{localize 'TB2.WiseFate'}}</label>
+            <input id="data.fate-{{itemData._id}}"
+                   type="checkbox" data-type="Boolean"
+                   class="change-item tb-embedded-document-list__editable"
+                   data-property="data.fate"
+                   name="data.fate"
+                   {{checked itemData.data.fate}}>
+            <label for="data.persona-{{itemData._id}}">{{localize 'TB2.WisePersona'}}</label>
+            <input id="data.persona-{{itemData._id}}"
+                   type="checkbox" data-type="Boolean"
+                   class="change-item tb-embedded-document-list__editable"
+                   data-property="data.persona"
+                   name="data.persona"
+                   {{checked itemData.data.persona}}>
+          </div>
+        {{/systems/torchbearer/templates/sheets/actor/components/item-list-entry.hbs}}
+      {{/each}}
+
+    </ol>
+  {{/unless}}
+  {{> systems/torchbearer/templates/sheets/actor/components/add-button.hbs
+    title='TB2.UserInteractionAddItemTitle'
+    documentType='item'
+    type='wise'}}
+</div>

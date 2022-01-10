@@ -1,0 +1,18 @@
+/*
+ * SPDX-FileCopyrightText: 2021 Johannes Loher
+ *
+ * SPDX-License-Identifier: MIT
+ */
+
+@use "../utils/variables";
+
+.tb-sheet-tab-nav {
+  border-bottom: variables.$border-groove;
+  border-top: variables.$border-groove;
+  height: auto;
+
+  &__item {
+    font-weight: bold;
+    white-space: nowrap;
+  }
+}

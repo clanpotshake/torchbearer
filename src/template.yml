@@ -1,0 +1,235 @@
+Actor:
+  types:
+#    - setting
+    - character
+    - npc
+  templates:
+    hasInventorySlots:
+      containerSlots:
+        pack: 0
+        held: 2
+        belt: 3
+        torso: 3
+        head: 1
+        hand: 2
+        feet: 1
+        neck: 1
+        pocket: true
+    conditions:
+      conditions:
+        fresh: true
+        hungry-thirsty: false
+        angry: false
+        afraid: false
+        exhausted: false
+        injured: false
+        sick: false
+        dead: false
+    advances:
+      passes: 0
+      fails: 0
+    common:
+      might: 3
+      precedence: 0
+      abilities:
+        will: &ability
+          templates:
+            - advances
+          rank: 1
+        health: *ability
+        circles: *ability
+        resources: *ability
+        nature:
+          current: 3
+          max: 3
+        custom1:
+          <<: *ability
+          name: ''
+        custom2:
+          <<: *ability
+          name: ''
+      rewards:
+        fate:
+          current: 0
+          spent: 0
+        persona:
+          current: 0
+          spent: 0
+    displayProps:
+      collapse:
+        beliefs: false
+        instincts: false
+        goals: false
+        traits: false
+        abilities: false
+        relationships: false
+        gear: false
+        skills: false
+        learning: false
+        misc: false
+        spells: false
+        invocations: false
+        moreFields: false
+  setting:
+    description: 'setting desc'
+  character:
+    templates:
+      - hasInventorySlots
+      - conditions
+      - common
+      - displayProps
+    stock: 'Human'
+    age: 18
+    career: 'Warrior'
+    alias: ''
+    hometown: 'Skogenby'
+    raiment: 'Fine Bearskin Cloak'
+    miscNotes1: ''
+    miscNotes2: ''
+    miscNotes3: ''
+  npc:
+    templates:
+      - common
+      - hasInventorySlots
+      - displayProps
+    editMode: false
+    bio: 'an NPC bio'
+Item:
+  types:
+    - belief
+    - instinct
+    - creed
+    - goal
+    - gear
+    - trait
+    - skill
+    - wise
+    - relationship
+    - spell
+    - invocation
+    - level
+    - property
+    - class
+    - location
+  templates:
+    arthaEarner:
+      fate: false
+      persona: false
+    book:
+      bookName: 'LMM'
+      page: 0
+  wise:
+    pass: false
+    fail: false
+    fate: false
+    persona: false
+  belief:
+    templates:
+      - arthaEarner
+    text: 'belief'
+  instinct:
+    templates:
+      - arthaEarner
+    text: 'instinct'
+  goal:
+    templates:
+      - arthaEarner
+    text: 'goal'
+  creed:
+    templates:
+      - arthaEarner
+    text: 'creed'
+  trait:
+    templates:
+      - book
+    description: 'adventurousness text'
+    collapsed: true
+    level: 1
+    checks: 2
+  skill:
+    templates:
+      - book
+      - advances
+    rank: 1
+    learning: false
+    attempts: 0
+    root1: ''
+    root2: ''
+    description: 'skill description'
+    collapsed: false
+    tools: false
+    luck: 'will'
+  relationship:
+    description: 'my parents'
+    location: 'Skogenby'
+    skill: 'Smith'
+    isFriend: false
+    isParent: false
+    isEnemy: false
+  gear:
+    templates:
+      - book
+    description: 'item description'
+    containedIn: ''
+    availability: ''
+    cost: 0
+    volume:
+      pack: 0
+      held: 0
+      belt: 0
+      torso: 0
+      head: 0
+      hand: 0
+      feet: 0
+      neck: 0
+      pocket: 0
+      stackSize: 1
+    capacity:
+      pack: 0
+      held: 0
+      belt: 0
+      torso: 0
+      head: 0
+      hand: 0
+      feet: 0
+      neck: 0
+  property:
+    isWorkshop: false
+    description: 'Home'
+    location: 'Skogenby'
+  spell:
+    templates:
+      - book
+    description: 'spell description'
+    circle: 0
+    scribeOb: 0
+    learnOb: 0
+    castOb: 0
+    focus: 'spell focus'
+    materials: 'spell materials'
+    castTime: 'free'
+    casting: 'factors'
+    duration: 'One Phase'
+    factors: ''
+  class:
+    templates:
+      - book
+    level1: 'warrior level 1 text'
+    level2: &levelBenefit
+      optionA: 'warrior option A'
+      optionB: 'warrior option B'
+    level3: *levelBenefit
+    level4: *levelBenefit
+    level5: *levelBenefit
+    level6: *levelBenefit
+    level7: *levelBenefit
+    level8: *levelBenefit
+    level9: *levelBenefit
+    level10: *levelBenefit
+  level:
+    # a level benefit
+    text: ''
+    level: 2
+  location:
+    description: 'a town, dungeon, or camp'
+

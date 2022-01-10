@@ -1,0 +1,43 @@
+- GM mode options screen
+-- disable trait limitations
+-- conflictless play
+
+
+- need a character builder page to burn in stock/class selections to be uneditable on the main actor page
+-- override createDialog in actor to get class/stock options set, do nature
+- represent places as an item, map to contacts/hometown
+- add item slots to actor? lists with a matching soft-limit for each body slot
+
+-gm can call for a roll, link in chat message goes to clicking user's version of that item. so each user gets their own skill values used when they click the linked item name
+- Gear should be grouped by category
+- container items (bags, caches) should have their own sheet visible to all with their contents. drag and drop to actor sheets for easy inventory management
+
+DIALOGS
+  ROLL
+    preview dice pool size. make the helper static so the dialog can call it to update
+    account for successes on 3
+    free text field for flavor text
+
+SHEETS
+  ACTOR
+    pocket defaults to 0, should be true or whatever
+    PLAYER CHARACTER
+      SKILLS
+        pass/fails are getting saved to the actor, not the item (old data? make a new actor)
+        compute Bulky et al (skill + gear combO) and pass to roll formula
+      GEAR
+        how do i account for gear assigned to the actor not already displayed in the inventory?
+        how to represent containers? should they be their own item type?
+          from discord:
+            https://discord.com/channels/170995199584108546/670336275496042502/907269076768915466
+            Foundry does not support items within items. And you don't need a module for dragging
+            items between actors.
+            In HBS you can just have some element that is marked as draggable via defaultOptions
+            dragDrop select with data-item-id="{{item.id}}" and it'll drag the item with the id
+            from the actor out, and any sheet accepting that will then get a copy of it.
+            It's all built-in to foundry for really easy implementation.
+        add item button doesn't work
+          filter to type=gear
+  ITEM
+    roll button on owned items in header
+

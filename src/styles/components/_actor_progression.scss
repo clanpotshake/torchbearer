@@ -1,0 +1,47 @@
+/*
+ * SPDX-FileCopyrightText: 2021 Johannes Loher
+ * SPDX-FileCopyrightText: 2021 Oliver Rümpelein
+ *
+ * SPDX-License-Identifier: MIT
+ */
+
+@use "../utils/colors";
+@use "../utils/variables";
+@use "../utils/mixins";
+
+.tb-actor-progression {
+  @include mixins.mark-invalid-or-disabled-input;
+  display: flex;
+  gap: 0.5em;
+
+  &__entry {
+    align-items: center;
+    display: flex;
+    flex: 1;
+    gap: 0.25em;
+    justify-content: flex-end;
+  }
+
+  &__label {
+    border: none;
+    color: colors.$c-light-grey;
+    margin: 0;
+    padding: 0;
+    text-align: right;
+  }
+
+  &__input {
+    flex: 0 0 5ch;
+
+    &--slayer-points {
+      &::-webkit-inner-spin-button,
+      &::-webkit-outer-spin-button {
+        -webkit-appearance: auto;
+      }
+      &:hover,
+      &:focus {
+        -moz-appearance: auto;
+      }
+    }
+  }
+}

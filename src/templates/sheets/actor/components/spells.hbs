@@ -1,0 +1,17 @@
+<div class="tb-spells">
+  <h1>{{localize 'TB2.SpellsHeader'}}</h1>
+  {{#each itemsByType.spell as |i|}}
+    {{> systems/torchbearer/templates/sheets/actor/components/spell.hbs
+      _id=i.id
+      spell-name=i.name
+      spell-cast-ob=i.data.castOb
+      spell-scribe-ob=i.data.scribeOb
+      spell-learn-ob=i.data.learnOb
+      spell-circle=i.data.circle
+      spell-time=i.data.castTime
+      spell-duration=i.data.duration
+      spell-focus=i.data.focus
+      spell-factors=i.data.factors
+      spell-description=i.data.description }}
+  {{/each}}
+</div>

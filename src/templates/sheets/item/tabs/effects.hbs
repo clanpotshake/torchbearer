@@ -1,0 +1,32 @@
+{{!--
+SPDX-FileCopyrightText: 2021 Johannes Loher
+SPDX-FileCopyrightText: 2021 Gesina Schwalbe
+
+SPDX-License-Identifier: MIT
+--}}
+
+{{!-- Tab for the items view to manage effects --}}
+<div class="tab effects" data-group="primary" data-tab="effects">
+    <ol class="effects-list">
+        <li class="effect flexrow effect-header">
+            <div class="effect-image"></div>
+            <div class="effect-name">Name</div>
+            <div class="effect-controls">
+                <a class="effect-control" data-action="create" title="{{localize 'TB2.UserInteractionAddEffectTitle'}}">
+                    <i class="fas fa-plus"></i> {{localize 'TB2.UserInteractionAdd'}}</a>
+            </div>
+        </li>
+        {{#each item.effects as |effect id|}}
+        <li class="effect flexrow" data-effect-id="{{effect.id}}">
+            <h4 class="effect-name">{{effect.data.label}}</h4>
+            <div class="effect-controls">
+                <a class="effect-control" data-action="edit" title="{{localize 'TB2.UserInteractionEditEffectTitle'}}">
+                    <i class="fas fa-edit"></i></a>
+                <a class="effect-control" data-action="delete"
+                    title="{{localize 'TB2.UserInteractionDeleteEffectTitle'}}">
+                    <i class="fas fa-trash"></i></a>
+            </div>
+        </li>
+        {{/each}}
+    </ol>
+</div>

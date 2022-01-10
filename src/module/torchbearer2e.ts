@@ -11,23 +11,13 @@
  */
 
 // Import TypeScript modules
-import { registerSettings } from './settings';
-import { preloadTemplates } from './preloadTemplates';
+import { TBItem } from './item/TBItem';
+import { TBActor } from './actor/TBActor';
+import { TB } from './config';
+import registerForHooks from './hooks/hooks';
 
 // Initialize system
-Hooks.once('init', async () => {
-  console.log('torchbearer2e | Initializing torchbearer2e');
-
-  // Assign custom classes and constants here
-
-  // Register custom system settings
-  registerSettings();
-
-  // Preload Handlebars templates
-  await preloadTemplates();
-
-  // Register custom sheets (if any)
-});
+registerForHooks();
 
 // Setup system
 Hooks.once('setup', async () => {
@@ -41,3 +31,19 @@ Hooks.once('ready', async () => {
 });
 
 // Add any additional hooks if necessary
+
+declare global {
+  interface Game {
+    tb: {
+      TBActor: typeof TBActor;
+      TBItem: typeof TBItem;
+      TB: typeof TB;
+      // migration: typeof migration;
+      // macros: typeof macros;
+    };
+  }
+
+  interface CONFIG {
+    TB: typeof TB;
+  }
+}

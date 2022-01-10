@@ -1,0 +1,46 @@
+{{!--
+SPDX-FileCopyrightText: 2021 Johannes Loher
+SPDX-FileCopyrightText: 2021 Gesina Schwalbe
+
+SPDX-License-Identifier: MIT
+--}}
+
+{{!--
+!-- Render an item list header row.
+!-- If the partial is called with a partial block, the partial block
+!-- content is inserted before the description heading.
+!-- @param isEquipable: A flag to enable the equipped column.
+!-- @param hasQuantity: A flag to enable the quantity column.
+!-- @param hideDescription: A flag to disable the description column.
+!-- @param @partial-block: Custom column headers can be passed using the partial block.
+--}}
+<li class="tb-embedded-document-list__row tb-embedded-document-list__row--header">
+    {{!-- equipped --}}
+    {{#if isEquipable}}
+    <div title="{{localize 'TB2.ItemEquipped'}}">{{localize 'TB2.ItemEquippedAbbr'}}</div>
+    {{/if}}
+
+    {{!-- image --}}
+    <div></div>
+
+    {{!-- amount --}}
+    {{#if hasQuantity}}
+    <div title="{{localize 'TB2.Quantity'}}">#</div>
+    {{/if}}
+
+    {{!-- name --}}
+    <div>{{localize 'TB2.ItemName'}}</div>
+
+    {{!-- item type specifics --}}
+    {{#if @partial-block }}
+    {{> @partial-block }}
+    {{/if}}
+
+    {{!-- description --}}
+    {{#unless hideDescription}}
+    <div>{{localize 'TB2.Description'}}</div>
+    {{/unless}}
+
+    {{!-- control buttons placeholder --}}
+    <div></div>
+</li>

@@ -1,0 +1,33 @@
+{{log 'gear slots' this}}
+<div class="form-group grid grid-4col">
+  <h2>{{localize 'TB2.GearSlotsHeader'}}</h2>
+  <h4>{{localize 'TB2.GearSlotVolumeSlotsHeader'}}</h4>
+  {{#each config.i18n.slots as |translation name|}}
+    <label for="data.{{name}}">{{localize translation}}</label>
+    <input
+      class="tb-embedded-document-list__editable change-item"
+      type="number" data-type="Number"
+      title="{{localize 'TB2.GearItemSize'}}"
+      name="data.volume.{{name}}"
+      value="{{lookup ../data.data.volume name}}">
+  {{/each}}
+  <label for="data.stackSize-{{data._id}}">{{localize 'TB2.GearPocketSlotsLabel'}}</label>
+  <input
+    class="tb-embedded-document-list__editable change-item"
+    type="number" data-type="Number"
+    title="{{localize 'TB2.GearItemStackSizeSize'}}"
+    name="data.stackSize-{{data._id}}"
+    value="{{data.data.volume.stackSize}}">
+</div>
+<div class="form-group grid grid-4col">
+  <h4>{{localize 'TB2.GearSlotCapacitySlotsHeader'}}</h4>
+  {{#each config.i18n.slots as |translation name|}}
+    <label for="data.{{name}}">{{localize translation}}</label>
+    <input
+      class="tb-embedded-document-list__editable change-item"
+      type="number" data-type="Number"
+      title="{{localize 'TB2.GearItemCapacity'}}"
+      name="data.capacity.{{name}}"
+      value="{{lookup ../data.data.capacity name}}">
+  {{/each}}
+</div>

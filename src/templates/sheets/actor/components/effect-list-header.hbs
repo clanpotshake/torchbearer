@@ -1,0 +1,32 @@
+{{!--
+SPDX-FileCopyrightText: 2021 Johannes Loher
+SPDX-FileCopyrightText: 2021 Gesina Schwalbe
+
+SPDX-License-Identifier: MIT
+--}}
+
+{{!--
+!-- Render an effect list header row.
+--}}
+<li class="tb-embedded-document-list__row tb-embedded-document-list__row--header">
+    {{!-- enabled --}}
+    <div title="{{localize 'TB2.EffectEnabled'}}">{{localize 'TB2.EffectEnabledAbbr'}}</div>
+
+    {{!-- effectively enabled --}}
+    <div title="{{localize 'TB2.EffectEffectivelyEnabled'}}">{{localize 'TB2.EffectEffectivelyEnabledAbbr'}}</div>
+
+    {{!-- icon --}}
+    <div></div>
+
+    {{!-- label --}}
+    <div>{{localize 'TB2.EffectLabel'}}</div>
+
+    {{!-- source name --}}
+    <div>{{localize 'TB2.EffectSourceName'}}</div>
+
+    {{!-- factor --}}
+    <div title="{{localize 'TB2.EffectFactor'}}">{{localize 'TB2.EffectFactorAbbr'}}</div>
+
+    {{!-- control buttons placeholder --}}
+    <div></div>
+</li>

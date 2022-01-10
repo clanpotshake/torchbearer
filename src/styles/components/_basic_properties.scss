@@ -1,0 +1,37 @@
+/*
+ * SPDX-FileCopyrightText: 2021 Johannes Loher
+ * SPDX-FileCopyrightText: 2021 Oliver Rümpelein
+ * SPDX-FileCopyrightText: 2021 Gesina Schwalbe
+ *
+ * SPDX-License-Identifier: MIT
+ */
+
+@use "../utils/mixins";
+
+.basic-properties {
+  flex: 0 0 100%;
+  grid-gap: 2px;
+  grid-template-columns: repeat(auto-fill, minmax(9em, 1fr));
+  .basic-property {
+    display: grid;
+    align-content: end;
+    padding-left: 1px;
+    padding-right: 1px;
+
+    & > label {
+      font-size: 0.9em;
+      font-weight: bold;
+    }
+
+    & > select {
+      display: block;
+      width: 100%;
+    }
+
+    .input-divider {
+      text-align: center;
+    }
+
+    @include mixins.mark-invalid-or-disabled-input;
+  }
+}

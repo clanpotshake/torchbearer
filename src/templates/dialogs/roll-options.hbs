@@ -1,0 +1,97 @@
+{{!--
+SPDX-FileCopyrightText: 2021 Johannes Loher
+SPDX-FileCopyrightText: 2021 Oliver Rümpelein
+
+SPDX-License-Identifier: MIT
+--}}
+
+{{!--
+!-- Render a roll options dialog. It uses the default form classes of Foundry VTT.
+!-- @param checkTargetNumber: The preselected check target number.
+!-- @param maximumCoupResult: The preselected maximum coup result.
+!-- @param minimumFumbleResult: The preselected minimum fumble result.
+!-- @param rollMode: The preselected roll mode (= chat roll-mode).
+!-- @param rollModes: A map of all roll modes and their i18n keys.
+--}}
+<form class="tb-roll-options">
+  {{log 'roll-options' this}}
+    <div class="form-group">
+<!--      TODO skill rank and precedence as hidden fields for roller -->
+<!--      todo nature -->
+        <label for="check-target-number">{{localize "TB2.DialogRollOptionsSkillRankLabel"}}</label>
+        <input id="check-target-number" data-type="Number" type="number" name="skill-rank"
+            value="{{skillRank}}" />
+    </div>
+    <div class="form-group">
+        <label for="check-target-number">{{localize "TB2.DialogRollOptionsMightLabel"}}</label>
+        <input id="check-target-number" data-type="Number" type="number" name="might"
+            value="{{might}}" />
+    </div>
+    <div class="form-group">
+        <label for="check-target-number">{{localize "TB2.DialogRollOptionsPrecedenceLabel"}}</label>
+        <input id="check-target-number" data-type="Number" type="number" name="precedence"
+            value="{{precedence}}" />
+    </div>
+    <div class="form-group">
+        <label for="check-target-number">{{localize "TB2.DialogRollOptionsNatureRankLabel"}}</label>
+        <input id="check-target-number" data-type="Number" type="number" name="nature"
+            value="{{nature}}" />
+    </div>
+
+<!--  END HIDDEN -->
+    <div class="form-group">
+        <label for="check-target-number">{{localize "TB2.DialogRollOptionsCheckTargetNumberLabel"}}</label>
+        <input id="check-target-number" data-type="Number" type="number" name="check-target-number"
+            value="{{checkTargetNumber}}" />
+    </div>
+    <div class="form-group">
+        <label for="support-gear">{{localize "TB2.DialogRollOptionsSupportGearLabel"}}</label>
+        <input id="support-gear" data-type="Number" type="number" name="support-gear" value="0" />
+    </div>
+    <div class="form-group">
+      <label for="none-trait">{{localize "TB2.DialogRollOptionsTraitNoneLabel"}}</label>
+      <input id="none-trait" data-type="Boolean" type="radio" name="use-trait" value="none" checked="" />
+      <label for="help-trait">{{localize "TB2.DialogRollOptionsTraitHelpLabel"}}</label>
+      <input id="help-trait" data-type="Boolean" type="radio" name="use-trait" value="help"/>
+      <label for="check-trait">{{localize "TB2.DialogRollOptionsTraitCheckLabel"}}</label>
+      <input id="check-trait" data-type="Boolean" type="radio" name="use-trait" value="check" />
+    </div>
+  <div class="form-group">
+    <label for="persona-buy">{{localize "TB2.DialogRollOptionsBoughtDiceLabel"}}</label>
+    <input id="persona-buy" data-type="Number" type="number" name="persona-buy" value="0" />
+  </div>
+  <div class="form-group">
+    <label for="apply-hometown">{{localize "TB2.DialogRollOptionsChannelNatureLabel"}}</label>
+    <input id="apply-hometown" data-type="Boolean" type="checkbox" name="nature-channel" />
+  </div>
+  <div class="form-group">
+    <label for="success-mod">{{localize "TB2.DialogRollOptionsSuccessModifierLabel"}}</label>
+    <input id="success-mod" data-type="Number" type="number" name="success-mod" value="0" />
+  </div>
+<!--  TODO hide some lesser-used options behind a spoiler tag or something -->
+  <div class="form-group">
+<!--    TODO get weary/bulky from actor data  -->
+    <label for="apply-bulky">{{localize "TB2.DialogRollOptionsApplyBulkyLabel"}}</label>
+    <input id="apply-bulky" data-type="Boolean" type="checkbox" name="apply-bulky" />
+  </div>
+  <div class="form-group">
+    <label for="apply-weary">{{localize "TB2.DialogRollOptionsApplyWearyLabel"}}</label>
+    <input id="apply-weary" data-type="Boolean" type="checkbox" name="apply-weary" />
+  </div>
+  <div class="form-group">
+    <label for="apply-hometown">{{localize "TB2.DialogRollOptionsApplyHomeTownLabel"}}</label>
+    <input id="apply-hometown" data-type="Boolean" type="checkbox" name="apply-hometown" />
+  </div>
+    <div class="form-group">
+        <label for="roll-mode">{{localize "TB2.DialogRollOptionsRollModeLabel"}}</label>
+        <div class="form-fields">
+            <select id="roll-mode" name="roll-mode" data-type="String">
+                {{#select rollMode}}
+                {{#each rollModes as |rollModeValue rollModeKey|}}
+                <option value="{{rollModeKey}}">{{localize rollModeValue}}</option>
+                {{/each}}
+                {{/select}}
+            </select>
+        </div>
+    </div>
+</form>

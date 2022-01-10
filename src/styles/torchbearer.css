@@ -1,0 +1,24 @@
+@use 'sass:meta';
+@include meta.load-css('global/accessibility');
+@include meta.load-css('global/flex');
+@include meta.load-css('global/fonts');
+@include meta.load-css('global/grid');
+@include meta.load-css('global/window');
+
+@include meta.load-css('components/actor_sheet');
+@include meta.load-css('components/dice_total');
+
+.tb2 {
+  @include meta.load-css('components/actor_header');
+  @include meta.load-css('components/actor_properties');
+  @include meta.load-css('components/apps');
+  @include meta.load-css('components/basic_properties');
+  @include meta.load-css('components/control_button_group');
+  @include meta.load-css('components/forms');
+  @include meta.load-css('components/rollable_image');
+  @include meta.load-css('components/description');
+  @include meta.load-css('components/actor_progression');
+  @include meta.load-css('components/embedded_document_list');
+  @include meta.load-css('components/sheet');
+  @include meta.load-css('components/sheet_tab_nav');
+}

@@ -1,22 +1,53 @@
 {
-  "name": "torchbearer2e",
-  "title": "torchbearer2e",
+  "name": "torchbearer",
+  "title": "torchbearer",
   "description": "",
-  "version": "0.0.0",
-  "author": "<your name>",
+  "version": "0.0.1",
+  "author": "clanpotshake",
   "authors": [
     {
-      "name": "<your name>",
-      "email": "<optionally your e-mail address>",
-      "discord": "<optionally your discord username>"
+      "name": "clanpotshake"
     }
   ],
   "minimumCoreVersion": "0.8.8",
   "compatibleCoreVersion": "0.8.8",
   "scripts": [],
   "esmodules": ["module/torchbearer2e.js"],
-  "styles": ["styles/torchbearer2e.css"],
-  "packs": [],
+  "styles": ["styles/torchbearer.css"],
+  "packs": [
+    {
+      "name": "skills",
+      "label": "Skill List",
+      "system": "tb2",
+      "module": "tb2",
+      "path": "./packs/skills.db",
+      "entity": "Item"
+    },
+    {
+      "name": "spells",
+      "label": "Spell List",
+      "system": "tb2",
+      "module": "tb2",
+      "path": "./packs/spells.db",
+      "entity": "Item"
+    },
+    {
+      "name": "items",
+      "label": "Item List",
+      "system": "tb2",
+      "module": "tb2",
+      "path": "./packs/item.db",
+      "entity": "Item"
+    },
+    {
+      "name": "traits",
+      "label": "Trait List",
+      "system": "tb2",
+      "module": "tb2",
+      "path": "./packs/traits.db",
+      "entity": "Item"
+    }
+  ],
   "dependencies": [],
   "languages": [
     {

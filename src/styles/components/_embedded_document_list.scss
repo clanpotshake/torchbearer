@@ -1,0 +1,144 @@
+/*
+ * SPDX-FileCopyrightText: 2021 Johannes Loher
+ * SPDX-FileCopyrightText: 2021 Gesina Schwalbe
+ *
+ * SPDX-License-Identifier: MIT
+ */
+
+@use "../utils/mixins";
+@use "../utils/variables";
+
+.tb-embedded-document-list {
+  @include mixins.mark-invalid-or-disabled-input;
+
+  $row-height: 1.75em;
+
+  align-items: center;
+  display: grid;
+  grid-column-gap: 0.5em;
+  grid-row-gap: 0.2em;
+  margin: 0.5em 0;
+  overflow-y: auto;
+  padding: 0;
+
+  &--skill {
+    grid-template-columns: $row-height $row-height 3ch 3fr $row-height 1fr 3ch 5fr 5ch;
+    :nth-child(9n + 1),
+    :nth-child(9n + 5),
+    :nth-child(9n + 6),
+    :nth-child(9n + 7) {
+      justify-self: center;
+    }
+  }
+  &--armor {
+    grid-template-columns: $row-height $row-height 3ch 3fr 1fr 1fr 3ch 5fr 5ch;
+    :nth-child(9n + 1),
+    :nth-child(9n + 7) {
+      justify-self: center;
+    }
+  }
+  &--shield {
+    grid-template-columns: $row-height $row-height 3ch 1fr 3ch 3fr 5ch;
+    :nth-child(7n + 1),
+    :nth-child(7n + 5) {
+      justify-self: center;
+    }
+  }
+  &--equipment {
+    grid-template-columns: $row-height $row-height 3ch 1fr 10ch 3fr 5ch;
+    :nth-child(7n + 1) {
+      justify-self: center;
+    }
+  }
+  &--loot {
+    grid-template-columns: $row-height 3ch 1fr 10ch 3fr 5ch;
+  }
+  &--spell {
+    grid-template-columns: $row-height $row-height 2fr $row-height 1fr 1fr 1fr 1fr 5ch;
+    :nth-child(9n + 1),
+    :nth-child(9n + 4),
+    :nth-child(9n + 6),
+    :nth-child(9n + 7),
+    :nth-child(9n + 8) {
+      justify-self: center;
+    }
+  }
+  &--talent {
+    grid-template-columns: $row-height 1fr 21ch 3fr 5ch;
+    :nth-child(9n + 3) {
+      justify-self: center;
+    }
+  }
+  &--racial-ability,
+  &--language,
+  &--alphabet,
+  &--special-creature-ability {
+    grid-template-columns: $row-height 1fr 3fr 5ch;
+  }
+
+  &--effect {
+    grid-template-columns: $row-height $row-height $row-height 3fr 2fr $row-height 5ch;
+    :nth-child(7n + 1),
+    :nth-child(7n + 2),
+    :nth-child(7n + 6) {
+      justify-self: center;
+    }
+  }
+
+  &__row {
+    display: contents; // TODO: Once chromium supports `grid-template-columns: subgrid` (https://bugs.chromium.org/p/chromium/issues/detail?id=618969), switch to `display: grid; grid: 1/-1; grid-template-columns: subgrid`
+
+    &--header {
+      font-weight: bold;
+    }
+
+    > * {
+      height: $row-height;
+      line-height: $row-height;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+  }
+
+  &__image {
+    border: none;
+    height: 100%;
+  }
+
+  &__editable {
+    background-color: transparent;
+    border: 0;
+    padding: 0;
+
+    &--checkbox {
+      width: 100%;
+      height: 100%;
+      margin: 0px;
+    }
+  }
+
+  &__description {
+    overflow: hidden;
+    text-overflow: ellipsis;
+
+    :not(:first-child) {
+      display: none;
+    }
+
+    > * {
+      font-size: 0.75em;
+      margin: 0;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+  }
+}
+
+.tb-embedded-document-list-title {
+  border-bottom: variables.$border-groove;
+  font-weight: bold;
+  margin-bottom: 0;
+  margin-top: 1em;
+  padding-left: 1em;
+}

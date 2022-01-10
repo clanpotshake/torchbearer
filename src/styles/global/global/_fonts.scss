@@ -1,0 +1,45 @@
+/*
+ * SPDX-FileCopyrightText: 2021 Johannes Loher
+ *
+ * SPDX-License-Identifier: MIT
+ */
+
+@font-face {
+    font-display: swap;
+    font-family: "Lora";
+    font-style: normal;
+    font-weight: normal;
+    src: local("Lora"), url("../fonts/Lora/Lora.woff") format("woff");
+}
+
+@font-face {
+    font-display: swap;
+    font-family: "Lora";
+    font-style: normal;
+    font-weight: bold;
+    src: local("Lora"), url("../fonts/Lora/Lora-Bold.woff") format("woff");
+}
+
+@font-face {
+    font-display: swap;
+    font-family: "Lora";
+    font-style: italic;
+    font-weight: normal;
+    src: local("Lora"), url("../fonts/Lora/Lora-Italic.woff") format("woff");
+}
+
+@font-face {
+    font-display: swap;
+    font-family: "Lora";
+    font-style: italic;
+    font-weight: bold;
+    src: local("Lora"), url("../fonts/Lora/Lora-BoldItalic.woff") format("woff");
+}
+
+@font-face {
+    font-display: swap;
+    font-family: "Wood Stamp";
+    font-style: normal;
+    font-weight: normal;
+    src: local("Wood Stamp"), url("../fonts/Woodstamp/Woodstamp.woff") format("woff");
+}
