@@ -320,6 +320,8 @@
   "TB2.GearTabContainersHeader": "Containers",
   "TB2.GearContainedInLabel": "Contained in Slot:",
   "TB2.GearContainedInNothingLabel": " -- select a container slot -- ",
+  "TB2.ErrorInvalidNumberOfDice": "Number of dice rolled must be positive",
+  "TB2.": "PLACEHOLDER",
   "TB2.": "PLACEHOLDER",
   "TB2.": "PLACEHOLDER",
   "TB2.": "PLACEHOLDER",

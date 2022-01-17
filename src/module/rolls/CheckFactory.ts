@@ -5,14 +5,14 @@
 
 import { getGame } from '../helpers';
 import { utilities } from '../util/utilities';
-import { TBRoll } from './TBRoll';
 
 /**
  * Provides default values for all arguments the `CheckFactory` expects.
  */
 class DefaultCheckOptions implements TBCheckFactoryOptions {
-  readonly dicePool: number = 0;
+  readonly dicePool: number = 1;
   readonly obstacle: number = 0;
+  readonly versus: boolean = false;
   readonly beginnersLuck: boolean = false;
   readonly successMod: number = 0;
 
@@ -57,12 +57,19 @@ class CheckFactory {
       { rollMode: this.options.rollMode, create: true },
     );
   }
+  // 5dsv4 = 5 dice, ob4
+  // 6dsvs3 = 6 dice opposed roll against 3
   private rollFormula(): string {
     const diePool = this.options.dicePool;
-    // const successes =
-    //   this.options.successMod >= 0 ? `+${this.options.successMod}` : `${this.options.successMod}`;
-    // TODO need to parse results manually before applying successes
-    return `${diePool}ds`;
+    // TODO opponent success mod
+    const ob = this.options.versus ? `vs${this.options.obstacle}` : `v${this.options.obstacle}`;
+    const mod =
+      this.options.successMod > 0
+        ? `+${this.options.successMod}`
+        : this.options.successMod < 0
+        ? `${this.options.successMod}`
+        : '';
+    return [`${diePool}ds`, ob, mod].filterJoin('');
   }
 }
 
@@ -103,7 +110,7 @@ export async function createTestRoll(
   // If an ability is at zero due to injury or sickness, you cannot test it using
   // Beginner’s Luck. You must roll your Nature until you’ve recovered.
   const luckFactor = dialogOptions.luck ? 0.5 : 1.0;
-  const skill = dialogOptions.skillRank ?? 0; // if luck, skillrank is ability rank
+  const skill = dialogOptions.skillRank ?? 0; // TODO if luck, skillrank is ability rank
   const help = dialogOptions.helpGear ?? 0;
   const luckPool = Math.ceil((skill + help) * luckFactor);
   const traitDie = dialogOptions.traitHelp ? 1 : dialogOptions.traitCheck ? -1 : 0;
@@ -113,10 +120,7 @@ export async function createTestRoll(
   const successMod = dialogOptions.successMod ?? 0;
   // TODO bulky et al only apply to specific skill tests, not yet implemented
 
-  const finalDicePool = [luckPool, traitDie, freshDie, personaDie /* , natureDice */].reduce(
-    add,
-    0,
-  );
+  const finalDicePool = [luckPool, traitDie, freshDie, personaDie, natureDice].reduce(add, 0);
 
   const newOptions: Partial<TBCheckFactoryOptions> = {
     dicePool: finalDicePool,
@@ -126,6 +130,7 @@ export async function createTestRoll(
     rollMode: dialogOptions.rollMode ?? dialogOptions.rollMode,
     flavor: options.flavor,
     flavorData: options.flavorData,
+    versus: false, // TODO
     speaker: options.speaker,
   };
 
@@ -224,8 +229,8 @@ function parseDialogFormData(formData: HTMLFormElement): Partial<DiceRollInfo> {
     if (typeof input === 'number') return input;
     return parseInt(input, radix);
   }
+  const currentNature = handyParse(formData['nature']?.value, 10);
   const chosenRollMode = formData['roll-mode']?.value;
-  // TODO this is "on" and not a boolean
   const chosenApplyBulky = formData['apply-bulky']?.value;
   const chosenApplyHometown = formData['apply-hometown']?.value;
   const chosenApplyWeary = formData['apply-weary']?.value;
@@ -236,7 +241,7 @@ function parseDialogFormData(formData: HTMLFormElement): Partial<DiceRollInfo> {
   const chosenSkillRank = handyParse(formData['skill-rank']?.value, 10);
   const chosenSuccessMod = handyParse(formData['success-mod']?.value, 10);
   let chosenTraitHelp = false;
-  switch (formData['use-trait']?.value) {
+  switch (formData['help-trait']?.value) {
     case 'help':
       chosenTraitHelp = true;
       break;
@@ -248,8 +253,7 @@ function parseDialogFormData(formData: HTMLFormElement): Partial<DiceRollInfo> {
   const chosenPersonaDice = handyParse(formData['persona-buy']?.value, 10);
   const chosenFresh = formData['fresh-die']?.value;
   const chosenLuck = formData['luck-roll']?.value;
-  // TODO this is NaN
-  const chosenNature = handyParse(formData['nature-channel']?.value, 10);
+  const chosenNature = formData['nature-channel']?.value == 'on' ? currentNature : 0;
 
   return {
     applyBulky: chosenApplyBulky,
@@ -301,6 +305,7 @@ interface DiceRollInfo {
 export interface TBCheckFactoryOptions {
   dicePool: number;
   obstacle: number;
+  versus: boolean;
   beginnersLuck: boolean;
   successMod: number;
   rollMode: foundry.CONST.DiceRollMode;

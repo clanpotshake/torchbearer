@@ -12,7 +12,13 @@ export class TBTerm extends DiceTerm {
       modifiers,
       options,
     });
-    logger.info('TBTest.constructor', results);
+    logger.info('TBTest.constructor', this);
+    // 5dsv4 = 5 dice, ob4
+    // 6dsvs3 = 6 dice opposed roll against 3
+    const checkTargetNumberModifier = this.modifiers.filter((m) => m[0] === 'v')[0];
+    const ctnRgx = new RegExp('vs?([0-9]+)?');
+    const ctnMatch = checkTargetNumberModifier?.match(ctnRgx);
+
     if (this.results.length > 0) {
       this.evaluateResults();
     }
@@ -20,6 +26,8 @@ export class TBTerm extends DiceTerm {
   rerollableSixes = 0;
   rerollableFails = 0;
   successes = 0;
+  ob = 0;
+  opposedRoll = false;
 
   /** @override */
   get expression(): string {
@@ -45,19 +53,11 @@ export class TBTerm extends DiceTerm {
     };
   }
   evaluateResults(): void {
-    this.rerollableFails = 0;
-    this.rerollableSixes = 0;
-    this.results.map((die) => {
-      if (die.result == 6) {
-        this.rerollableSixes++;
-      }
-      // TODO mastery here
-      if (die.result < 4) {
-        this.rerollableFails++;
-      } else {
-        this.successes++;
-      }
-    });
+    const res = evaluateTest(
+      this.results.map((die) => die.result),
+      this.ob,
+    );
+    this.results = res;
     logger.info('found sixes:', this.rerollableSixes);
     logger.info('found fails:', this.rerollableFails);
     logger.info('found successes:', this.successes);
@@ -84,4 +84,33 @@ export class TBTerm extends DiceTerm {
     v: (): void => undefined, // Modifier is consumed in constructor for checkTargetNumber
     n: (): void => undefined, // Modifier is consumed in constructor for canFumble
   };
+}
+
+export function evaluateTest(dice: number[], ob: number): SubCheckResult[] {
+  if (dice.length < 1) {
+    throw new Error(getGame().i18n.localize('TB2.ErrorInvalidNumberOfDice'));
+  }
+  let passes = 0;
+  let sixes = 0;
+  let fails = 0;
+  dice.map((die) => {
+    if (die == 6) sixes++;
+    if (die >= 4) {
+      passes++;
+    } else {
+      fails++;
+    }
+  });
+  const result = {
+    sixes: sixes,
+    fails: fails,
+    result: passes,
+    success: passes >= ob,
+  };
+  return [result];
+}
+
+interface SubCheckResult extends DiceTerm.Result {
+  // TODO do i need anything in here?
+  foo?: number;
 }
