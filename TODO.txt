@@ -12,6 +12,10 @@
 - Gear should be grouped by category
 - container items (bags, caches) should have their own sheet visible to all with their contents. drag and drop to actor sheets for easy inventory management
 
+
+DICE
+  idea: register beginners luck as a completely separate die term
+
 DIALOGS
   ROLL
     preview dice pool size. make the helper static so the dialog can call it to update
