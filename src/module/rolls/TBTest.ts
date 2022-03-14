@@ -1,6 +1,18 @@
 import { getGame } from '../helpers';
 
+/**
+ * Implements TB2 skill and ability tests as an emulated "dice throw".
+ *
+ * @example
+ * - Roll a test with 5 dice against a Obstacle of 4: `/r 5ds4`
+ * - Roll an opposed test with 3 dice against 4 dice: `/r 3dsv4`
+ */
 export class TBTest extends DiceTerm {
+  rerollableSixes = 0;
+  rerollableFails = 0;
+  successes = 0;
+  ob = 0;
+  opposedRoll = false;
   constructor({ number = 1, modifiers = [], results = [], options }: Partial<DiceTerm.TermData>) {
     super({
       number: number,
@@ -10,25 +22,25 @@ export class TBTest extends DiceTerm {
       options,
     });
     logger.info('TBTest.constructor', this);
-    // 5dsv4 = 5 dice, ob4
-    // 6dsvs3 = 6 dice opposed roll against 3
     const checkTargetNumberModifier = this.modifiers.filter((m) => m[0] === 'v')[0];
-    const ctnRgx = new RegExp('vs?([0-9]+)?');
+    const ctnRgx = new RegExp('(v?)([0-9]+)?');
     const ctnMatch = checkTargetNumberModifier?.match(ctnRgx);
+    if (ctnMatch) {
+      const [ob] = checkTargetNumberModifier.slice(2);
+      this.ob = ob ? parseInt(ob) : TBTest.DEFAULT_OB;
+      this.opposedRoll = ctnMatch[1] == 's';
+    }
 
     if (this.results.length > 0) {
       this.evaluateResults();
     }
   }
-  rerollableSixes = 0;
-  rerollableFails = 0;
-  successes = 0;
-  ob = 0;
-  opposedRoll = false;
 
   /** @override */
   get expression(): string {
-    return `${this.number}ds${this.modifiers.join('')}`;
+    // TODO gotta figure out how foundry wants to see dice
+    return `${this.number}ds${this.ob}`;
+    // return `${this.number}ds${this.modifiers.join('')}`;
   }
   /** @override */
   get total(): string | number | null | undefined {
@@ -38,22 +50,22 @@ export class TBTest extends DiceTerm {
   /** @override */
   roll({ minimize = false, maximize = false } = {}): DiceTerm.Result {
     logger.info('in TBTest.roll');
-    super.roll({ minimize: false, maximize: maximize });
-    this.evaluateResults();
+    const res = super.roll({ minimize: false, maximize: maximize });
+    // this.evaluateResults();
+
     return {
+      ...res,
       result: this.successes,
-      success: true,
+      success: true, // TODO
     };
   }
   evaluateResults(): void {
-    const res = evaluateTest(
-      this.results.map((die) => die.result),
-      this.ob,
-    );
-    this.results = res;
-    logger.info('found sixes:', this.rerollableSixes);
-    logger.info('found fails:', this.rerollableFails);
-    logger.info('found successes:', this.successes);
+    const dice = this.results.map((die) => die.result);
+    this.results = evaluateTest(dice, this.ob);
+    // logger.info('found sixes:', this.rerollableSixes);
+    // logger.info('found fails:', this.rerollableFails);
+    // logger.info('found successes:', this.successes);
+    logger.info('results: ', this.results);
   }
   /**
    * @override
@@ -71,6 +83,7 @@ export class TBTest extends DiceTerm {
     return this;
   }
   static DENOMINATION = 's';
+  static DEFAULT_OB = 2;
   static MODIFIERS = {
     c: (): void => undefined, // Modifier is consumed in constructor for maximumCoupResult / minimumFumbleResult
     v: (): void => undefined, // Modifier is consumed in constructor for checkTargetNumber
@@ -78,16 +91,23 @@ export class TBTest extends DiceTerm {
   };
 }
 
-export function evaluateTest(dice: number[], ob: number): SubCheckResult[] {
+export function evaluateTest(
+  dice: number[],
+  ob: number,
+  {
+    heroic = false, // successes on 3+ instead of 4+
+  }: { heroic?: boolean } = {},
+): SubCheckResult[] {
   if (dice.length < 1) {
     throw new Error(getGame().i18n.localize('TB2.ErrorInvalidNumberOfDice'));
   }
   let passes = 0;
   let sixes = 0;
   let fails = 0;
+  const minimumSuccessFace = heroic ? 3 : 4;
   dice.map((die) => {
     if (die == 6) sixes++;
-    if (die >= 4) {
+    if (die >= minimumSuccessFace) {
       passes++;
     } else {
       fails++;
@@ -98,11 +118,13 @@ export function evaluateTest(dice: number[], ob: number): SubCheckResult[] {
     fails: fails,
     result: passes,
     success: passes >= ob,
+    testOb: ob,
   };
   return [result];
 }
-
-interface SubCheckResult extends DiceTerm.Result {
-  // TODO do i need anything in here?
-  foo?: number;
+interface DieWithSubCheck {
+  result: number;
+  testOb: number;
 }
+
+interface SubCheckResult extends DieWithSubCheck, DiceTerm.Result {}
