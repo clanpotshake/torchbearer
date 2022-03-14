@@ -11,9 +11,6 @@
  */
 
 // Import TypeScript modules
-import { TBItem } from './item/TBItem';
-import { TBActor } from './actor/TBActor';
-import { TB } from './config';
 import registerForHooks from './hooks/hooks';
 
 // Initialize system
@@ -31,19 +28,3 @@ Hooks.once('ready', async () => {
 });
 
 // Add any additional hooks if necessary
-
-declare global {
-  interface Game {
-    tb: {
-      TBActor: typeof TBActor;
-      TBItem: typeof TBItem;
-      TB: typeof TB;
-      // migration: typeof migration;
-      // macros: typeof macros;
-    };
-  }
-
-  interface CONFIG {
-    TB: typeof TB;
-  }
-}

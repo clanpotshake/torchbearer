@@ -24,3 +24,12 @@ export const utilities = {
     return vowels.includes(x?.trim()[0]);
   },
 };
+export function handyParse(
+  input: number | string | undefined | null,
+  radix: number,
+  defaultValue?: number,
+): number {
+  if (!input) return defaultValue ?? 0;
+  if (typeof input === 'number') return input;
+  return parseInt(input, radix);
+}

@@ -10,6 +10,7 @@ import registerHandlebarsPartials from '../handlebars/handlebars-partials';
 import registerHandlebarsHelpers from '../handlebars/helpers';
 import { TBTerm } from '../rolls/TBTerm';
 import { TBRoll } from '../rolls/TBRoll';
+import { createTestRoll } from '../rolls/CheckFactory';
 
 export default function registerForInitHooks(): void {
   Hooks.once('init', init);
@@ -21,7 +22,7 @@ async function init() {
     TBActor,
     TBItem,
     TB,
-    // createTestRoll,
+    createTestRoll,
     // migration,
     // macros,
   };
@@ -56,6 +57,9 @@ declare global {
       TBActor: typeof TBActor;
       TBItem: typeof TBItem;
       TB: typeof TB;
+      createTestRoll: typeof createTestRoll;
+      // migration: typeof migration;
+      // macros: typeof macros;
     };
   }
   interface CONFIG {

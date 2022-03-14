@@ -4,14 +4,15 @@
 // SPDX-License-Identifier: MIT
 
 import { getGame } from '../helpers';
-import { utilities } from '../util/utilities';
+import { handyParse, utilities } from '../util/utilities';
+import { TBTerm } from './TBTerm';
 
 /**
  * Provides default values for all arguments the `CheckFactory` expects.
  */
 class DefaultCheckOptions implements TBCheckFactoryOptions {
   readonly dicePool: number = 1;
-  readonly obstacle: number = 0;
+  readonly obstacle: number = TBTerm.DEFAULT_OB;
   readonly versus: boolean = false;
   readonly beginnersLuck: boolean = false;
   readonly successMod: number = 0;
@@ -112,19 +113,19 @@ export async function createTestRoll(
   const luckFactor = dialogOptions.luck ? 0.5 : 1.0;
   const skill = dialogOptions.skillRank ?? 0; // TODO if luck, skillrank is ability rank
   const help = dialogOptions.helpGear ?? 0;
-  const luckPool = Math.ceil((skill + help) * luckFactor);
-  const traitDie = dialogOptions.traitHelp ? 1 : dialogOptions.traitCheck ? -1 : 0;
   const freshDie = dialogOptions.fresh ? 1 : 0;
+  const finalSkillDice = Math.ceil((skill + help + freshDie) * luckFactor);
+  const traitDie = dialogOptions.traitHelp ? 1 : dialogOptions.traitCheck ? -1 : 0;
   const personaDie = dialogOptions.purchasedDice ?? 0;
   const natureDice = dialogOptions.nature ?? 0;
   const successMod = dialogOptions.successMod ?? 0;
   // TODO bulky et al only apply to specific skill tests, not yet implemented
 
-  const finalDicePool = [luckPool, traitDie, freshDie, personaDie, natureDice].reduce(add, 0);
+  const finalDicePool = [finalSkillDice, traitDie, personaDie, natureDice].reduce(add, 0);
 
   const newOptions: Partial<TBCheckFactoryOptions> = {
     dicePool: finalDicePool,
-    obstacle: dialogOptions.obstacle ?? 0,
+    obstacle: dialogOptions.obstacle ?? TBTerm.DEFAULT_OB,
     successMod: successMod,
     beginnersLuck: dialogOptions.luck ?? false,
     rollMode: dialogOptions.rollMode ?? dialogOptions.rollMode,
@@ -224,36 +225,32 @@ async function askRollOptions(
  * @param formData - The filled dialog
  */
 function parseDialogFormData(formData: HTMLFormElement): Partial<DiceRollInfo> {
-  function handyParse(input: number | string | undefined | null, radix: number): number {
-    if (!input) return 0;
-    if (typeof input === 'number') return input;
-    return parseInt(input, radix);
-  }
   const currentNature = handyParse(formData['nature']?.value, 10);
   const chosenRollMode = formData['roll-mode']?.value;
-  const chosenApplyBulky = formData['apply-bulky']?.value;
-  const chosenApplyHometown = formData['apply-hometown']?.value;
-  const chosenApplyWeary = formData['apply-weary']?.value;
-  const chosenHelpGear = handyParse(formData['help-gear']?.value, 10);
+  const chosenApplyBulky = $(formData['apply-bulky']).is(':checked');
+  const chosenApplyHometown = $(formData['apply-hometown']).is(':checked');
+  const chosenApplyWeary = $(formData['apply-weary']).is(':checked');
+  const chosenHelpGear = handyParse(formData['support-gear']?.value, 10);
   const chosenMight = handyParse(formData['might']?.value, 10);
   const chosenPrecedence = handyParse(formData['precedence']?.value, 10);
-  const chosenObstacle = handyParse(formData['check-target-number']?.value, 10);
+  const chosenObstacle = handyParse(formData['check-target-number']?.value, 10, TBTerm.DEFAULT_OB);
   const chosenSkillRank = handyParse(formData['skill-rank']?.value, 10);
   const chosenSuccessMod = handyParse(formData['success-mod']?.value, 10);
   let chosenTraitHelp = false;
-  switch (formData['help-trait']?.value) {
+  switch (formData['use-trait']?.value) {
     case 'help':
       chosenTraitHelp = true;
       break;
     case 'check':
+    // TODO
     case 'none':
       chosenTraitHelp = false;
       break;
   }
   const chosenPersonaDice = handyParse(formData['persona-buy']?.value, 10);
-  const chosenFresh = formData['fresh-die']?.value;
-  const chosenLuck = formData['luck-roll']?.value;
-  const chosenNature = formData['nature-channel']?.value == 'on' ? currentNature : 0;
+  const chosenFresh = formData['fresh-die']?.value; // TODO not yet in form
+  const chosenLuck = formData['luck-roll']?.value; // TODO not yet in form
+  const chosenNature = $(formData['nature-channel']).is(':checked') ? currentNature : 0;
 
   return {
     applyBulky: chosenApplyBulky,
