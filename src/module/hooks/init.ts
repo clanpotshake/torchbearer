@@ -8,7 +8,7 @@ import { TBItemSheet } from '../item/sheets/TBItemSheet';
 import { TBChatMessage } from '../ChatMessage';
 import registerHandlebarsPartials from '../handlebars/handlebars-partials';
 import registerHandlebarsHelpers from '../handlebars/helpers';
-import { TBTest } from '../rolls/TBTest';
+import { TBTerm } from '../rolls/TBTerm';
 import { TBRoll } from '../rolls/TBRoll';
 
 export default function registerForInitHooks(): void {
@@ -32,8 +32,8 @@ async function init() {
   CONFIG.ChatMessage.documentClass = TBChatMessage;
   CONFIG.Actor.typeLabels = TB.i18n.actorTypes;
   CONFIG.Item.typeLabels = TB.i18n.itemTypes;
-  CONFIG.Dice.types.push(TBTest);
-  CONFIG.Dice.terms.s = TBTest;
+  CONFIG.Dice.types.push(TBTerm);
+  CONFIG.Dice.terms.s = TBTerm;
   CONFIG.Dice.rolls.unshift(TBRoll);
 
   Actors.unregisterSheet('core', ActorSheet);

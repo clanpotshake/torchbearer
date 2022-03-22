@@ -62,7 +62,7 @@ class CheckFactory {
     // const successes =
     //   this.options.successMod >= 0 ? `+${this.options.successMod}` : `${this.options.successMod}`;
     // TODO need to parse results manually before applying successes
-    return `${diePool}ds6`;
+    return `${diePool}ds`;
   }
 }
 
