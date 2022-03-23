@@ -13,6 +13,9 @@ export class TBTerm extends DiceTerm {
       options,
     });
     logger.info('TBTest.constructor', results);
+    if (this.results.length > 0) {
+      this.evaluateResults();
+    }
   }
   rerollableSixes = 0;
   rerollableFails = 0;
@@ -20,7 +23,7 @@ export class TBTerm extends DiceTerm {
 
   /** @override */
   get expression(): string {
-    return `d6${this.modifiers.join('')}`;
+    return `${this.number}d6${this.modifiers.join('')}`;
   }
   /** @override */
   get total(): string | number | null | undefined {
@@ -30,35 +33,35 @@ export class TBTerm extends DiceTerm {
   /** @override */
   roll({ minimize = false, maximize = false } = {}): DiceTerm.Result {
     logger.info('in TBTest.roll');
-    // if (!this._evaluated) {
-    //   logger.info('roll not yet evaluated, doing so...');
-    //   super.roll({ minimize: false, maximize: maximize });
-    //   this.evaluateResults();
-    // }
+    if (!this._evaluated) {
+      logger.info('roll not yet evaluated, doing so...');
+      super.roll({ minimize: false, maximize: maximize });
+      this.evaluateResults();
+    }
     return {
       ...super.roll({ minimize, maximize }),
       result: this.successes,
       success: true,
     };
   }
-  // evaluateResults(): void {
-  //   this.rerollableFails = 0;
-  //   this.rerollableSixes = 0;
-  //   this.results.map((die) => {
-  //     if (die.result == 6) {
-  //       this.rerollableSixes++;
-  //     }
-  //     // TODO mastery here
-  //     if (die.result < 4) {
-  //       this.rerollableFails++;
-  //     } else {
-  //       this.successes++;
-  //     }
-  //   });
-  //   logger.info('found sixes:', this.rerollableSixes);
-  //   logger.info('found fails:', this.rerollableFails);
-  //   logger.info('found successes:', this.successes);
-  // }
+  evaluateResults(): void {
+    this.rerollableFails = 0;
+    this.rerollableSixes = 0;
+    this.results.map((die) => {
+      if (die.result == 6) {
+        this.rerollableSixes++;
+      }
+      // TODO mastery here
+      if (die.result < 4) {
+        this.rerollableFails++;
+      } else {
+        this.successes++;
+      }
+    });
+    logger.info('found sixes:', this.rerollableSixes);
+    logger.info('found fails:', this.rerollableFails);
+    logger.info('found successes:', this.successes);
+  }
   /**
    * @override
    * @remarks "min" and "max" are filtered out because they are irrelevant for
@@ -70,9 +73,9 @@ export class TBTerm extends DiceTerm {
   }
   /** @override */
   _evaluateSync({ minimize = false, maximize = false } = {}): this {
-    return super._evaluateSync({ minimize, maximize });
-    // this.evaluateResults();
-    // return this;
+    super._evaluateSync({ minimize: false, maximize: true });
+    this.evaluateResults();
+    return this;
   }
   static DENOMINATION = 's';
   static MODIFIERS = {

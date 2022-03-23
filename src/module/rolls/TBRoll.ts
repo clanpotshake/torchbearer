@@ -15,8 +15,8 @@ export class TBRoll<D extends Record<string, unknown> = Record<string, unknown>>
    */
   async render(chatOptions: Parameters<Roll['render']>[0] = {}): Promise<string> {
     logger.info('TBRoll.render', this);
-    const x = await super.getTooltip();
-    logger.info('tooltip is', x);
+    // const x = await super.getTooltip();
+    // logger.info('tooltip is', x);
     chatOptions = foundry.utils.mergeObject(
       {
         user: getGame().user?.id,
