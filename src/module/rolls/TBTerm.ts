@@ -1,6 +1,12 @@
-export class TBTest extends DiceTerm {
-  constructor({ modifiers = [], results = [], options }: Partial<DiceTerm.TermData>) {
+export class TBTerm extends DiceTerm {
+  constructor({
+    number: number,
+    modifiers = [],
+    results = [],
+    options,
+  }: Partial<DiceTerm.TermData>) {
     super({
+      number: number,
       faces: 6,
       results,
       modifiers,
@@ -9,8 +15,6 @@ export class TBTest extends DiceTerm {
     logger.info('TBTest.constructor', results);
     if (this.results.length > 0) {
       this.evaluateResults();
-    } else {
-      logger.error('TBTest has empty results', this);
     }
   }
   rerollableSixes = 0;
@@ -18,15 +22,8 @@ export class TBTest extends DiceTerm {
   successes = 0;
 
   /** @override */
-  // evaluate(
-  //   options: Partial<RollTerm.EvaluationOptions & { async: boolean }> | undefined = {},
-  // ): Promise<this> {
-  //   logger.info('in TBTest.evaluate');
-  //   return super.evaluate({ minimize: false, maximize: true, async: options?.async || true });
-  // }
-  /** @override */
   get expression(): string {
-    return `ds${this.modifiers.join('')}`;
+    return `${this.number}d6${this.modifiers.join('')}`;
   }
   /** @override */
   get total(): string | number | null | undefined {
@@ -42,6 +39,7 @@ export class TBTest extends DiceTerm {
       this.evaluateResults();
     }
     return {
+      ...super.roll({ minimize, maximize }),
       result: this.successes,
       success: true,
     };
@@ -67,7 +65,7 @@ export class TBTest extends DiceTerm {
   /**
    * @override
    * @remarks "min" and "max" are filtered out because they are irrelevant for
-   * {@link TBTest}s and only result in some dice rolls being highlighted
+   * {@link TBTerm}s and only result in some dice rolls being highlighted
    * incorrectly.
    */
   getResultCSS(result: DiceTerm.Result): (string | null)[] {
@@ -75,12 +73,13 @@ export class TBTest extends DiceTerm {
   }
   /** @override */
   _evaluateSync({ minimize = false, maximize = false } = {}): this {
-    super._evaluateSync({ minimize, maximize });
+    super._evaluateSync({ minimize: false, maximize: true });
     this.evaluateResults();
     return this;
   }
   static DENOMINATION = 's';
   static MODIFIERS = {
+    // TODO use these for opposed etc
     c: (): void => undefined, // Modifier is consumed in constructor for maximumCoupResult / minimumFumbleResult
     v: (): void => undefined, // Modifier is consumed in constructor for checkTargetNumber
     n: (): void => undefined, // Modifier is consumed in constructor for canFumble

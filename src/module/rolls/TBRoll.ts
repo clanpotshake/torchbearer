@@ -1,8 +1,12 @@
 import { getGame } from '../helpers';
-import { TBTest } from './TBTest';
+import { TBTerm } from './TBTerm';
 import logger from '../logger';
 
 export class TBRoll<D extends Record<string, unknown> = Record<string, unknown>> extends Roll<D> {
+  constructor(formula: string, data?: D, options?: Roll['options']) {
+    console.log('TBRoll constructor, formula: ' + formula);
+    super(formula, data, options);
+  }
   static CHAT_TEMPLATE = 'systems/torchbearer/templates/dice/dice/roll.hbs';
   static TOOLTIP_TEMPLATE = 'systems/torchbearer/templates/dice/dice/dice-tooltip.hbs';
 
@@ -11,8 +15,8 @@ export class TBRoll<D extends Record<string, unknown> = Record<string, unknown>>
    */
   async render(chatOptions: Parameters<Roll['render']>[0] = {}): Promise<string> {
     logger.info('TBRoll.render', this);
-    const x = await super.getTooltip();
-    logger.info('tooltip is', x);
+    // const x = await super.getTooltip();
+    // logger.info('tooltip is', x);
     chatOptions = foundry.utils.mergeObject(
       {
         user: getGame().user?.id,
@@ -28,9 +32,9 @@ export class TBRoll<D extends Record<string, unknown> = Record<string, unknown>>
     if (!this._evaluated) this.evaluate();
 
     const firstDiceTerm = this.dice[0];
-    const successes = firstDiceTerm instanceof TBTest ? firstDiceTerm.successes : 0;
-    const sixes = firstDiceTerm instanceof TBTest ? firstDiceTerm.rerollableSixes : 0;
-    const fails = firstDiceTerm instanceof TBTest ? firstDiceTerm.rerollableFails : 0;
+    const successes = firstDiceTerm instanceof TBTerm ? firstDiceTerm.successes : 0;
+    const sixes = firstDiceTerm instanceof TBTerm ? firstDiceTerm.rerollableSixes : 0;
+    const fails = firstDiceTerm instanceof TBTerm ? firstDiceTerm.rerollableFails : 0;
     const isFail = false;
 
     const chatData = {

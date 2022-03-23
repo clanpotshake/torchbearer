@@ -62,7 +62,7 @@ class CheckFactory {
     // const successes =
     //   this.options.successMod >= 0 ? `+${this.options.successMod}` : `${this.options.successMod}`;
     // TODO need to parse results manually before applying successes
-    return `${diePool}ds6`;
+    return `${diePool}ds`;
   }
 }
 
@@ -225,6 +225,7 @@ function parseDialogFormData(formData: HTMLFormElement): Partial<DiceRollInfo> {
     return parseInt(input, radix);
   }
   const chosenRollMode = formData['roll-mode']?.value;
+  // TODO this is "on" and not a boolean
   const chosenApplyBulky = formData['apply-bulky']?.value;
   const chosenApplyHometown = formData['apply-hometown']?.value;
   const chosenApplyWeary = formData['apply-weary']?.value;
@@ -235,7 +236,7 @@ function parseDialogFormData(formData: HTMLFormElement): Partial<DiceRollInfo> {
   const chosenSkillRank = handyParse(formData['skill-rank']?.value, 10);
   const chosenSuccessMod = handyParse(formData['success-mod']?.value, 10);
   let chosenTraitHelp = false;
-  switch (formData['help-trait']?.value) {
+  switch (formData['use-trait']?.value) {
     case 'help':
       chosenTraitHelp = true;
       break;
@@ -247,6 +248,7 @@ function parseDialogFormData(formData: HTMLFormElement): Partial<DiceRollInfo> {
   const chosenPersonaDice = handyParse(formData['persona-buy']?.value, 10);
   const chosenFresh = formData['fresh-die']?.value;
   const chosenLuck = formData['luck-roll']?.value;
+  // TODO this is NaN
   const chosenNature = handyParse(formData['nature-channel']?.value, 10);
 
   return {
