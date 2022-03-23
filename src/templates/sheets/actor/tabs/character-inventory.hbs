@@ -9,7 +9,6 @@
     <div class="grid grid-8col">
       {{#each config.i18n.slots as |translation name|}}
         {{#if (gt (lookup ../data.data.containerSlots name) 0)}}
-          {{log 'has ' name 'slots:' (lookup ../data.data.containerSlots name) }}
             <h4 class="tb-embedded-document-list-title">{{localize translation}}</h4>
             <ol class="tb-embedded-document-list tb-embedded-document-list--gear item-list">
               {{#each (lookup ../../gearSlotMap name) as |itemData id|}}
@@ -27,8 +26,8 @@
   {{#unless (isEmpty containers)}}
     {{log containers}}
     <div class="grid grid-8col">
-      {{#each containers as |itemData|}}
       <h4 class="tb-embedded-document-list-title">{{localize 'TB2.GearTabContainersHeader'}}</h4>
+      {{#each containers as |itemData|}}
           <ul class="tb-embedded-document-list tb-embedded-document-list--gear item-list">
          {{!--       {{#> systems/torchbearer/templates/sheets/actor/components/item-list-header.hbs}}
             {{/systems/torchbearer/templates/sheets/actor/components/item-list-header.hbs}}
@@ -42,13 +41,14 @@
   {{/unless}}
   {{#unless (isEmpty ghostGear)}}
     <div class="grid grid-8col">
+      <h4 class="tb-embedded-document-list-title">{{localize 'TB2.GearTabUnassignedGearHeader'}}</h4>
       {{#each ghostGear as |itemData|}}
-        <h4 class="tb-embedded-document-list-title">{{localize 'TB2.GearTabUnassignedGearHeader'}}</h4>
         <ul class="tb-embedded-document-list tb-embedded-document-list--gear item-list">
-         {{!-- {{#> systems/torchbearer/templates/sheets/actor/components/item-list-header.hbs}}
+         {{#> systems/torchbearer/templates/sheets/actor/components/item-list-header.hbs}}
           {{/systems/torchbearer/templates/sheets/actor/components/item-list-header.hbs}}
           {{> systems/torchbearer/templates/sheets/actor/components/item-list-entry.hbs
-            itemData=itemData}} --}}
+            itemData=itemData
+            isPhysical=true}}
         </ul>
       {{/each}}
     </div>

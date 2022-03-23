@@ -1,4 +1,5 @@
 <form class="{{cssClass}}" autocomplete="off">
+  {{log 'gear-sheet.hbs' this}}
   {{#> systems/torchbearer/templates/sheets/item/components/sheet-header.hbs}}
     {{#if editable}}
       editable!
@@ -23,7 +24,9 @@
   <section class="sheet-body">
 
     {{!-- Description Tab --}}
-    {{#> systems/torchbearer/templates/sheets/item/tabs/description.hbs}}
+    {{#> systems/torchbearer/templates/sheets/item/tabs/description.hbs
+      slots=slots
+      isPhysical=true}}
     {{/systems/torchbearer/templates/sheets/item/tabs/description.hbs}}
 
     {{!-- Effects Tab --}}

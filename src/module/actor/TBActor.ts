@@ -1,12 +1,6 @@
 import { getGame } from '../helpers';
-import { SkillTest } from './TBActorDataProperties';
 import { createTestRoll } from '../rolls/CheckFactory';
-import { TB } from '../config';
-import {
-  ConfiguredDocumentClass,
-  ConstructorDataType,
-  DocumentConstructor,
-} from '@league-of-foundry-developers/foundry-vtt-types/src/types/helperTypes';
+import { SkillTest, SlotType, TB } from '../config';
 
 declare global {
   interface DocumentClassConfig {
@@ -20,11 +14,29 @@ export class TBActor extends Actor {
     this.prepareEmbeddedEntities();
     this.applyActiveEffectsToBaseData();
     this.prepareDerivedData();
+    this.prepareGear();
     this.applyActiveEffectsToDerivedData();
   }
   /** @override */
   prepareBaseData(): void {
-    // this.prepareTests();
+    super.prepareBaseData();
+  }
+
+  prepareGear(): void {
+    const data = this.data.data;
+
+    data.containerSlots = Object.entries(data.containerSlotCapacities)
+      .filter(([slot, capacity]) => {
+        if (typeof capacity === 'boolean') {
+          return capacity;
+        } else {
+          return capacity > 0;
+        }
+      })
+      .map(([slot]) => {
+        // return slot;
+        return 'feet';
+      });
   }
 
   /**

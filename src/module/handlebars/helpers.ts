@@ -1,5 +1,6 @@
 import { TBItem } from '../item/TBItem';
 import { utilities } from '../util/utilities';
+import { SlotType } from '../config';
 
 export default function registerHandlebarsHelpers(): void {
   Object.entries(utilities).forEach(([key, helper]) => Handlebars.registerHelper(key, helper));
@@ -17,5 +18,8 @@ const helpers = {
   times: (input: number, repeatMe: string | null | undefined): string => {
     logger.info(`in times with, repeating ${repeatMe} ${input} times`);
     return repeatMe?.repeat(input) || '';
+  },
+  compareItemSlot: (input: SlotType | undefined, slot: SlotType): boolean => {
+    return input === undefined || input === slot;
   },
 };

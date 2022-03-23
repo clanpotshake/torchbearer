@@ -23,9 +23,13 @@ SHEETS
     pocket defaults to 0, should be true or whatever
     PLAYER CHARACTER
       SKILLS
-        pass/fails are getting saved to the actor, not the item (old data? make a new actor)
         compute Bulky et al (skill + gear combO) and pass to roll formula
       GEAR
+        GEAR SHEET
+          isPhysical not implemented
+          need a way to assign an item to a slot
+          gear description owner is already draggable - i need to make events to receive the drop
+        can't seem to have 2 of the same item?
         how do i account for gear assigned to the actor not already displayed in the inventory?
         how to represent containers? should they be their own item type?
           from discord:
