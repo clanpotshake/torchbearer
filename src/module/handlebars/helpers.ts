@@ -21,6 +21,7 @@ const helpers = {
     return repeatMe?.repeat(input) || '';
   },
   compareItemSlot: (input: SlotType | undefined, slot: SlotType): boolean => {
-    return input === undefined || input === slot;
+    logger.info(`item is in slot ${input}, comparing against ${slot}`);
+    return input !== undefined || input === slot;
   },
 };

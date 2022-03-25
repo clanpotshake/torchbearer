@@ -25,8 +25,23 @@
 
     {{!-- Description Tab --}}
     {{#> systems/torchbearer/templates/sheets/item/tabs/description.hbs
-      slots=slots
       isPhysical=true}}
+      {{#if isOwned}}
+      <div class="side-property">
+        <label for="gear.container.select">{{localize 'TB2.GearContainedInLabel'}}</label>
+        <select id="gear.container.select" name="data.containedIn" data-type="String">
+          <option disabled {{#if (isEmpty data.data.containedIn)}}selected{{/if}}>{{localize "TB2.GearContainedInNothingLabel"}}</option>
+          {{#select data.data.containedIn}}
+            {{#each actor.data.data.containerSlots as |slotKey slotIdx|}}
+              {{log "slotKey:" slotKey}}
+              <option value="{{slotKey}}"
+                {{#if (compareItemSlot data.data.containedIn slotKey)}}selected{{/if}}
+              >{{localize slotKey}}</option>
+            {{/each}}
+          {{/select}}
+        </select>
+      </div>
+      {{/if}}
     {{/systems/torchbearer/templates/sheets/item/tabs/description.hbs}}
 
     {{!-- Effects Tab --}}
@@ -53,18 +68,20 @@
             name="data.availability"
             title="{{localize 'TB2.GearAvailabilityInput'}}"
             value="{{data.data.availability}}">
-          <label>{{localize 'TB2.GearBookNameLabel'}}</label>
-          <input
-            class="tb-embedded-document-list__editable change-item"
-            type="text" data-type="String"
-            name="data.bookName"
-            value="{{data.data.bookName}}">
-          <label for="data.page-{{data._id}}">{{localize 'TB2.GearBookPageLabel'}}</label>
-          <input
-            class="tb-embedded-document-list__editable change-item"
-            type="text" data-type="String"
-            name="data.page"
-            value="{{data.data.page}}">
+          <label>{{localize 'TB2.GearBookNameLabel'}}
+            <input
+              class="tb-embedded-document-list__editable change-item"
+              type="text" data-type="String"
+              name="data.bookName"
+              value="{{data.data.bookName}}">
+          </label>
+          <label>{{localize 'TB2.GearBookPageLabel'}}
+            <input
+              class="tb-embedded-document-list__editable change-item"
+              type="text" data-type="String"
+              name="data.page"
+              value="{{data.data.page}}">
+          </label>
         </div>
       {{> systems/torchbearer/templates/sheets/item/components/gear-slots.hbs}}
     {{/systems/torchbearer/templates/sheets/item/tabs/configuration.hbs}}
