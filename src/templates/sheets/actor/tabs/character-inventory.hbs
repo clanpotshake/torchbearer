@@ -46,9 +46,28 @@
         <ul class="tb-embedded-document-list tb-embedded-document-list--gear item-list">
          {{#> systems/torchbearer/templates/sheets/actor/components/item-list-header.hbs}}
           {{/systems/torchbearer/templates/sheets/actor/components/item-list-header.hbs}}
-          {{> systems/torchbearer/templates/sheets/actor/components/item-list-entry.hbs
+          {{#> systems/torchbearer/templates/sheets/actor/components/item-list-entry.hbs
             itemData=itemData
             isPhysical=true}}
+            {{log "itemData:" itemData}}
+              <div class="side-property">
+                <label for="data.containedIn-{{itemData._id}}">{{localize 'TB2.GearContainedInLabel'}}</label>
+                <select id="data.containedIn-{{itemData._id}}"
+                        name="data.containedIn"
+                        class="change-item"
+                        data-property="containedIn" data-dtype="SlotType">
+                  <option disabled {{#if (isEmpty itemData.data.containedIn)}}selected{{/if}}>{{localize "TB2.GearContainedInNothingLabel"}}</option>
+                  {{#select itemData.data.containedIn}}
+                    {{#each ../../actor.data.data.containerSlots as |slotKey slotIdx|}}
+                      {{log "slotKey:" slotKey}}
+                      <option value="{{slotKey}}"
+                              {{#if (compareItemSlot itemData.data.containedIn slotKey)}}selected{{/if}}
+                      >{{localize slotKey}}</option>
+                    {{/each}}
+                  {{/select}}
+                </select>
+              </div>
+          {{/systems/torchbearer/templates/sheets/actor/components/item-list-entry.hbs}}
         </ul>
       {{/each}}
     </div>
