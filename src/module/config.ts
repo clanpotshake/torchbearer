@@ -204,3 +204,7 @@ export const TB = {
   i18nKeys,
   icons: {},
 };
+
+export const AllSlots: SlotType[] = Object.keys(TB.i18n.slots).map(([slot]) => {
+  return slot as SlotType;
+});

@@ -26,6 +26,7 @@ SHEETS
         compute Bulky et al (skill + gear combO) and pass to roll formula
       GEAR
         GEAR SHEET
+          pocket size defaults to 1, needs to be "not pocketable"
           isPhysical not implemented
           need a way to assign an item to a slot
           gear description owner is already draggable - i need to make events to receive the drop

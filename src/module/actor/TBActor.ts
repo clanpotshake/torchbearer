@@ -28,14 +28,13 @@ export class TBActor extends Actor {
     data.containerSlots = Object.entries(data.containerSlotCapacities)
       .filter(([slot, capacity]) => {
         if (typeof capacity === 'boolean') {
-          return capacity;
+          return capacity; // do we have pockets?
         } else {
-          return capacity > 0;
+          return capacity > 0; // the slot has capacity, so include it
         }
       })
       .map(([slot]) => {
-        // return slot;
-        return 'feet';
+        return slot as SlotType;
       });
   }
 

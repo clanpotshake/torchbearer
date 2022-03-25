@@ -1,6 +1,6 @@
 import { TBItem } from '../item/TBItem';
 import { utilities } from '../util/utilities';
-import { SlotType } from '../config';
+import { AllSlots, SlotType, TB } from '../config';
 
 export default function registerHandlebarsHelpers(): void {
   Object.entries(utilities).forEach(([key, helper]) => Handlebars.registerHelper(key, helper));
@@ -13,6 +13,7 @@ const helpers = {
   },
   isEmpty: (input: Array<unknown> | null | undefined): boolean => (input?.length ?? 0) === 0,
   beginnersLuckAttributes: (): string[] => TBItem.beginnersLuckAttributes,
+  allSlots: (): SlotType[] => AllSlots,
   ifIn: (input: Array<unknown> | null | undefined, elem: unknown): boolean =>
     input?.includes(elem) || false,
   times: (input: number, repeatMe: string | null | undefined): string => {

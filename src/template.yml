@@ -5,7 +5,7 @@ Actor:
     - npc
   templates:
     hasInventorySlots:
-      containerSlots:
+      containerSlotCapacities:
         pack: 0
         held: 2
         belt: 3
