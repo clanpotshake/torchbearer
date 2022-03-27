@@ -54,9 +54,10 @@
                 <label for="data.containedIn-{{itemData._id}}">{{localize 'TB2.GearContainedInLabel'}}</label>
                 <select id="data.containedIn-{{itemData._id}}"
                         name="data.containedIn"
-                        class="change-item"
-                        data-property="containedIn" data-dtype="SlotType">
-                  <option disabled {{#if (isEmpty itemData.data.containedIn)}}selected{{/if}}>{{localize "TB2.GearContainedInNothingLabel"}}</option>
+                        class="tb-embedded-document-list__editable change-item"
+                        data-item-id="{{itemData._id}}"
+                        data-property="data.containedIn"   data-dtype="String">
+                  <option disabled>{{localize "TB2.GearContainedInNothingLabel"}}</option>
                   {{#select itemData.data.containedIn}}
                     {{#each ../../actor.data.data.containerSlots as |slotKey slotIdx|}}
                       {{log "slotKey:" slotKey}}
