@@ -27,7 +27,10 @@ export class TBItem extends Item {
         ? TBItem.classesWithUrdr.includes(this.data.data.classType)
         : false;
     if (this.data.type === 'gear') {
-      this.data.data.containedIn = undefined; // this defaults it to ghost gear
+      // newly added item
+      if (this.data.data.containedIn === null) {
+        this.data.data.containedIn = undefined; // this moves it to ghost gear
+      }
       this.data.data.isContainer = Object.values(this.data.data.capacity).some((slot) => {
         return slot > 0;
       });

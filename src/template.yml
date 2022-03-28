@@ -170,7 +170,7 @@ Item:
     templates:
       - book
     description: 'item description'
-    containedIn: ''
+    containedIn:
     availability: ''
     cost: 0
     volume:
