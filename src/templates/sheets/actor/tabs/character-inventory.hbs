@@ -57,13 +57,11 @@
                         class="tb-embedded-document-list__editable change-item"
                         data-item-id="{{itemData._id}}"
                         data-property="data.containedIn"   data-dtype="String">
-                  <option disabled>{{localize "TB2.GearContainedInNothingLabel"}}</option>
+                  <option disabled selected>{{localize "TB2.GearContainedInNothingLabel"}}</option>
                   {{#select itemData.data.containedIn}}
                     {{#each ../../actor.data.data.containerSlots as |slotKey slotIdx|}}
                       {{log "slotKey:" slotKey}}
-                      <option value="{{slotKey}}"
-                              {{#if (compareItemSlot itemData.data.containedIn slotKey)}}selected{{/if}}
-                      >{{localize slotKey}}</option>
+                      <option value="{{slotKey}}">{{localize slotKey}}</option>
                     {{/each}}
                   {{/select}}
                 </select>
