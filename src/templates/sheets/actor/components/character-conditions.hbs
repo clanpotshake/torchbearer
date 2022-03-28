@@ -26,7 +26,7 @@
               name="data.career">
         {{#select data.data.career}}
           <option disabled
-          {{#if (isEmpty data.data.career)}}selected{{/if}} 
+          {{#if (isEmpty data.data.career)}}selected{{/if}}
           >{{localize "TB2.ClassNoneSelected"}}</option>
           {{#each (allClasses) as |value idx|}}
             <option value="{{value}}">{{localize (lookup ../config.i18n.classes value)}}</option>
