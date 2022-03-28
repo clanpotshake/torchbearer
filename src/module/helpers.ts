@@ -28,12 +28,19 @@ export function getGameSafe(): Game | undefined {
  * - If `message` is an instance of {@link Error}, it is thrown.
  * - If `message` is `undefined`, an {@link Error} with a default message is thrown.
  */
-export function enforce(value: unknown, message?: string | Error): asserts value {
+export function enforce(
+  value: unknown,
+  message?: string | Error,
+  logToConsole = true,
+): asserts value {
   if (!value) {
     if (!message) {
       message =
         getGameSafe()?.i18n.localize('TB2.ErrorUnexpectedError') ??
         'There was an unexpected error in the Torchbearer 2E system. For more details, please take a look at the console (F12).';
+    }
+    if (logToConsole) {
+      console.log(message);
     }
     throw message instanceof Error ? message : new Error(message);
   }

@@ -1,4 +1,5 @@
 <form class="{{cssClass}}" autocomplete="off">
+  {{log 'gear-sheet.hbs' this}}
   {{#> systems/torchbearer/templates/sheets/item/components/sheet-header.hbs}}
     {{#if editable}}
       editable!
@@ -23,7 +24,8 @@
   <section class="sheet-body">
 
     {{!-- Description Tab --}}
-    {{#> systems/torchbearer/templates/sheets/item/tabs/description.hbs}}
+    {{#> systems/torchbearer/templates/sheets/item/tabs/description.hbs
+      isPhysical=true}}
     {{/systems/torchbearer/templates/sheets/item/tabs/description.hbs}}
 
     {{!-- Effects Tab --}}
@@ -50,18 +52,20 @@
             name="data.availability"
             title="{{localize 'TB2.GearAvailabilityInput'}}"
             value="{{data.data.availability}}">
-          <label>{{localize 'TB2.GearBookNameLabel'}}</label>
-          <input
-            class="tb-embedded-document-list__editable change-item"
-            type="text" data-type="String"
-            name="data.bookName"
-            value="{{data.data.bookName}}">
-          <label for="data.page-{{data._id}}">{{localize 'TB2.GearBookPageLabel'}}</label>
-          <input
-            class="tb-embedded-document-list__editable change-item"
-            type="text" data-type="String"
-            name="data.page"
-            value="{{data.data.page}}">
+          <label>{{localize 'TB2.GearBookNameLabel'}}
+            <input
+              class="tb-embedded-document-list__editable change-item"
+              type="text" data-type="String"
+              name="data.bookName"
+              value="{{data.data.bookName}}">
+          </label>
+          <label>{{localize 'TB2.GearBookPageLabel'}}
+            <input
+              class="tb-embedded-document-list__editable change-item"
+              type="text" data-type="String"
+              name="data.page"
+              value="{{data.data.page}}">
+          </label>
         </div>
       {{> systems/torchbearer/templates/sheets/item/components/gear-slots.hbs}}
     {{/systems/torchbearer/templates/sheets/item/tabs/configuration.hbs}}

@@ -188,6 +188,8 @@ const i18nKeys = {
     custom: 'TB2.SlotTypeCustom',
   },
 };
+export type SkillTest = keyof typeof TB.i18n.skills;
+export type SlotType = keyof typeof TB.i18n.slots;
 export const TB = {
   ASCII: String.raw`
 ---------------------------------------------------------------------------------------
@@ -202,3 +204,7 @@ export const TB = {
   i18nKeys,
   icons: {},
 };
+
+export const AllSlots: SlotType[] = Object.keys(TB.i18n.slots).map(([slot]) => {
+  return slot as SlotType;
+});

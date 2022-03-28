@@ -25,15 +25,15 @@ Additional elements of the side-properties div can be handed over via the @parti
                       class="fas fa-user"></i>{{actor.name}}</a>
           </div>
           {{#if isPhysical}}
-          <div class="side-property">
-              <label for="data.quantity">{{localize 'TB2.Quantity'}}</label>
-              <input type="number" min="0" step="1" data-dtype="Number" name="data.quantity"
-                  value="{{data.data.quantity}}" />
-          </div>
-          <div class="side-property">
-              <label for="data.storageLocation">{{localize 'TB2.StorageLocation'}}</label>
-              <input type="text" data-dtype="String" name="data.storageLocation" value="{{data.data.storageLocation}}" />
-          </div>
+<!--          <div class="side-property">-->
+<!--              <label for="data.quantity">{{localize 'TB2.Quantity'}}</label>-->
+<!--              <input type="number" min="0" step="1" data-dtype="Number" name="data.quantity"-->
+<!--                  value="{{data.data.quantity}}" />-->
+<!--          </div>-->
+<!--          <div class="side-property">-->
+<!--              <label for="data.storageLocation">{{localize 'TB2.StorageLocation'}}</label>-->
+<!--              <input type="text" data-dtype="String" name="data.storageLocation" value="{{data.data.storageLocation}}" />-->
+<!--          </div>-->
           {{/if}}
         {{else}}
           <span>{{localize "TB2.NotOwned"}}</span>

@@ -2,7 +2,7 @@
 //
 // SPDX-License-Identifier: MIT
 
-import { TB } from '../config';
+import { SkillTest, SlotType, TB } from '../config';
 import { ModifiableDataBaseTotal } from '../common/CommonData';
 import { CharacterDataSource, NpcDataSourceData } from './TBActorDataSource';
 
@@ -40,19 +40,21 @@ interface HasMight {
 // how many slots and of what type they contain. or, actor item slots represent _capacity_, and
 // item inventory slots represent volume against that capacity.
 export interface HasInventorySlots {
-  containerSlots: {
-    pack: number;
-    held: number;
-    belt: number;
-    torso: number;
+  containerSlotCapacities: {
     head: number;
-    hand: number;
+    belt: number;
     feet: number;
+    hand: number;
+    held: number;
     neck: number;
-    arm: number;
+    pack: number;
     // as pockets are effectively infinite, this represents the capability to have item slots at all
     pocket: boolean;
+    torso: number;
+    custom: number;
   };
+  // should contain any slot type with capacity greater than zero
+  containerSlots: SlotType[];
 }
 
 type TBActorDataPropertiesDataAttributes = {
@@ -66,9 +68,6 @@ type TBActorDataPropertiesDataTraits = {
 type TBActorDataPropertiesDataChecks = {
   [key in SkillTest]: number;
 };
-
-export type SkillTest = keyof typeof TB.i18n.skills;
-export type SlotType = keyof typeof TB.i18n.slots;
 
 export function isTest(value: string): value is SkillTest {
   return Object.keys(TB.i18n.skills).includes(value);

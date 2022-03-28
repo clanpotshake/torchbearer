@@ -1,6 +1,6 @@
 import { getGame } from '../helpers';
 import { createTestRoll } from '../rolls/CheckFactory';
-import { TB } from '../config';
+import { SlotType, TB } from '../config';
 import { AttributeType, ClassType, ItemType } from './ItemDataSource';
 import { utilities } from '../util/utilities';
 
@@ -27,6 +27,10 @@ export class TBItem extends Item {
         ? TBItem.classesWithUrdr.includes(this.data.data.classType)
         : false;
     if (this.data.type === 'gear') {
+      // newly added item
+      if (this.data.data.containedIn === null) {
+        this.data.data.containedIn = undefined; // this moves it to ghost gear
+      }
       this.data.data.isContainer = Object.values(this.data.data.capacity).some((slot) => {
         return slot > 0;
       });

@@ -1,5 +1,4 @@
-import { TB } from '../config';
-import { SlotType } from '../actor/TBActorDataProperties';
+import { SlotType, TB } from '../config';
 import { TracksTests } from './ItemDataProperties';
 
 declare global {
@@ -145,7 +144,7 @@ export interface GearDataSourceData extends GMOnly, BookDataSource {
     neck: number;
     pocket: number; // number of items per pocket (don't use this and stackSize)
   };
-  containedIn?: SlotType | undefined;
+  containedIn?: SlotType;
   // the number of items in each instance of the Item (e.g. Torches would be 4, as they are Pack 1 for 4)
   stackSize: number;
 }
