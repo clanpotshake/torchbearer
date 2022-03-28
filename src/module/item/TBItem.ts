@@ -39,6 +39,12 @@ export class TBItem extends Item {
   protected prepareSkillThings(): void {
     this.data.data.rollable = TBItem.rollableItemTypes.includes(this.type);
     if (this.data.type === 'skill') {
+      if (!this.data.data.fails) {
+        this.data.data.fails = 0;
+      }
+      if (!this.data.data.passes) {
+        this.data.data.passes = 0;
+      }
       this.data.data.learning = this.data.data.rank == 0 && this.data.data.attempts >= 1;
     }
   }

@@ -25,6 +25,8 @@ SHEETS
       SKILLS
         compute Bulky et al (skill + gear combO) and pass to roll formula
       GEAR
+        SKILLS + ABILITIES
+          add a lock toggle so you can't update fields in your skill list, a la roll20's play/edit mode
         GEAR SHEET
           pocket size defaults to 1, needs to be "not pocketable"
           isPhysical not implemented

@@ -9,10 +9,6 @@
     <div class="grid grid-3col tb-actor-properties__property-multi-input">
       <h3 class="tb-embedded-document-list-title">{{localize 'TB2.SkillsHeader'}}</h3>
       <ol class="tb-embedded-document-list tb-embedded-document-list--skill item-list">
-        {{#> systems/torchbearer/templates/sheets/actor/components/item-list-header.hbs}}
-          <div>{{localize 'TB2.SkillHeader'}}</div>
-        {{/systems/torchbearer/templates/sheets/actor/components/item-list-header.hbs}}
-
         {{#each itemsByType.skill as |itemData id|}}
           {{#> systems/torchbearer/templates/sheets/actor/components/item-list-entry.hbs
             itemData=itemData
@@ -21,7 +17,7 @@
                  data-check="{{itemData.name}}"
                  data-item-id="{{itemData._id}}"
                  title="{{localize 'TB2.SkillTooltip' check=check-label}}">
-              <label for="data.rank-{{itemData._id}}">{{itemData.name}}</label>
+              <label for="data.rank-{{itemData._id}}">{{localize 'TB2.SkillRankLabel'}}</label>
               <input id="data.rank-{{itemData._id}}"
                      class="tb-embedded-document-list__editable change-item"
                      data-type="Number" type="number"
@@ -47,13 +43,8 @@
                      value="{{itemData.data.attempts}}" />
             </div>
           {{/systems/torchbearer/templates/sheets/actor/components/item-list-entry.hbs}}
-
         {{/each}}
       </ol>
     </div>
   {{/unless}}
-  {{> systems/torchbearer/templates/sheets/actor/components/add-button.hbs
-    title='TB2.UserInteractionAddItemTitle'
-    documentType='item'
-    type='skill'}}
 </div>
