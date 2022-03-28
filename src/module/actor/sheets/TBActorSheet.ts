@@ -50,7 +50,7 @@ export class TBActorSheet extends ActorSheet<ActorSheet.Options, TBActorSheetDat
     );
     const ghostGear = this.actor.items
       .filter((item) => {
-        return item.data.type === 'gear' && item.data.data.containedIn === undefined;
+        return item.data.type === 'gear' && !item.data.data.containedIn;
       })
       .map((item) => item.data);
 
