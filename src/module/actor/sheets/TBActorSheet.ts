@@ -313,7 +313,9 @@ export class TBActorSheet extends ActorSheet<ActorSheet.Options, TBActorSheetDat
     logger.info('in onChangeEmbeddedDocument');
     event.preventDefault();
     const element = $(event.currentTarget).get(0);
-    enforce(element instanceof HTMLInputElement);
+    const isValid: boolean =
+      element instanceof HTMLInputElement || element instanceof HTMLSelectElement;
+    enforce(isValid);
     if (element.disabled) return;
 
     const effectElement = element.closest(
@@ -353,6 +355,10 @@ export class TBActorSheet extends ActorSheet<ActorSheet.Options, TBActorSheetDat
       }
       case 'number': {
         const value = Number(element.value.trim());
+        return value;
+      }
+      case 'select-one': {
+        const value = element.value;
         return value;
       }
       default: {
