@@ -73,7 +73,7 @@ export class TBTerm extends DiceTerm {
   }
   /** @override */
   _evaluateSync({ minimize = false, maximize = false } = {}): this {
-    super._evaluateSync({ minimize: false, maximize: true });
+    super._evaluateSync({ minimize: false, maximize: false });
     this.evaluateResults();
     return this;
   }
