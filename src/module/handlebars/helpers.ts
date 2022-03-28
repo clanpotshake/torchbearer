@@ -22,6 +22,6 @@ const helpers = {
   },
   compareItemSlot: (input: SlotType | undefined, slot: SlotType): boolean => {
     logger.info(`item is in slot ${input}, comparing against ${slot}`);
-    return input !== undefined || input === slot;
+    return input === slot;
   },
 };
