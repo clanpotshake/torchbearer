@@ -190,6 +190,7 @@ const i18nKeys = {
 };
 export type SkillTest = keyof typeof TB.i18n.skills;
 export type SlotType = keyof typeof TB.i18n.slots;
+export type CharacterClassType = keyof typeof TB.i18n.classes;
 export const TB = {
   ASCII: String.raw`
 ---------------------------------------------------------------------------------------
@@ -207,4 +208,8 @@ export const TB = {
 
 export const AllSlots: SlotType[] = Object.keys(TB.i18n.slots).map(([slot]) => {
   return slot as SlotType;
+});
+
+export const AllClasses: CharacterClassType[] = Object.keys(TB.i18n.classes).map((className) => {
+  return className as CharacterClassType;
 });

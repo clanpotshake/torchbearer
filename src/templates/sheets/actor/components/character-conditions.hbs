@@ -18,11 +18,21 @@
     </div>
 
     <div class="tb-actor-properties__property">
-      <label for="data.class-{{data._id}}" class="tb-actor-properties__property-label">{{localize "TB2.CharacterClassLabel"}}</label>
-      <input id="data.class-{{data._id}}"
-             data-type="String" type="text"
-             name="data.career"
-             value="{{data.data.career}}"/>
+      <label for="data.career-{{data._id}}" class="tb-actor-properties__property-label">{{localize "TB2.CharacterClassLabel"}}</label>
+      <select id="character-career-{{data._id}}"
+              data-type="String"
+              data-item-id="{{data._id}}"
+              data-property="data.career" data-dtype="String"
+              name="data.career">
+        {{#select data.data.career}}
+          <option disabled
+          {{#if (isEmpty data.data.career)}}selected{{/if}} 
+          >{{localize "TB2.ClassNoneSelected"}}</option>
+          {{#each (allClasses) as |value idx|}}
+            <option value="{{value}}">{{localize (lookup ../config.i18n.classes value)}}</option>
+          {{/each}}
+        {{/select}}
+      </select>
     </div>
 
     <div class="tb-actor-properties__property">

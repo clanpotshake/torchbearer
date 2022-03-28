@@ -4,7 +4,11 @@
 
 import { SkillTest, SlotType, TB } from '../config';
 import { ModifiableDataBaseTotal } from '../common/CommonData';
-import { CharacterDataSource, NpcDataSourceData } from './TBActorDataSource';
+import {
+  CharacterDataSource,
+  CharacterDataSourceData,
+  NpcDataSourceData,
+} from './TBActorDataSource';
 
 declare global {
   interface DataConfig {
@@ -85,4 +89,5 @@ interface TBCharacterDataPropertiesData
   extends TBActorDataPropertiesDataBase,
     HasMight,
     HasInventorySlots,
+    CharacterDataSourceData,
     NpcDataSourceData {}

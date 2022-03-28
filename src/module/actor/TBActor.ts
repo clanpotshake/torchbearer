@@ -1,6 +1,7 @@
 import { getGame } from '../helpers';
 import { createTestRoll } from '../rolls/CheckFactory';
-import { SkillTest, SlotType, TB } from '../config';
+import { CharacterClassType, SkillTest, SlotType, TB } from '../config';
+import { AttributeType } from '../item/ItemDataSource';
 
 declare global {
   interface DocumentClassConfig {
@@ -15,6 +16,7 @@ export class TBActor extends Actor {
     this.applyActiveEffectsToBaseData();
     this.prepareDerivedData();
     this.prepareGear();
+    this.prepareClass();
     this.applyActiveEffectsToDerivedData();
   }
   /** @override */
@@ -36,6 +38,15 @@ export class TBActor extends Actor {
       .map(([slot]) => {
         return slot as SlotType;
       });
+  }
+
+  prepareClass(): void {
+    if (this.data.type === 'character') {
+      const data = this.data.data;
+      if (!data.career) {
+        // TODO new character
+      }
+    }
   }
 
   /**

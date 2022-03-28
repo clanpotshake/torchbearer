@@ -221,6 +221,7 @@
   "TB2.HeadingAbilities": "Abilities",
   "TB2.HeadingBiography": "Biography",
   "TB2.NotOwned": "No owner",
+  "TB2.ClassNoneSelected": "-- please select a character class -- ",
   "TB2.ClassBurglar": "Burglar",
   "TB2.ClassMagician": "Magician",
   "TB2.ClassOutcast": "Outcast",

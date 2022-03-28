@@ -14,6 +14,14 @@
            value="{{data.data.stock}}"/>
 
     <label for="character-class">{{localize "TB2.CharacterClassLabel"}}</label>
+
+    <select id="character-class" data-type="String" name="data.career">
+      {{#select data.data.career}}
+        {{#each (allClasses) as |value key|}}
+          <option value="{{value}}">{{localize (lookup ../config.i18n.attributes value)}}</option>
+        {{/each}}
+      {{/select}}
+    </select>
     <input id="character-class"
            data-type="String" type="text"
            name="data.career"

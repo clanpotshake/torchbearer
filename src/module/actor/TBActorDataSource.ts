@@ -1,4 +1,5 @@
 import { Ability } from './TBActor';
+import { CharacterClassType } from '../config';
 
 declare global {
   interface SourceConfig {
@@ -53,7 +54,7 @@ export interface CharacterDataSourceData
     HasDisplayPropsDataSourceData {
   stock: string;
   age: number;
-  career: string; // TODO real type
+  career?: CharacterClassType;
   level: number;
   alias: string;
   hometown: string; // TODO item?

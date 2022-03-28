@@ -80,7 +80,7 @@ Actor:
       - displayProps
     stock: 'Human'
     age: 18
-    career: 'Warrior'
+    career:
     alias: ''
     hometown: 'Skogenby'
     raiment: 'Fine Bearskin Cloak'
