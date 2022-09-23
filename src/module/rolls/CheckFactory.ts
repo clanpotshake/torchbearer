@@ -6,6 +6,7 @@
 import { getGame } from '../helpers';
 import { handyParse, utilities } from '../util/utilities';
 import { TBTerm } from './TBTerm';
+import { DiceRollMode } from '@league-of-foundry-developers/foundry-vtt-types/src/foundry/common/constants.mjs';
 
 /**
  * Provides default values for all arguments the `CheckFactory` expects.
@@ -17,7 +18,7 @@ class DefaultCheckOptions implements TBCheckFactoryOptions {
   readonly beginnersLuck: boolean = false;
   readonly successMod: number = 0;
 
-  readonly rollMode: foundry.CONST.DiceRollMode = 'roll';
+  readonly rollMode: DiceRollMode = 'roll';
   readonly flavor: undefined;
 
   mergeWith(other: Partial<TBCheckFactoryOptions>): TBCheckFactoryOptions {
